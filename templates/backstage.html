@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <title>抽獎平台後台</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script>
+		$(document).ready(function(){
+            $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            })});
+	</script>
+    <style>
+        .btn{border:0;
+            color:#003C9D;
+            background-color:#fff;
+            border:2px #003C9D solid;
+            border-radius:10px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background-color:#003C9D;
+            color:#fff;
+            
+        }
+        .editbtn{
+            color: blue;
+        }
+        .css_table {
+            display:table;
+            font-size: 30px;
+        }
+        .css_tr {
+            display: table-row;
+        }
+        .css_td {
+            display: table-cell;
+        }
+        .css_th{
+            display: table-cell;
+            vertical-align: inherit;
+            font-weight: bold;
+            text-align: center;
+        }
+        .css_table, .css_tr, .css_td,.css_th{
+            border: 1px solid black;
+        }
+        input{
+            font-size: 25px;
+        }
+    </style>
+</head>
+    <body>
+        <h1>今日已有{{todayDone|length}}人參加抽獎</h1>
+        <h1>共{{AllDone|length}}人次參加抽獎</h1>
+        <div class="css_table" id="prizeTable">
+            <div class="css_tr">
+                <div class="css_th">index</div>
+                <div class="css_th">獎品</div>
+                <div class="css_th">機率</div>
+                <div class="css_th">剩餘數量</div>
+                <div class="css_th">修改</div>
+                <div class="css_th">確認</div>
+            </div>
+        {% for p in prizeObject.all %}
+            <div class="css_tr" id='table{{p.index}}'>
+                <div class="css_td" id='table{{p.index}}'> {{ p.index }} </div>
+                <div class="css_td" id='table{{p.index}}'> {{ p.prize }} </div>
+                <div class="css_td" id='rate{{p.index}}'> {{ p.rate }} </div>
+                <div class="css_td" id='left{{p.index}}'> {{ p.left }} </div>
+                <div class="css_td" class="editbtn"><a href="javascript:editClick('{{p.index}}')">修改</a></div>
+                <div class="css_td" class="savebtn" ><a id='save{{p.index}}' href="#">確認</a></div>
+            </div>
+        {% endfor %}
+        </div>
+        <script>
+            function editClick(index){
+                var rate=JSON.parse( '{{prize_rate2|safe}}');
+				var left=JSON.parse( '{{prize_left2|safe}}');
+                var rateEditId="rateEdit"+index.toString();
+                var leftEditId="leftEdit"+index.toString();
+                var rateNum=rate[index.toString()];
+                var leftNum=left[index.toString()];
+                var saveHref="javascript:saveClick("+index.toString()+")"
+                document.getElementById('rate'+index.toString()).innerHTML='<input id="'+rateEditId+'" type="text" placeholder="'+rateNum+'" value="'+rateNum+'" >'
+                document.getElementById('left'+index.toString()).innerHTML='<input id="'+leftEditId+'" type="text" placeholder="'+leftNum+'" value="'+leftNum+'" >'
+                document.getElementById('save'+index.toString()).href=saveHref
+            }
+            function saveClick(index){
+                var rateEditId="rateEdit"+index.toString();
+                var leftEditId="leftEdit"+index.toString();
+                var rate=document.getElementById(rateEditId).value;
+                var left=document.getElementById(leftEditId).value;
+                document.getElementById('rate'+index.toString()).innerHTML=rate
+                document.getElementById('left'+index.toString()).innerHTML=left
+                document.getElementById('save'+index.toString()).href='#'
+                $.ajax({
+        				'url': '/backstageEdit',
+        				'type': 'POST',
+        				'data': {index:index,rate:rate,left:left},
+     				 }).done(function(data){
+        				if(data.status == 200){
+							console.log('a');
+        				}
+        				else if(data.status == 400){
+          					alert(data.message);
+       					}
+      					})
+            }
+        </script>
+        <br><br>
+        <div>
+            <input type="button" value="焦糖韋恩咖啡" onclick="canClick()" class="btn" id="canbtn" style="width:300px;height:50px;">
+            <input type="button" value="FIN旅行洗漱包" onclick="finClick()" class="btn" id="finbtn" style="width:300px;height:50px;background-color:#003C9D;color: #FFF;">  
+        </div>
+            <div id="can" style="display:none">
+                <h3>焦糖韋恩咖啡</h3>
+                <h4>今日有{{winCanToday|length}}人中獎</h4>
+            </div>
+            <div class="css_table" id="canTable" style="display:none">
+                <div class="css_tr">
+                    <div class="css_th">uid</div>
+                    <div class="css_th">獎品</div>
+                    <div class="css_th">姓名</div>
+                    <div class="css_th">電話</div>
+                    <div class="css_th">地址</div>
+                    <div class="css_th">時間</div>
+                </div>
+            {% for c in winCan.all %}
+            <div class="css_tr">
+                    <div class="css_td"> {{ c.uid }} </div>
+                    <div class="css_td"> {{ c.prize }} </div>
+                    <div class="css_td"> {{ c.name }} </div>
+                    <div class="css_td"> {{ c.phone }} </div>
+                    <div class="css_td"> {{ c.address }}</div>
+                    <div class="css_td"> {{ c.time }} </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div id="fin">
+                <h3>FIN旅行洗漱包</h3>
+                <h4>今日有{{winFinToday|length}}人中獎</h4>
+            </div>
+            <div class="css_table" id="finTable">
+                <div class="css_tr">
+                    <div class="css_th">uid</div>
+                    <div class="css_th">獎品</div>
+                    <div class="css_th">姓名</div>
+                    <div class="css_th">電話</div>
+                    <div class="css_th">地址</div>
+                    <div class="css_th">時間</div>
+                </div>
+            {% for f in winFin.all %}
+                <div class="css_tr">
+                    <div class="css_td"> {{ f.uid }} </div>
+                    <div class="css_td"> {{ f.prize }}</div>
+                    <div class="css_td"> {{ f.name }} </div>
+                    <div class="css_td"> {{ f.phone }} </div>
+                    <div class="css_td"> {{ f.address }} </div>
+                    <div class="css_td"> {{ f.time }} </div>
+                </div>
+            {% endfor %}
+            </div>
+        <script>
+            function canClick() {
+                document.getElementById('can').style.display='block';
+                document.getElementById('canTable').style.display='block';
+                document.getElementById('fin').style.display='none';
+                document.getElementById('finTable').style.display='none';
+                document.getElementById('canbtn').style.color='#fff';
+                document.getElementById('canbtn').style.backgroundColor='#003C9D';
+                document.getElementById('finbtn').style.color='#003C9D';
+                document.getElementById('finbtn').style.backgroundColor='#fff';
+            }
+            function finClick() {
+                document.getElementById('fin').style.display='block';
+                document.getElementById('finTable').style.display='block';
+                document.getElementById('can').style.display='none';
+                document.getElementById('canTable').style.display='none';
+                document.getElementById('finbtn').style.color='#fff';
+                document.getElementById('finbtn').style.backgroundColor='#003C9D';
+                document.getElementById('canbtn').style.color='#003C9D';
+                document.getElementById('canbtn').style.backgroundColor='#fff';
+            }
+        </script>
+    </body>
+</html>

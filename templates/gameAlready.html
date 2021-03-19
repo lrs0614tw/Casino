@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Turntable</title>
+	<link rel="stylesheet" href="{% static 'css/turntable.css' %}">
+</head>
+<body>
+	<div class="background">
+		<div class="container">
+			<div class="turntable" id="turntable">
+			</div>
+			<div class="btn">
+			</div>
+			<div class="pointer" id="pointer">
+			</div>
+			<div class="base">
+			</div>
+			<div class="gift">
+			</div>
+			<div class="win">
+				<div ><center id="price">？？？？？？？？</center></div>
+			</div>
+		</div>
+		<div class="white">
+			<div style="padding:40px;">
+			<center><p><strong><i>活動辦法</i></strong></p></center>
+				<p><font>1</font>     每人LINE帳號每日限玩乙次。</p>
+				<p><font>2</font>     活動獎項以主辦單位提供之實務為準，無法指定顏色、型號、使用期限等規格，中獎者亦不得要求折抵現金、退換、轉售或折換其他物品。主辦單位保有修改或變更活動方式及更換活動獎品之權利。本活動獎品如遇有缺貨或不可抗力之因素無法提供時，主辦單位有權以其他等值商品替代。</p>
+				<p><font>3</font>     本活動僅限居住於台灣、金門、澎湖、馬祖地區之中華民國國民參加，獎品寄送地址限於台灣、金門、澎湖、馬祖地區。</p>
+				<p><font>4</font>     所有獎項之聯絡及寄送以中獎者於中獎時應主辦單位要求填寫之資料為準，參加者請務必確認資料無誤及填載正確，若因資料填寫不實、不完整或不正確造成無法聯繫或無法寄送或寄送錯誤或遭拒絕受領，則視同放棄權益且應自負其責，主辦單位不另行通知。</p>
+				<p><font>5</font>     主辦單位保有一切修改及取消本活動的權利而不作事前通知。</p>
+				<p><font>6</font>     當您參加抽獎即代表您同意黑松股份有限公司隱私權政策。</p>
+			</div>
+		</div>
+	</div>
+	<div id="done">	
+		<div id="done_close"></div>
+	</div>
+	<script src="{% static 'lib/Turntable.min.js' %}"></script>
+	<script>
+		document.getElementById("done").style.display="flex";
+		document.getElementById("done").style.background="url({% static 'img/done.png' %}) no-repeat center center";
+		document.getElementById("done").style.height="630px";
+		document.getElementById("done").style.backgroundSize ="contain";
+		document.getElementById("done_close").style.display="block";
+		document.querySelector("#done_close").addEventListener("click", function() {
+			window.close();
+		})
+	</script>
+</body>
+</html>
