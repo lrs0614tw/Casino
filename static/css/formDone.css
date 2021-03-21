@@ -1,39 +1,34 @@
-@font-face {
-	font-family: Notobold;
-	src: url(../font/NotoSansCJKtc-Bold.otf);
-  }
-  @font-face {
-	font-family: NotoRegular;
-	src: url(../font/NotoSansCJKtc-Regular.otf);
-  }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
   body{
 	  margin:0;
 	  padding:0;
   }
   p{
-	  font-family:NotoRegular;
+	font-family:'Noto Sans TC', sans-serif;
 	  font-size:2rem;
   }
   font{
 	  color:#00863c;
 	  font-size:2.2rem;
-	  font-family:Notobold;
+	  font-family:'Noto Sans TC', sans-serif;
+	font-weight: 700;
 	  margin-right:30px;
   }
   strong{
 	  color:#00863c;
 	  font-size:3rem;
-	  font-family:Notobold;
+	  font-family:'Noto Sans TC', sans-serif;
+	font-weight: 700;
   }
   .form_group {
 	  font-size:2rem;
 	  padding: 25px;
-	  font-family:NotoRegular;
+	  font-family:'Noto Sans TC', sans-serif;
   }
   .form_text{
 	  font-size:2rem;
 	  padding: 15px;
-	  font-family:NotoRegular;
+	  font-family:'Noto Sans TC', sans-serif;
   }
   .form_submit
   {	

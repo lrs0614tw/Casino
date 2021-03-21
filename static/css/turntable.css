@@ -1,29 +1,24 @@
-@font-face {
-  font-family: Notobold;
-  src: url(../font/NotoSansCJKtc-Bold.otf);
-}
-@font-face {
-  font-family: NotoRegular;
-  src: url(../font/NotoSansCJKtc-Regular.otf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 body{
 	margin:0;
 	padding:0;
 }
 p{
-	font-family:NotoRegular;
+	font-family:'Noto Sans TC', sans-serif;
 	font-size:2rem;
 }
 font{
 	color:#00863c;
 	font-size:2.2rem;
-	font-family:Notobold;
+	font-family:'Noto Sans TC', sans-serif;
+	font-weight: 700;
 	margin-right:30px;
 }
 strong{
 	color:#00863c;
 	font-size:3rem;
-	font-family:Notobold;
+	font-family:'Noto Sans TC', sans-serif;
+	font-weight: 700;
 }
 .background{
 	background: url(../img/bg.png);
@@ -99,7 +94,8 @@ strong{
 #price{
 	font-size:3rem;
 	vertical-align: middle;
-	font-family:Notobold;
+	font-family:'Noto Sans TC', sans-serif;
+	font-weight: 700;
 	color:#5b4b00;
 }
 .white{
