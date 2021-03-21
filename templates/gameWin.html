@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Turntable</title>
     <link rel="stylesheet" href="{% static 'css/turntable.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 </head>
 
 <body style="overflow: hidden;">
@@ -56,18 +58,31 @@
             </div>
         </div>
     </div>
-    <div id="done">
-        <div id="done_close"></div>
+    <div id="end">
+        <div id="end_close"></div>
     </div>
-    <script src="{% static 'lib/Turntable.min.js' %}"></script>
     <script>
-        document.getElementById("done").style.display = "flex";
-        document.getElementById("done").style.background = "url({% static 'img/done.webp' %}) no-repeat center center";
-        document.getElementById("done").style.height = "630px";
-        document.getElementById("done").style.backgroundSize = "contain";
-        document.getElementById("done_close").style.display = "block";
-        document.querySelector("#done_close").addEventListener("click", function() {
-            window.close();
+        var endBackgroundImg;
+        var endCloseBackgroundImg;
+        var endCloseTop = "400px"
+        var pname = '{{prize}}'
+        if (pname == '焦糖韋恩咖啡') {
+            var endBackgroundImg = "url( {% static 'img/winCan.webp' %}) no-repeat center center"
+            var endCloseBackgroundImg = "url({% static 'img/goWin.webp' %}) no-repeat center center"
+        } else if (pname == 'FIN旅行洗漱包') {
+            var endBackgroundImg = "url( {% static 'img/winFin.webp' %}) no-repeat center center"
+            var endCloseBackgroundImg = "url({% static 'img/goWin.webp' %}) no-repeat center center"
+        }
+        document.getElementById("price").innerText = '{{prize}}';
+        document.getElementById("end").style.display = "flex";
+        document.getElementById("end").style.background = endBackgroundImg;
+        document.getElementById("end").style.backgroundSize = "contain";
+        document.getElementById("end_close").style.background = endCloseBackgroundImg;
+        document.getElementById("end_close").style.backgroundSize = "contain";
+        document.getElementById("end_close").style.display = "block";
+        document.getElementById("end_close").style.top = endCloseTop;
+        document.querySelector("#end_close").addEventListener("click", function() {
+            window.location.replace('./gameForm?prize=' + '{{prize}}' + '&uid={{uid}}');
         })
     </script>
 </body>

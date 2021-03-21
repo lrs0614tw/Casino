@@ -1,78 +1,87 @@
-@font-face {
-  font-family: Notobold;
-  src: url(../font/NotoSansCJKtc-Bold.otf);
-}
-@font-face {
-  font-family: NotoRegular;
-  src: url(../font/NotoSansCJKtc-Regular.otf);
-}
-body{
-	margin:0;
-	padding:0;
-}
-p{
-	font-family:NotoRegular;
-	font-size:2rem;
-}
-font{
-	color:#00863c;
-	font-size:2.2rem;
-	font-family:Notobold;
-	margin-right:30px;
-}
-strong{
-	color:#00863c;
-	font-size:3rem;
-	font-family:Notobold;
-}
-.form_group {
-	font-size:2rem;
-	padding: 25px;
-	font-family:NotoRegular;
-}
-.form_text{
-	font-size:2rem;
-	padding: 15px;
-	font-family:NotoRegular;
-}
-.form_submit
-{	position: relative;
-    height: 292px;
-    width: 266px;
-	border:0;
-	top: -50px;
-    left: 520px;
-	background: url(../img/submit.png) no-repeat center center;
-	background-size: contain;
-}
-.background{
-	background: url(../img/bg.png);
-    background-size: cover;
-	overflow: hidden;
-    width: 100%;
-	height:calc(275vw);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+body {
     margin: 0;
     padding: 0;
 }
+
+p {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-size: 2rem;
+}
+
+font {
+    color: #00863c;
+    font-size: 2.2rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-display: swap;
+    margin-right: 30px;
+}
+
+strong {
+    color: #00863c;
+    font-size: 3rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-weight: 700;
+}
+
+.form_group {
+    font-size: 2rem;
+    padding: 25px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+}
+
+.form_text {
+    font-size: 2rem;
+    padding: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+}
+
+.form_submit {
+    position: relative;
+    height: 292px;
+    width: 266px;
+    border: 0;
+    top: -50px;
+    left: 520px;
+    background: url(../img/submit.webp) no-repeat center center;
+    background-size: contain;
+}
+
+.background {
+    background: url(../img/bg.webp);
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: calc(275vw);
+    margin: 0;
+    padding: 0;
+}
+
 .container {
-	width: 700px;
-	height: 700px;	
-	margin-left: auto;
-  	margin-right: auto;
-	-webkit-transform: translate(0px,420px);
-	overflow:visible;
-	background-color: rgba(255,255,255,0.8);
+    width: 700px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-transform: translate(0px, 420px);
+    overflow: visible;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 70px;
     border-radius: 30px;
 }
-.white{
-	width:101%;
-	height:auto;
-	margin-left: auto;
-  	margin-right: auto;
-    padding:20px;
-	position: relative;
-	background-color:white;
-	-webkit-transform: translate(0px,590px);
-	overflow:visible;
+
+.white {
+    width: 101%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    position: relative;
+    background-color: white;
+    -webkit-transform: translate(0px, 590px);
+    overflow: visible;
 }

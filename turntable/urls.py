@@ -34,5 +34,4 @@ urlpatterns = [
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')
-
 handler404 = page_not_found
