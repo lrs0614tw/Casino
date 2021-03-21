@@ -160,18 +160,18 @@ strong {
     margin: auto;
     display: none;
     align-items: center;
-    width: 750px;
-    height: 900px;
+    /*width: 750px;
+    height: 900px;*/
     z-index: 20;
 }
 
 #done_close {
     position: relative;
-    height: 166px;
-    width: 140px;
+    height: 200px;
+    width: 168px;
     background: url(../img/x.png) no-repeat center center;
     background-size: contain;
-    left: 485px;
-    top: -244px;
+    left: 670px;
+    top: -315px;
     display: none;
 }
