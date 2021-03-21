@@ -31,8 +31,8 @@ def game(request):
         if(Winner_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()):
             return render(request,'gameAlready.html',locals())
         else:
-            u=User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today)
-            prize=u[0].name
+            user=User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today)
+            prize=user[0].name
             if(prize!='明日再試！'):
                 return render(request,'gameWin.html',locals()) 
             else:
