@@ -48,12 +48,12 @@ strong {
     border: 0;
     top: -50px;
     left: 520px;
-    background: url(../img/ok.webp) no-repeat center center;
+    background: url(../img/ok.png) no-repeat center center;
     background-size: contain;
 }
 
 .background {
-    background: url(../img/bg.webp);
+    background: url(../img/bg.png);
     background-size: cover;
     overflow: hidden;
     width: 100%;

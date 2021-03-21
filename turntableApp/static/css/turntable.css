@@ -28,7 +28,7 @@ strong {
 }
 
 .background {
-    background: url(../img/bg.webp);
+    background: url(../img/bg.png);
     background-size: cover;
     overflow: hidden;
     width: 100%;
@@ -49,7 +49,7 @@ strong {
 .turntable {
     width: 100%;
     height: 100%;
-    background: url(../img/turntable.webp) no-repeat;
+    background: url(../img/turntable.png) no-repeat;
     background-size: 100% 100%;
     position: relative;
     z-index: 10;
@@ -61,7 +61,7 @@ strong {
     height: 486px;
     background-size: 100% 100%;
     -webkit-transform: translate(107px, -593px);
-    background: url(../img/go.webp) no-repeat center center;
+    background: url(../img/go.png) no-repeat center center;
     background-size: contain;
     z-index: 11;
 }
@@ -69,7 +69,7 @@ strong {
 .pointer {
     position: relative;
     -webkit-transform: translate(317px, -1200px);
-    background: url(../img/point.webp) no-repeat center center;
+    background: url(../img/point.png) no-repeat center center;
     background-size: contain;
     width: 66px;
     height: 94px;
@@ -79,7 +79,7 @@ strong {
 .base {
     position: relative;
     -webkit-transform: translate(10px, -650px);
-    background: url(../img/base.webp) no-repeat center center;
+    background: url(../img/base.png) no-repeat center center;
     background-size: contain;
     width: 680px;
     height: 182px;
@@ -89,7 +89,7 @@ strong {
 .gift {
     position: relative;
     -webkit-transform: translate(-150px, -1132px);
-    background: url(../img/gift.webp) no-repeat center center;
+    background: url(../img/gift.png) no-repeat center center;
     background-size: contain;
     width: 1000px;
     height: 470px;
@@ -99,7 +99,7 @@ strong {
 .win {
     position: relative;
     -webkit-transform: translate(32px, -1200px);
-    background: url(../img/win.webp) no-repeat center center;
+    background: url(../img/win.png) no-repeat center center;
     background-size: contain;
     width: 636px;
     height: 80px;
@@ -133,11 +133,10 @@ strong {
     top: 0;
     right: 0;
     bottom: 0;
-    margin: auto;
     display: none;
     align-items: center;
-    width: 750px;
-    height: 900px;
+    /*width: 750px;
+    height: 900px;*/
     z-index: 20;
 }
 
@@ -145,9 +144,9 @@ strong {
     position: relative;
     height: 292px;
     width: 266px;
-    background: url(../img/x.webp) no-repeat center center;
+    background: url(../img/x.png) no-repeat center center;
     background-size: contain;
-    left: 485px;
+    left: 700px;
     top: 400px;
     display: none;
 }
@@ -170,7 +169,7 @@ strong {
     position: relative;
     height: 166px;
     width: 140px;
-    background: url(../img/x.webp) no-repeat center center;
+    background: url(../img/x.png) no-repeat center center;
     background-size: contain;
     left: 485px;
     top: -244px;
