@@ -10,6 +10,6 @@ class Winner_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','prize','name','phone','address','time')
 admin.site.register(Winner_Done,Winner_Done_Admin)
 class Prize_Rate_Admin(admin.ModelAdmin):
-    list_display = ('index','prize','rate','left')
+    list_display = ('index','prize','rate','left','today')
 admin.site.register(Prize_Rate,Prize_Rate_Admin)
 # Register your models here.

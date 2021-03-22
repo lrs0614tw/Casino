@@ -90,12 +90,9 @@ def backstage(request):
         prize_left[i.index]=i.left
     prize_rate2=json.dumps(prize_rate)
     prize_left2=json.dumps(prize_left)
-    return render(request,'backstage.html',locals())
-def backstageEdit(request):
-    index=request.POST['index']
-    rate=request.POST['rate']
-    left=request.POST['left']
-    today=datetime.date.today()
-    Prize_Rate.objects.filter(index=index,today=today).update(rate=rate)
-    Prize_Rate.objects.filter(index=index,today=today).update(left=left)
-    return HttpResponse("表單回傳成功") 
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return render(request,'backstage.html',locals())
+    else:
+        return render(request,'error.html',locals())
