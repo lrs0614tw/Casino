@@ -96,3 +96,11 @@ def backstage(request):
         return render(request,'backstage.html',locals())
     else:
         return render(request,'error.html',locals())
+def backstageEdit(request):
+    index=request.POST['index']
+    rate=request.POST['rate']
+    left=request.POST['left']
+    today=datetime.date.today()
+    Prize_Rate.objects.filter(index=index,today=today).update(rate=rate)
+    Prize_Rate.objects.filter(index=index,today=today).update(left=left)
+    return HttpResponse("表單回傳成功") 
