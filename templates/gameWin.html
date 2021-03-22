@@ -69,9 +69,11 @@
         if (pname == '焦糖韋恩咖啡') {
             var endBackgroundImg = "url( {% static 'img/winCan.png' %}) no-repeat center center"
             var endCloseBackgroundImg = "url({% static 'img/goWin.png' %}) no-repeat center center"
+            var fullName = 'CAN320ml焦糖韋恩咖啡乙箱'
         } else if (pname == 'FIN旅行洗漱包') {
             var endBackgroundImg = "url( {% static 'img/winFin.png' %}) no-repeat center center"
             var endCloseBackgroundImg = "url({% static 'img/goWin.png' %}) no-repeat center center"
+            var fullName = 'FIN旅行洗漱包乙個'
         }
         document.getElementById("price").innerText = '{{prize}}';
         document.getElementById("end").style.display = "flex";
@@ -82,7 +84,7 @@
         document.getElementById("end_close").style.display = "block";
         document.getElementById("end_close").style.top = endCloseTop;
         document.querySelector("#end_close").addEventListener("click", function() {
-            window.location.replace('./gameForm?prize=' + '{{prize}}' + '&uid={{uid}}');
+            window.location.replace('./gameForm?prize=' + fullName + '&uid={{uid}}');
         })
     </script>
 </body>
