@@ -78,10 +78,10 @@ def backstage(request):
     tomorrow = today + datetime.timedelta(days=1)
     todayDone=User_Done.objects.filter(time__lt=tomorrow,time__gte=today)
     AllDone=User_Done.objects.all()
-    winCan=Winner_Done.objects.filter(prize='焦糖韋恩咖啡')
-    winCanToday=Winner_Done.objects.filter(prize='焦糖韋恩咖啡',time__lt=tomorrow,time__gte=today)
-    winFin=Winner_Done.objects.filter(prize='FIN旅行洗漱包')
-    winFinToday=Winner_Done.objects.filter(prize='FIN旅行洗漱包',time__lt=tomorrow,time__gte=today)
+    winCan=Winner_Done.objects.filter(prize='CAN320ml焦糖韋恩咖啡乙箱')
+    winCanToday=Winner_Done.objects.filter(prize='CAN320ml焦糖韋恩咖啡乙箱',time__lt=tomorrow,time__gte=today)
+    winFin=Winner_Done.objects.filter(prize='FIN旅行洗漱包乙個')
+    winFinToday=Winner_Done.objects.filter(prize='FIN旅行洗漱包乙個',time__lt=tomorrow,time__gte=today)
     prizeObject=Prize_Rate.objects.filter(today=today)
     prize_rate={}
     prize_left={}
