@@ -135,8 +135,7 @@ strong {
     bottom: 0;
     display: none;
     align-items: center;
-    /*width: 750px;
-    height: 900px;*/
+    margin: 80px;
     z-index: 20;
 }
 
@@ -146,7 +145,7 @@ strong {
     width: 266px;
     background: url(../img/x.png) no-repeat center center;
     background-size: contain;
-    left: 700px;
+    left: 590px;
     top: 400px;
     display: none;
 }
