@@ -27,6 +27,9 @@ def game(request):
         prize_left[i.index]=i.left
     prize_rate2=json.dumps(prize_rate)
     prize_left2=json.dumps(prize_left)
+    beenWin='0'
+    if(Winner_Done.objects.filter(uid=uid).exists()):
+        beenWin='1'
     if(User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()==True):
         if(Winner_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()):
             return render(request,'gameAlready.html',locals())

@@ -119,6 +119,10 @@
                         if (index < 0) {
                             index = 5
                         }
+                        var beenWin = '{{beenWin}}';
+                        if (beenWin == '1') {
+                            index = 5;
+                        }
                         console.log(index)
                         console.log(j)
                         var newLeft = parseInt(left[index.toString()]) - 1;
@@ -169,7 +173,7 @@
                         })
                     } else if (data.ifWin == 0) {
                         document.querySelector("#end_close").addEventListener("click", function() {
-                            window.close();
+                            window.location.replace('./liff?finish=bye');
                         })
                     }
                     //finish.submit();
