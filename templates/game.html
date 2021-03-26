@@ -162,9 +162,9 @@
                     document.getElementById("end_close").style.backgroundSize = "contain";
                     document.getElementById("end_close").style.display = "block";
                     document.getElementById("end_close").style.top = data.top;
+                    document.querySelector(".btn").removeEventListener("click", buttonOn);
                     document.getElementById("bgf").style.display = 'block';
                     document.getElementsByTagName("body")[0].style.overflow = 'hidden';
-                    document.querySelector(".btn").removeEventListener("click", buttonOn);
                     console.log(data.newLeft, 'new')
                     if (data.ifWin == 1) {
 
