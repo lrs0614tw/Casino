@@ -82,6 +82,7 @@
             ajax(1).then(function(data) {
                 draw(data)
             })
+            document.querySelector(".btn").removeEventListener("click", buttonOn);
         }
         document.querySelector(".btn").addEventListener("click", buttonOn)
 
@@ -164,7 +165,6 @@
                     document.getElementById("end_close").style.top = data.top;
                     document.getElementById("bgf").style.display = 'block';
                     document.getElementsByTagName("body")[0].style.overflow = 'hidden';
-                    document.querySelector(".btn").removeEventListener("click", buttonOn);
                     console.log(data.newLeft, 'new')
                     if (data.ifWin == 1) {
 
