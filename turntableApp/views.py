@@ -111,8 +111,18 @@ def backstageEdit(request):
 def winner(request):
     allWinner=Winner_Done.objects.all()
     post_list = serializers.serialize('json', allWinner)
-    return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())
 def player(request):
     allPlayer=User_Done.objects.all()
     post_list = serializers.serialize('json', allPlayer)
-    return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())
