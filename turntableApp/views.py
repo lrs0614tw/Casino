@@ -136,3 +136,10 @@ def gameDemoDone(request):
 def liffDemo(request):
     finish=request.GET.get('finish','')
     return render(request,'liffDemo.html',locals())
+def liffAchi(request):
+    return render(request,'liffAchi.html',locals())
+def achi(request):
+    uid=request.POST['uid']
+    displayname=request.POST['displayname']
+    pictureurl=request.POST['pictureurl']
+    return render(request,'achi.html',locals())
