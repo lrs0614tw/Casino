@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.core import serializers
 import datetime
 import json
 from turntableApp.models import *
@@ -107,3 +108,21 @@ def backstageEdit(request):
     Prize_Rate.objects.filter(index=index,today=today).update(rate=rate)
     Prize_Rate.objects.filter(index=index,today=today).update(left=left)
     return HttpResponse("表單回傳成功") 
+def winner(request):
+    allWinner=Winner_Done.objects.all()
+    post_list = serializers.serialize('json', allWinner)
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())
+def player(request):
+    allPlayer=User_Done.objects.all()
+    post_list = serializers.serialize('json', allPlayer)
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())

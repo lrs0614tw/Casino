@@ -82,6 +82,7 @@
             ajax(1).then(function(data) {
                 draw(data)
             })
+            document.querySelector(".btn").removeEventListener("click", buttonOn);
         }
         document.querySelector(".btn").addEventListener("click", buttonOn)
 
