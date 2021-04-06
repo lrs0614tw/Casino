@@ -16,31 +16,14 @@
 
                 })
                 .then(() => {
-                    ifFinish = '{{finish}}';
-                    if (ifFinish == 'ok') {
-                        liff.sendMessages([{
-                                type: 'text',
-                                text: '已完成抽獎!'
-                            }])
-                            .then(() => {
-                                console.log('message sent');
-                            })
-                            .catch((err) => {
-                                console.log('error', err);
-                            });
-                        liff.closeWindow()
-                    } else if (ifFinish == 'bye') {
-                        liff.closeWindow()
-                    } else if (ifFinish == 'game') {
-                        // Start to use liff's api
-                        liff.getProfile()
-                            .then(profile => {
-                                window.location.replace('./gameDemo?uid=' + profile.userId);
-                            })
-                            .catch((err) => {
-                                console.log('error', err);
-                            });
-                    }
+                    // Start to use liff's api
+                    liff.getProfile()
+                        .then(profile => {
+                            window.location.replace('./gameDemo?uid=' + profile.userId);
+                        })
+                        .catch((err) => {
+                            console.log('error', err);
+                        });
 
 
                 })
