@@ -139,7 +139,7 @@ def liffDemo(request):
 def liffAchi(request):
     return render(request,'liffAchi.html',locals())
 def achi(request):
-    uid=request.POST['uid']
-    displayname=request.POST['displayname']
-    pictureurl=request.POST['pictureurl']
+    uid = request.GET.get('uid','')
+    displayname = request.GET.get('displayname','')
+    pictureurl = request.GET.get('pictureurl','')
     return render(request,'achi.html',locals())
