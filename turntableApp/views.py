@@ -126,3 +126,13 @@ def player(request):
         return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
     else:
         return render(request,'error.html',locals())
+def gameDemo(request):
+    uid = request.GET.get('uid','')
+    return render(request,'gameDemo.html',locals())
+def gameDemoDone(request):
+    uid=request.POST['uid']
+    Userdemo_Done.objects.create(uid=uid)
+    return HttpResponse("表單回傳成功") 
+def liffDemo(request):
+    finish=request.GET.get('finish','')
+    return render(request,'liffDemo.html',locals())

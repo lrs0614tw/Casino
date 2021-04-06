@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-size: 2rem;
+}
+
+font {
+    color: #00863c;
+    font-size: 2.2rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-display: swap;
+    margin-right: 30px;
+}
+
+strong {
+    color: #00863c;
+    font-size: 3rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-weight: 700;
+}
+
+.background {
+    background: url(../img/bgDemo.png);
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: calc(275vw);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 620px;
+    height: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-transform: translate(0px, 420px);
+    overflow: visible;
+}
+
+.turntable {
+    width: 100%;
+    height: 100%;
+    background: url(../img/turntableDemo.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.btn {
+    position: relative;
+    width: 486px;
+    height: 486px;
+    background-size: 100% 100%;
+    -webkit-transform: translate(73px, -556px);
+    background: url(../img/go.png) no-repeat center center;
+    background-size: contain;
+    z-index: 11;
+}
+
+.pointer {
+    position: relative;
+    -webkit-transform: translate(278px, -1135px);
+    background: url(../img/point.png) no-repeat center center;
+    background-size: contain;
+    width: 66px;
+    height: 94px;
+    z-index: 11;
+}
+
+.base {
+    position: relative;
+    -webkit-transform: translate(10px, -650px);
+    background: url(../img/base.png) no-repeat center center;
+    background-size: contain;
+    width: 680px;
+    height: 182px;
+    z-index: 9;
+}
+
+.gift {
+    position: relative;
+    -webkit-transform: translate(-150px, -1132px);
+    background: url(../img/gift.png) no-repeat center center;
+    background-size: contain;
+    width: 1000px;
+    height: 470px;
+    z-index: 8;
+}
+
+.turns {
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -100px;
+    -webkit-transform-origin: center bottom;
+}
+
+.turns h3 {
+    font-size: 20px;
+    color: #ffdb12;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.turns img {
+    width: 85px;
+    height: 85px;
+}
+
+.turns:nth-of-type(1) {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+}
+
+.turns:nth-of-type(2) {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.turns:nth-of-type(3) {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.turns:nth-of-type(4) {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.turns:nth-of-type(5) {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.turns:nth-of-type(6) {
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+
+.turns:nth-of-type(7) {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.turns:nth-of-type(8) {
+    -webkit-transform: rotate(315deg);
+    transform: rotate(315deg);
+}

@@ -32,6 +32,9 @@ urlpatterns = [
     path('backstageEdit', views.backstageEdit),
     path('winner',views.winner),
     path('player',views.player),
+    path('gameDemo',views.gameDemo),
+    path('gameDemo_done', views.gameDemoDone),
+    path('liffDemo', views.liffDemo),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

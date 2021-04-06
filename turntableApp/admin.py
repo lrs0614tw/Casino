@@ -12,4 +12,7 @@ admin.site.register(Winner_Done,Winner_Done_Admin)
 class Prize_Rate_Admin(admin.ModelAdmin):
     list_display = ('index','prize','rate','left','today')
 admin.site.register(Prize_Rate,Prize_Rate_Admin)
+class Userdemo_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','time')
+admin.site.register(Userdemo_Done,Userdemo_Done_Admin)
 # Register your models here.
