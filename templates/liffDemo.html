@@ -12,7 +12,7 @@
             // Using a Promise object
             liff.init({
                     //liffId: '1655755802-8R72prpM' // heysong
-                    liffId: '1655753427-ZJa1wOyz'
+                    liffId: '1655829417-p8M6a9aG'
 
                 })
                 .then(() => {
@@ -31,11 +31,11 @@
                         liff.closeWindow()
                     } else if (ifFinish == 'bye') {
                         liff.closeWindow()
-                    } else {
+                    } else if (ifFinish == 'game') {
                         // Start to use liff's api
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./game?uid=' + profile.userId);
+                                window.location.replace('./gameDemo?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);

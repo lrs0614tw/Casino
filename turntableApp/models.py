@@ -26,3 +26,8 @@ class Prize_Rate(models.Model):
     today = models.DateField(default=date.today)
     def __str__(self):
         return self.index
+class Userdemo_Done(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')         
+    time = models.DateTimeField(auto_now=True)                          
+    def __str__(self):
+        return self.uid

@@ -1,0 +1,121 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Turntable</title>
+    <link rel="stylesheet" href="{% static 'css/turntableDemo.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div id="bgf" style="display:none;position: absolute;top: 0;left:0;margin: 0;padding: 0;width: 100%;height: 200%;z-index: 19; background-color: rgba(3,44,9,0.7);">
+    </div>
+    <div class="background">
+        <div class="container">
+            <div class="turntable" id="turntable">
+                <div class="turns">
+                    <h3>獎品一</h3>
+                </div>
+                <div class="turns">
+                    <h3>獎品二</h3>
+                </div>
+
+                <div class="turns">
+                    <h3>獎品三</h3>
+                </div>
+
+                <div class="turns">
+                    <h3>獎品四</h3>
+                </div>
+
+                <div class="turns">
+                    <h3>獎品五</h3>
+                </div>
+
+                <div class="turns">
+                    <h3>獎品六</h3>
+                </div>
+                <div class="turns">
+                    <h3>獎品七</h3>
+                </div>
+                <div class="turns">
+                    <h3>獎品八</h3>
+                </div>
+            </div>
+            <div class="btn">
+            </div>
+            <div class="pointer" id="pointer">
+            </div>
+        </div>
+    </div>
+    <div id="end">
+        <div id="end_close"></div>
+    </div>
+    <script src="{% static 'lib/Turntable.min.js' %}"></script>
+    <script>
+        var turnsCount = 8;
+        var turntable = new Turntable("#turntable", {
+            turnsCount: turnsCount
+        })
+
+        function buttonOn() {
+            turntable.run();
+            ajax(1).then(function(data) {
+                draw(data)
+            })
+        }
+        document.querySelector(".btn").addEventListener("click", buttonOn)
+
+        function ajax(status) {
+            return new Promise(function(resolve, reject) {
+                if (status == 1) {
+                    setTimeout(function() {
+                        var index = Math.floor(Math.random() * turnsCount)
+                        var list = ['獎品一', '獎品二', '獎品三', '獎品四', '獎品五', '獎品六', '獎品七', '獎品八', ];
+                        resolve({
+                            get: 1,
+                            index: index,
+                            prize: list[index]
+                        })
+                    }, 200)
+                }
+            })
+        }
+
+        function draw(data) {
+            if (data.get == 1) {
+                var index = data.index
+                var prize = data.prize
+                turntable.done(index, function() {
+                    alert('恭喜您抽中 「' + prize + '」')
+                })
+            }
+            $.ajax({
+                'url': '/gameDemo_done',
+                'type': 'POST',
+                'data': {
+                    uid: '{{uid}}',
+                },
+            }).done(function(data) {
+                if (data.status == 200) {
+                    console.log('a');
+                } else if (data.status == 400) {
+                    alert(data.message);
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
