@@ -1,0 +1,76 @@
+<!DOCTYPE html> {% load static %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/achi.css' %}">
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Using a Promise object
+            liff.init({
+                    //liffId: '1655755802-8R72prpM' // heysong
+                    liffId: '1655829417-eKbMOaOl'
+
+                })
+                .then(() => {
+                    // Start to use liff's api
+                    liff.getProfile()
+                        .then(profile => {
+                            $.ajax({
+                                'url': '/claire_done',
+                                'type': 'POST',
+                                'data': {
+                                    uid: profile.userId,
+                                },
+                            }).done(function(data) {
+                                if (data.status == 200) {
+                                    console.log('a');
+                                } else if (data.status == 400) {
+                                    alert(data.message);
+                                }
+                            })
+                        })
+                        .catch((err) => {
+                            console.log('error', err);
+                        });
+
+
+                })
+                .catch((err) => {
+                    // Error happens during initialization
+                    console.log(err.code, err.message);
+                });
+
+        });
+    </script>
+    <style>
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <img id='thanks'>
+    </div>
+</body>
+
+</html>
