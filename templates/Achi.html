@@ -1,0 +1,27 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Turntable</title>
+    <link rel="stylesheet" href="{% static 'css/turntableDemo.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <h1>{{displayname}}</h1>
+    ok
+    <img src="{{pictureurl}}">
+</body>
+
+</html>
