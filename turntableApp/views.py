@@ -142,7 +142,6 @@ def achi(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-<<<<<<< HEAD
     if(Userdemo_Done.objects.filter(uid=uid).exists()):
         print('a')
         gameDone=1
