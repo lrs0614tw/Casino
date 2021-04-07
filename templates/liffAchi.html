@@ -19,7 +19,7 @@
                     // Start to use liff's api
                     liff.getProfile()
                         .then(profile => {
-                            window.location.replace('./Achi?uid=' + profile.userId + '&displayname=' + profile.displayName + '&pictureurl=' + profile.pictureUrl);
+                            window.location.replace('./achi?uid=' + profile.userId + '&displayname=' + profile.displayName + '&pictureurl=' + profile.pictureUrl);
                         })
                         .catch((err) => {
                             console.log('error', err);
