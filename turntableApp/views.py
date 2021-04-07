@@ -142,4 +142,4 @@ def achi(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-    return render(request,'achi.html',locals())
+    return render(request,'Achi.html',locals())
