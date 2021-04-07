@@ -20,7 +20,8 @@ body {
     height: 250px;
     margin: 100px;
     border: none;
-    filter: grayscale(100%)
+    filter: grayscale(100%);
+    margin-bottom: 20px;
 }
 
 #spinwheel {
@@ -30,7 +31,8 @@ body {
     height: 250px;
     margin: 100px;
     border: none;
-    filter: grayscale(100%)
+    filter: grayscale(100%);
+    margin-bottom: 20px;
 }
 
 #thanks {
