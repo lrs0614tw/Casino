@@ -142,4 +142,16 @@ def achi(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-    return render(request,'achi.html',locals())
+    if(Userdemo_Done.objects.filter(uid=uid).exists()):
+        print('a')
+        gameDone=1
+    if(claire_Done.objects.filter(uid=uid).exists()):
+        claireDone=1
+    return render(request,'Achi.html',locals())
+def liffClaire(request):
+    return render(request,'liffClaire.html',locals())
+def claireDone(request):
+    uid=request.POST['uid']
+    today=datetime.date.today()
+    claire_Done.objects.create(uid=uid,today=today)
+    return HttpResponse("表單回傳成功") 

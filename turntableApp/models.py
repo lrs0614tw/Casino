@@ -31,3 +31,13 @@ class Userdemo_Done(models.Model):
     time = models.DateTimeField(auto_now=True)                          
     def __str__(self):
         return self.uid
+class claire_Done(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')         
+    time = models.DateTimeField(auto_now=True)                          
+    def __str__(self):
+        return self.uid
+class spinwheel_Done(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')         
+    time = models.DateTimeField(auto_now=True)                          
+    def __str__(self):
+        return self.uid

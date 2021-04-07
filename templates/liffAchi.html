@@ -12,14 +12,14 @@
             // Using a Promise object
             liff.init({
                     //liffId: '1655755802-8R72prpM' // heysong
-                    liffId: '1655829417-eKbMOaOl'
+                    liffId: '1655829417-XPx93z3B'
 
                 })
                 .then(() => {
                     // Start to use liff's api
                     liff.getProfile()
                         .then(profile => {
-                            window.location.replace('./Achi?uid=' + profile.userId + '&displayname=' + profile.displayName + '&pictureurl=' + profile.pictureUrl);
+                            window.location.replace('./achi?uid=' + profile.userId + '&displayname=' + profile.displayName + '&pictureurl=' + profile.pictureUrl);
                         })
                         .catch((err) => {
                             console.log('error', err);
