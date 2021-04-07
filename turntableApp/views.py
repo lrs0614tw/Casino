@@ -156,6 +156,3 @@ def claireDone(request):
     today=datetime.date.today()
     claire_Done.objects.create(uid=uid,today=today)
     return HttpResponse("表單回傳成功") 
-=======
-    return render(request,'Achi.html',locals())
->>>>>>> 652055b57f08dce95e6a29601be2176ea28a2d25
