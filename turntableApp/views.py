@@ -153,5 +153,5 @@ def liffClaire(request):
 def claireDone(request):
     uid=request.POST['uid']
     today=datetime.date.today()
-    claire_Done.objects.create(uid=uid,today=today)
+    claire_Done.objects.create(uid=uid,time=today)
     return HttpResponse("表單回傳成功") 
