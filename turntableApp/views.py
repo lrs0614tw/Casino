@@ -155,4 +155,7 @@ def claireDone(request):
     today=datetime.date.today()
     claire_Done.objects.create(uid=uid,time=today)
     return HttpResponse("表單回傳成功") 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c34c57ebf2e95cc3d7e242598df2bb7563ce987
