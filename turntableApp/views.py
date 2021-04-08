@@ -161,4 +161,4 @@ def scratchOff(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-    return render(request,'scratchoff.html',locals())
+    return render(request,'scratchOff.html',locals())
