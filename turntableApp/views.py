@@ -159,5 +159,6 @@ def liffScratch(request):
     return render(request,'liffScratch.html',locals())
 def scratchOff(request):
     uid = request.GET.get('uid','')
+    displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
     return render(request,'scratchoff.html',locals())
