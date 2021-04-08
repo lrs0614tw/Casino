@@ -34,6 +34,9 @@
     </div>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
+        var giftImg = ["{% static 'img/scratchGift/baby.jpg' %}", "{% static 'img/scratchGift/bao.jpg' %}", "{% static 'img/scratchGift/diamond.jpg' %}", "{% static 'img/scratchGift/horse.jpg' %}", "{% static 'img/scratchGift/shoes.jpg' %}"]
+        var giftName = ['寶寶奶嘴', '包包', '閃亮亮鑽石', '寶寶搖搖馬', '高跟鞋']
+        document.getElementById("robot").src = giftImg['{{index}}'];
         addEventListener("load", init, false);
 
         function init(event) {
@@ -198,8 +201,8 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
+                                alert('恭喜獲得 ' + giftName['{{index}}'])
                                 $("#redux").eraser('clear');
-                                alert('恭喜獲得 ' + '{{displayname}}')
                             }
                         }
                     }
