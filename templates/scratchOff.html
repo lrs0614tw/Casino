@@ -38,7 +38,7 @@
 
         function init(event) {
             $("#redux").eraser({
-                size: 20
+                size: 40
             });
         }
 
@@ -67,7 +67,7 @@
                                 $canvas = $("<canvas/>"),
                                 canvas = $canvas.get(0),
                                 size = (options && options.size) ? options.size : 40,
-                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .2,
+                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .4,
                                 completeFunction = (options && options.completeFunction) ? options.completeFunction : methods.clear,
                                 parts = [],
                                 colParts = Math.floor(width / size),
