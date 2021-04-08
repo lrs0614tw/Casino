@@ -39,6 +39,8 @@ urlpatterns = [
     path('liffAchi', views.liffAchi),
     path('liffClaire', views.liffClaire),
     path('claire_done', views.claireDone),
+    path('liffScratch', views.liffScratch),
+    path('scratchOff', views.scratchOff),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

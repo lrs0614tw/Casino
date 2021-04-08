@@ -155,3 +155,9 @@ def claireDone(request):
     today=datetime.date.today()
     claire_Done.objects.create(uid=uid,time=today)
     return HttpResponse("表單回傳成功") 
+def liffScratch(request):
+    return render(request,'liffScratch.html',locals())
+def scratchOff(request):
+    uid = request.GET.get('uid','')
+    pictureurl = request.GET.get('pictureurl','')
+    return render(request,'scratchoff.html',locals())
