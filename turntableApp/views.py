@@ -163,4 +163,4 @@ def scratchOff(request):
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
     index=random.randint(0,4)
-    return render(request,'scratchoff.html',locals())
+    return render(request,'scratchOff.html',locals())
