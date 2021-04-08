@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.core import serializers
 import datetime
 import json
+import random
 from turntableApp.models import *
 
 # Create your views here.
@@ -161,4 +162,5 @@ def scratchOff(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-    return render(request,'scratchOff.html',locals())
+    index=random.randint(0,4)
+    return render(request,'scratchoff.html',locals())
