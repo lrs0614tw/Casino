@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>刮刮樂</title>
+    <title>鄭宏輝刮刮樂</title>
     <link rel="stylesheet" href="{% static 'css/scratchOff.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
@@ -22,7 +22,7 @@
     <div class="background">
         <center>
             <span class="container">
-                <img id="robot" src="{{pictureurl}}" />
+                <img id="robot"/>
                 <img id="redux" src="{% static 'img/scratchofftop.png' %}" />
             </span>
         </center>
@@ -34,8 +34,8 @@
     </div>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
-        var giftImg = ["{% static 'img/scratchGift/baby.jpg' %}", "{% static 'img/scratchGift/bao.jpg' %}", "{% static 'img/scratchGift/diamond.jpg' %}", "{% static 'img/scratchGift/horse.jpg' %}", "{% static 'img/scratchGift/shoes.jpg' %}"]
-        var giftName = ['寶寶奶嘴', '包包', '閃亮亮鑽石', '寶寶搖搖馬', '高跟鞋']
+        var giftImg = ["{% static 'img/scratchGift/soap.jpg' %}", "{% static 'img/scratchGift/facemask.jpg' %}"]
+        var giftName = ['台灣好浴皂', '好運犇騰口罩']
         document.getElementById("robot").src = giftImg['{{index}}'];
         addEventListener("load", init, false);
 
