@@ -170,9 +170,26 @@ def liffScratchHui(request):
     return render(request,'liffScratchHui.html',locals())
 def huiScratch(request):
     uid = request.GET.get('uid','')
-    r=random.randint(0,9)
-    if(r>=3):
-        index=1
+    if(hui_Done.objects.filter(uid=uid).exists()==True):
+        info=hui_Done.objects.filter(uid=uid)
+        finish='1'
+        print(finish)
+        prize=info[0].prize
+        if(prize=='台灣好浴皂'):
+            index=0
+        else:
+            index=1
     else:
-        index=0
+        finish='0'
+        r=random.randint(0,9)
+        if(r>=3):
+            index=1
+        else:
+            index=0
     return render(request,'huiScratch.html',locals())
+def huiGameDone(request):
+    uid=request.POST['uid']
+    prize=request.POST['prize']
+    today=datetime.date.today()
+    hui_Done.objects.create(uid=uid,prize=prize)
+    return HttpResponse("表單回傳成功") 

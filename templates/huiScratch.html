@@ -22,7 +22,7 @@
     <div class="background">
         <center>
             <span class="container">
-                <img id="robot"/>
+                <img id="robot" />
                 <img id="redux" src="{% static 'img/scratchofftop.png' %}" />
             </span>
         </center>
@@ -37,7 +37,15 @@
         var giftImg = ["{% static 'img/scratchGift/soap.jpg' %}", "{% static 'img/scratchGift/facemask.jpg' %}"]
         var giftName = ['台灣好浴皂', '好運犇騰口罩']
         document.getElementById("robot").src = giftImg['{{index}}'];
-        addEventListener("load", init, false);
+
+        console.log('{{finish}}')
+        var iffinish = '{{finish}}';
+        if (iffinish == '1') {
+            console.log('finish')
+            document.getElementById("redux").style.display = 'none';
+        } else {
+            addEventListener("load", init, false);
+        }
 
         function init(event) {
             $("#redux").eraser({
@@ -126,7 +134,6 @@
                                 completeRatio: completeRatio,
                                 completeFunction: completeFunction
                             };
-                            console.log(completeFunction)
                             $canvas.data('eraser', data);
 
                             // listen for resize event to update offset values
@@ -153,6 +160,20 @@
                         data.touchY = ty;
                         event.preventDefault();
                     }
+                    $.ajax({
+                        'url': '/huiGameDone',
+                        'type': 'POST',
+                        'data': {
+                            uid: '{{uid}}',
+                            prize: giftName['{{index}}']
+                        },
+                    }).done(function(data) {
+                        if (data.status == 200) {
+                            console.log('a');
+                        } else if (data.status == 400) {
+                            alert(data.message);
+                        }
+                    })
                 },
                 touchMove: function(event) {
                     var $this = $(this),
@@ -201,8 +222,9 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
-                                alert('恭喜獲得 ' + giftName['{{index}}'])
+                                alert('恭喜獲得 ' + giftName['{{index}}'] + "\n憑此畫面即可兌獎")
                                 $("#redux").eraser('clear');
+                                window.location.replace('./liffScratchHui?finish={{index}}');
                             }
                         }
                     }
