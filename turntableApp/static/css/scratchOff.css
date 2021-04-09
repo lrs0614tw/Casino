@@ -84,6 +84,6 @@ a.box {
 #win {
     background: url(../img/winscratch.png) no-repeat center center;
     background-size: contain;
-    height: 520px;
+    height: 610px;
     z-index: 11;
 }
