@@ -43,6 +43,11 @@
         if (iffinish == '1') {
             console.log('finish')
             document.getElementById("redux").style.display = 'none';
+
+            function buttonOn() {
+                window.location.replace('./liffScratchHui?finish={{index}}');
+            }
+            document.getElementById("robot").addEventListener("click", buttonOn);
         } else {
             addEventListener("load", init, false);
         }
