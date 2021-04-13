@@ -1,0 +1,368 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+    <style>
+        .background {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100vw;
+            height: 200vh;
+        }
+        
+        ul {
+            position: relative;
+            height: 600px;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            top: 200px;
+            left: 30px;
+        }
+        
+        li {
+            width: 150px;
+            height: 150px;
+            border: 1px solid red;
+            background-color: white;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            background-size: contain;
+        }
+        
+        #btn {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            background-color: palevioletred;
+            top: 225px;
+            left: 225px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 3rem;
+            border-radius: 50px;
+        }
+        
+        #btn:active {
+            background-color: paleturquoise
+        }
+        
+        #footer {
+            width: 500px;
+            margin: 300px auto;
+        }
+        
+        #active {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            background-color: rgba(255, 0, 0, 0.4);
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        
+        .css_table {
+            display: table;
+            font-size: 30px;
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            top: 250px;
+            left: -80px;
+        }
+        
+        .css_tr {
+            display: table-row;
+        }
+        
+        .css_td {
+            display: table-cell;
+        }
+        
+        .css_th {
+            display: table-cell;
+            vertical-align: inherit;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .css_table,
+        .css_tr,
+        .css_td,
+        .css_th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background" style="background-color: black;">
+        <center>
+            <ul id='machine'>
+                <div id="active"></div>
+                <div id="btn">開始</div>
+            </ul>
+        </center>
+        <script>
+            function place(index) {
+                if (getDivNumber('totalScore') < checkMoney() + 1) {
+                    alert('糟糕！賭金不夠了\n即將幫你重新歸零！');
+                    for (var i = 0; i < 5; i++) {
+                        document.getElementById('bet' + i.toString()).innerText = 0;
+                    }
+                } else if (ifBotton == 1) {
+                    console.log('遊戲進行中')
+                } else {
+                    var betDiv = document.getElementById('bet' + index.toString());
+                    var bet = parseInt(betDiv.innerText)
+                    bet++;
+                    if (bet > 10) {
+                        bet = 0;
+                    }
+                    betDiv.innerText = bet.toString()
+                }
+            }
+
+            function checkMoney() {
+                var spendMoney = 0
+                for (var i = 0; i < 5; i++) {
+                    spendMoney = spendMoney + parseInt(document.getElementById('bet' + i.toString()).innerText);
+                }
+                return spendMoney;
+            }
+
+            function getDivNumber(id) {
+                var idDiv = document.getElementById(id);
+                var num = parseInt(idDiv.innerText)
+                return num;
+            }
+        </script>
+        <center>
+            <div class="css_table">
+                <div class="css_tr">
+                    <div class="css_th" id='odd0' onclick="place(0)">50</div>
+                    <div class="css_th" id='odd1' onclick="place(1)">30</div>
+                    <div class="css_th" id='odd2' onclick="place(2)">20</div>
+                    <div class="css_th" id='odd3' onclick="place(3)">10</div>
+                    <div class="css_th" id='odd4' onclick="place(4)">5</div>
+                </div>
+                <div class="css_tr">
+                    <div class="css_td" id='img0' onclick="place(0)"><img src="{% static 'img/slot/bar.png' %}"></div>
+                    <div class="css_td" id='img1' onclick="place(1)"><img src="{% static 'img/slot/lemon.png' %}"></div>
+                    <div class="css_td" id='img2' onclick="place(2)"><img src="{% static 'img/slot/orange.png' %}">
+                    </div>
+                    <div class="css_td" id='img3' onclick="place(3)"><img src="{% static 'img/slot/apple.png' %}"></div>
+                    <div class="css_td" id='img4' onclick="place(4)"><img src="{% static 'img/slot/cherry.png' %}">
+                    </div>
+                </div>
+                <div class="css_tr">
+                    <div class="css_td" id='bet0' onclick="place(0)">0</div>
+                    <div class="css_td" id='bet1' onclick="place(1)">0</div>
+                    <div class="css_td" id='bet2' onclick="place(2)">0</div>
+                    <div class="css_td" id='bet3' onclick="place(3)">0</div>
+                    <div class="css_td" id='bet4' onclick="place(4)">0</div>
+                </div>
+            </div>
+            <div id='score' style="color: white;
+            position: absolute;
+            top: 900px;
+            right: 65px;
+            font-size: 2rem;;">
+                <div>
+                    <div>
+                        總分
+                    </div>
+                    <div id='totalScore' style='border:1px solid black;background-color: white;color: black;font-size: 2.5rem;'>
+                        {{score}}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        本次得分
+                    </div>
+                    <div id='getScore' style='border:1px solid black;background-color: white;color: black;font-size: 2.5rem;'>
+                        0
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+    <script>
+        var fruits = [{
+            left: '0px',
+            top: '0px',
+            content: '櫻桃',
+            src: "{% static 'img/slot/cherry.png' %}",
+            score: 5,
+            bet: 4,
+        }, {
+            left: '150px',
+            top: '0px',
+            content: '小蘋果',
+            src: "{% static 'img/slot/appleSmall.png' %}",
+            score: 1,
+            bet: 3,
+        }, {
+            left: '300px',
+            top: '0px',
+            content: 'bar',
+            src: "{% static 'img/slot/bar.png' %}",
+            score: 50,
+            bet: 0
+        }, {
+            left: '450px',
+            top: '0px',
+            content: '檸檬',
+            src: "{% static 'img/slot/lemon.png' %}",
+            score: 30,
+            bet: 1
+        }, {
+            left: '450px',
+            top: '150px',
+            content: '蘋果',
+            src: "{% static 'img/slot/apple.png' %}",
+            score: 10,
+            bet: 3
+        }, {
+            left: '450px',
+            top: '300px',
+            content: '小橘子',
+            src: "{% static 'img/slot/orangeSmall.png' %}",
+            score: 1,
+            bet: 2
+        }, {
+            left: '450px',
+            top: '450px',
+            content: '小櫻桃',
+            src: "{% static 'img/slot/cherrySmall.png' %}",
+            score: 1,
+            bet: 4
+        }, {
+            left: '300px',
+            top: '450px',
+            content: '小檸檬',
+            src: "{% static 'img/slot/lemonSmall.png' %}",
+            score: 1,
+            bet: 1
+        }, {
+            left: '150px',
+            top: '450px',
+            content: '小蘋果',
+            src: "{% static 'img/slot/appleSmall.png' %}",
+            score: 1,
+            bet: 3
+        }, {
+            left: '0px',
+            top: '450px',
+            content: '小櫻桃',
+            src: "{% static 'img/slot/cherrySmall.png' %}",
+            score: 1,
+            bet: 4
+        }, {
+            left: '0px',
+            top: '300px',
+            content: '橘子',
+            src: "{% static 'img/slot/orange.png' %}",
+            score: 20,
+            bet: 2
+        }, {
+            left: '0px',
+            top: '150px',
+            content: '小檸檬',
+            src: "{% static 'img/slot/lemonSmall.png' %}",
+            score: 1,
+            bet: 1
+        }, ];
+
+        var ul = document.getElementById('machine');
+        for (var i = 0; i < fruits.length; i++) {
+            //动态的创建li元素
+            var li = document.createElement('li');
+            li.style.left = fruits[i].left;
+            li.style.top = fruits[i].top;
+            li.style.backgroundImage = `url('${fruits[i].src}')`;
+            ul.appendChild(li);
+
+        }
+        var index = 0;
+        var btn = document.getElementById('btn');
+        var index = 0;
+        document.querySelector("#btn").addEventListener("click", buttonOn)
+        var ifBotton = 0;
+
+        function buttonOn() {
+            var spendMoney = checkMoney();
+            if (spendMoney == 0) {
+                alert("請先下注！")
+            } else {
+                ifBotton = 1
+                document.querySelector("#btn").removeEventListener("click", buttonOn);
+                document.getElementById('totalScore').innerText = getDivNumber('totalScore') - spendMoney;
+                document.getElementById('getScore').innerText = 0;
+                var step = fruits.length * 2 + parseInt(Math.random() * 24);
+                var timerID = 0
+
+                function turnOneStep() {
+                    var div = document.getElementById('active');
+                    div.style.display = 'block';
+                    div.style.left = fruits[index].left;
+                    div.style.top = fruits[index].top;
+                    step--;
+                    if (step == 0) {
+                        var getScore = document.getElementById('getScore');
+                        var betDiv = document.getElementById('bet' + fruits[index].bet.toString());
+                        var bet = parseInt(betDiv.innerText)
+                        var winScore = bet * fruits[index].score
+                        getScore.innerHTML = winScore;
+                        document.getElementById('totalScore').innerText = getDivNumber('totalScore') + getDivNumber('getScore');
+                        document.querySelector("#btn").addEventListener("click", buttonOn)
+                        clearTimeout(timerID);
+                        ifBotton = 0;
+                        $.ajax({
+                            'url': '/slotUpdate',
+                            'type': 'POST',
+                            'data': {
+                                uid: '{{uid}}',
+                                score: getDivNumber('totalScore'),
+                            },
+                        }).done(function(data) {
+                            if (data.status == 200) {
+                                console.log('a');
+                            } else if (data.status == 400) {
+                                alert(data.message);
+                            }
+                        })
+                        return;
+                    }
+
+                    index++;
+                    if (index == fruits.length) {
+                        index = 0;
+                    }
+                    timerID = setTimeout(turnOneStep, 1200 / step);
+                }
+                turnOneStep(step);
+            }
+
+        }
+    </script>
+
+</html>
