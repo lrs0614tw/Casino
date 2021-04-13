@@ -193,3 +193,18 @@ def huiGameDone(request):
     today=datetime.date.today()
     hui_Done.objects.create(uid=uid,prize=prize)
     return HttpResponse("表單回傳成功") 
+def slotDemo(request):
+    uid = request.GET.get('uid','')
+    if(slot_info.objects.filter(uid=uid).exists()):
+        score=slot_info.objects.filter(uid=uid)[0].score
+    else:
+        slot_info.objects.create(uid=uid,score=50,invite=0)
+        score=50
+    return render(request,'slotDemo.html',locals())
+def liffSlot(request):
+    return render(request,'liffSlot.html',locals())
+def slotUpdate(request):
+    uid=request.POST['uid']
+    score=request.POST['score']
+    slot_info.objects.filter(uid=uid).update(score=score)
+    return HttpResponse("表單回傳成功") 
