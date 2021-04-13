@@ -16,6 +16,11 @@
         });
     </script>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
         .background {
             margin-left: auto;
             margin-right: auto;
@@ -154,6 +159,33 @@
                 var num = parseInt(idDiv.innerText)
                 return num;
             }
+
+            function change(fruit, money) {
+                if (money > getDivNumber('totalScore')) {
+                    alert('點數不夠用啦~~')
+                } else {
+                    if (confirm("確定要用" + money.toString() + "點兌換" + fruit + "嗎?")) {
+                        document.getElementById('totalScore').innerText = getDivNumber('totalScore') - money;
+                        $.ajax({
+                            'url': '/slotUpdate',
+                            'type': 'POST',
+                            'data': {
+                                uid: '{{uid}}',
+                                score: getDivNumber('totalScore'),
+                            },
+                        }).done(function(data) {
+                            if (data.status == 200) {
+                                console.log('a');
+                            } else if (data.status == 400) {
+                                alert(data.message);
+                            }
+                        })
+                        alert(`恭喜你使用${money}點兌換${fruit}，現在剩餘${getDivNumber('totalScore')}點`)
+                    } else {
+                        console.log('n')
+                    }
+                }
+            }
         </script>
         <center>
             <div class="css_table">
@@ -204,165 +236,211 @@
                 </div>
             </div>
         </center>
-    </div>
-    <script>
-        var fruits = [{
-            left: '0px',
-            top: '0px',
-            content: '櫻桃',
-            src: "{% static 'img/slot/cherry.png' %}",
-            score: 5,
-            bet: 4,
-        }, {
-            left: '150px',
-            top: '0px',
-            content: '小蘋果',
-            src: "{% static 'img/slot/appleSmall.png' %}",
-            score: 1,
-            bet: 3,
-        }, {
-            left: '300px',
-            top: '0px',
-            content: 'bar',
-            src: "{% static 'img/slot/bar.png' %}",
-            score: 50,
-            bet: 0
-        }, {
-            left: '450px',
-            top: '0px',
-            content: '檸檬',
-            src: "{% static 'img/slot/lemon.png' %}",
-            score: 30,
-            bet: 1
-        }, {
-            left: '450px',
-            top: '150px',
-            content: '蘋果',
-            src: "{% static 'img/slot/apple.png' %}",
-            score: 10,
-            bet: 3
-        }, {
-            left: '450px',
-            top: '300px',
-            content: '小橘子',
-            src: "{% static 'img/slot/orangeSmall.png' %}",
-            score: 1,
-            bet: 2
-        }, {
-            left: '450px',
-            top: '450px',
-            content: '小櫻桃',
-            src: "{% static 'img/slot/cherrySmall.png' %}",
-            score: 1,
-            bet: 4
-        }, {
-            left: '300px',
-            top: '450px',
-            content: '小檸檬',
-            src: "{% static 'img/slot/lemonSmall.png' %}",
-            score: 1,
-            bet: 1
-        }, {
-            left: '150px',
-            top: '450px',
-            content: '小蘋果',
-            src: "{% static 'img/slot/appleSmall.png' %}",
-            score: 1,
-            bet: 3
-        }, {
-            left: '0px',
-            top: '450px',
-            content: '小櫻桃',
-            src: "{% static 'img/slot/cherrySmall.png' %}",
-            score: 1,
-            bet: 4
-        }, {
-            left: '0px',
-            top: '300px',
-            content: '橘子',
-            src: "{% static 'img/slot/orange.png' %}",
-            score: 20,
-            bet: 2
-        }, {
-            left: '0px',
-            top: '150px',
-            content: '小檸檬',
-            src: "{% static 'img/slot/lemonSmall.png' %}",
-            score: 1,
-            bet: 1
-        }, ];
+        <div style="color: white;
+        border: 2px red solid;
+        font-size: 2.2rem;
+        background-color: coral;
+        top: 300px;
+        width: 500px;
+        text-align: center;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 30px;
+        position: relative;
+        left: 238px;">
+            邀請好友獲得更多點數
+        </div>
+        <div>
+            <div>
+                <div style="color: blanchedalmond;position: absolute;top: 1350px;left: 130px;font-size: 3rem;">
+                    <img src="{% static 'img/slot/apple.png' %}" style="width: 250px;height: 250px;">
+                    <center>
+                        <div>蘋果 100點</div>
+                        <div style='border: 1px white solid;border-radius: 20px;background-color: dimgray;margin-top: 20px;' onclick="change('蘋果',100)">兌換</div>
+                    </center>
+                </div>
+                <div style="color: blanchedalmond;position: absolute;top: 1350px;right: 130px;font-size: 3rem;">
+                    <img src="{% static 'img/slot/cherry.png' %}" style="width: 250px;height: 250px;">
+                    <center>
+                        <div>櫻桃 10點</div>
+                        <div style='border: 1px white solid;border-radius: 20px;background-color: dimgray;margin-top: 20px;' onclick="change('櫻桃',10)">兌換</div>
+                    </center>
+                </div>
+                <div style="color: blanchedalmond;position: absolute;top: 1850px;left: 130px;font-size: 3rem;">
+                    <img src="{% static 'img/slot/orange.png' %}" style="width: 250px;height: 250px;">
+                    <center>
+                        <div>橘子 50點</div>
+                        <div style='border: 1px white solid;border-radius: 20px;background-color: dimgray;margin-top: 20px;' onclick="change('橘子',50)">兌換</div>
+                    </center>
+                </div>
+                <div style="color: blanchedalmond;position: absolute;top: 1850px;right: 130px;font-size: 3rem;">
+                    <img src="{% static 'img/slot/lemon.png' %}" style="width: 250px;height: 250px;">
+                    <center>
+                        <div>檸檬 300點</div>
+                        <div style='border: 1px white solid;border-radius: 20px;background-color: dimgray;margin-top: 20px;' onclick="change('檸檬',300)">兌換</div>
+                    </center>
+                </div>
+            </div>
 
-        var ul = document.getElementById('machine');
-        for (var i = 0; i < fruits.length; i++) {
-            //动态的创建li元素
-            var li = document.createElement('li');
-            li.style.left = fruits[i].left;
-            li.style.top = fruits[i].top;
-            li.style.backgroundImage = `url('${fruits[i].src}')`;
-            ul.appendChild(li);
+        </div>
+        <script>
+            var fruits = [{
+                left: '0px',
+                top: '0px',
+                content: '櫻桃',
+                src: "{% static 'img/slot/cherry.png' %}",
+                score: 5,
+                bet: 4,
+            }, {
+                left: '150px',
+                top: '0px',
+                content: '小蘋果',
+                src: "{% static 'img/slot/appleSmall.png' %}",
+                score: 1,
+                bet: 3,
+            }, {
+                left: '300px',
+                top: '0px',
+                content: 'bar',
+                src: "{% static 'img/slot/bar.png' %}",
+                score: 50,
+                bet: 0
+            }, {
+                left: '450px',
+                top: '0px',
+                content: '檸檬',
+                src: "{% static 'img/slot/lemon.png' %}",
+                score: 30,
+                bet: 1
+            }, {
+                left: '450px',
+                top: '150px',
+                content: '蘋果',
+                src: "{% static 'img/slot/apple.png' %}",
+                score: 10,
+                bet: 3
+            }, {
+                left: '450px',
+                top: '300px',
+                content: '小橘子',
+                src: "{% static 'img/slot/orangeSmall.png' %}",
+                score: 1,
+                bet: 2
+            }, {
+                left: '450px',
+                top: '450px',
+                content: '小櫻桃',
+                src: "{% static 'img/slot/cherrySmall.png' %}",
+                score: 1,
+                bet: 4
+            }, {
+                left: '300px',
+                top: '450px',
+                content: '小檸檬',
+                src: "{% static 'img/slot/lemonSmall.png' %}",
+                score: 1,
+                bet: 1
+            }, {
+                left: '150px',
+                top: '450px',
+                content: '小蘋果',
+                src: "{% static 'img/slot/appleSmall.png' %}",
+                score: 1,
+                bet: 3
+            }, {
+                left: '0px',
+                top: '450px',
+                content: '小櫻桃',
+                src: "{% static 'img/slot/cherrySmall.png' %}",
+                score: 1,
+                bet: 4
+            }, {
+                left: '0px',
+                top: '300px',
+                content: '橘子',
+                src: "{% static 'img/slot/orange.png' %}",
+                score: 20,
+                bet: 2
+            }, {
+                left: '0px',
+                top: '150px',
+                content: '小檸檬',
+                src: "{% static 'img/slot/lemonSmall.png' %}",
+                score: 1,
+                bet: 1
+            }, ];
 
-        }
-        var index = 0;
-        var btn = document.getElementById('btn');
-        var index = 0;
-        document.querySelector("#btn").addEventListener("click", buttonOn)
-        var ifBotton = 0;
+            var ul = document.getElementById('machine');
+            for (var i = 0; i < fruits.length; i++) {
+                //动态的创建li元素
+                var li = document.createElement('li');
+                li.style.left = fruits[i].left;
+                li.style.top = fruits[i].top;
+                li.style.backgroundImage = `url('${fruits[i].src}')`;
+                ul.appendChild(li);
 
-        function buttonOn() {
-            var spendMoney = checkMoney();
-            if (spendMoney == 0) {
-                alert("請先下注！")
-            } else {
-                ifBotton = 1
-                document.querySelector("#btn").removeEventListener("click", buttonOn);
-                document.getElementById('totalScore').innerText = getDivNumber('totalScore') - spendMoney;
-                document.getElementById('getScore').innerText = 0;
-                var step = fruits.length * 2 + parseInt(Math.random() * 24);
-                var timerID = 0
-
-                function turnOneStep() {
-                    var div = document.getElementById('active');
-                    div.style.display = 'block';
-                    div.style.left = fruits[index].left;
-                    div.style.top = fruits[index].top;
-                    step--;
-                    if (step == 0) {
-                        var getScore = document.getElementById('getScore');
-                        var betDiv = document.getElementById('bet' + fruits[index].bet.toString());
-                        var bet = parseInt(betDiv.innerText)
-                        var winScore = bet * fruits[index].score
-                        getScore.innerHTML = winScore;
-                        document.getElementById('totalScore').innerText = getDivNumber('totalScore') + getDivNumber('getScore');
-                        document.querySelector("#btn").addEventListener("click", buttonOn)
-                        clearTimeout(timerID);
-                        ifBotton = 0;
-                        $.ajax({
-                            'url': '/slotUpdate',
-                            'type': 'POST',
-                            'data': {
-                                uid: '{{uid}}',
-                                score: getDivNumber('totalScore'),
-                            },
-                        }).done(function(data) {
-                            if (data.status == 200) {
-                                console.log('a');
-                            } else if (data.status == 400) {
-                                alert(data.message);
-                            }
-                        })
-                        return;
-                    }
-
-                    index++;
-                    if (index == fruits.length) {
-                        index = 0;
-                    }
-                    timerID = setTimeout(turnOneStep, 1200 / step);
-                }
-                turnOneStep(step);
             }
+            var index = 0;
+            var btn = document.getElementById('btn');
+            var index = 0;
+            document.querySelector("#btn").addEventListener("click", buttonOn)
+            var ifBotton = 0;
 
-        }
-    </script>
+            function buttonOn() {
+                var spendMoney = checkMoney();
+                if (spendMoney == 0) {
+                    alert("請先下注！")
+                } else {
+                    ifBotton = 1
+                    document.querySelector("#btn").removeEventListener("click", buttonOn);
+                    document.getElementById('totalScore').innerText = getDivNumber('totalScore') - spendMoney;
+                    document.getElementById('getScore').innerText = 0;
+                    var step = fruits.length * 2 + parseInt(Math.random() * 24);
+                    var timerID = 0
+
+                    function turnOneStep() {
+                        var div = document.getElementById('active');
+                        div.style.display = 'block';
+                        div.style.left = fruits[index].left;
+                        div.style.top = fruits[index].top;
+                        step--;
+                        if (step == 0) {
+                            var getScore = document.getElementById('getScore');
+                            var betDiv = document.getElementById('bet' + fruits[index].bet.toString());
+                            var bet = parseInt(betDiv.innerText)
+                            var winScore = bet * fruits[index].score
+                            getScore.innerHTML = winScore;
+                            document.getElementById('totalScore').innerText = getDivNumber('totalScore') + getDivNumber('getScore');
+                            document.querySelector("#btn").addEventListener("click", buttonOn)
+                            clearTimeout(timerID);
+                            ifBotton = 0;
+                            $.ajax({
+                                'url': '/slotUpdate',
+                                'type': 'POST',
+                                'data': {
+                                    uid: '{{uid}}',
+                                    score: getDivNumber('totalScore'),
+                                },
+                            }).done(function(data) {
+                                if (data.status == 200) {
+                                    console.log('a');
+                                } else if (data.status == 400) {
+                                    alert(data.message);
+                                }
+                            })
+                            return;
+                        }
+
+                        index++;
+                        if (index == fruits.length) {
+                            index = 0;
+                        }
+                        timerID = setTimeout(turnOneStep, 1200 / step);
+                    }
+                    turnOneStep(step);
+                }
+
+            }
+        </script>
 
 </html>
