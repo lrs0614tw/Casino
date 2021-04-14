@@ -45,12 +45,12 @@ a.box {
     margin-top: 30px;
     width: 700px;
     height: 466px;
-    top: 725px;
-    left: 75px;
+    top: 565px;
+    left: 104px;
 }
 
 .background {
-    background: url(../img/scratchbg.png);
+    background: url(../img/botone/scratchBg.jpg);
     background-size: cover;
     overflow: hidden;
     width: 100%;
@@ -63,8 +63,8 @@ a.box {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
     border-radius: 50%;
     z-index: 1;
     -webkit-box-shadow: 0px 0px 20px 0px #707070;
@@ -76,8 +76,8 @@ a.box {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
     z-index: 2;
 }
 

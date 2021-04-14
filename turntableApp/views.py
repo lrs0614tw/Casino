@@ -162,7 +162,7 @@ def scratchOff(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
-    index=random.randint(0,4)
+    index=random.randint(0,6)
     print(index)
     return render(request,'scratchOff.html',locals())
 def liffScratchHui(request):
