@@ -54,7 +54,7 @@
                 if (status == 1) {
                     setTimeout(function() {
                         var index = Math.floor(Math.random() * turnsCount)
-                        var list = ['wecan', 'wows', 'uupon', '明天再來!', 'octopus', 'peer', 'SHARKTANK', '明天再來!', ];
+                        var list = ['WEcan\n數位行銷', 'WOWS\n電商平台', 'UUPON\n點數', '明天再來!', 'OCTOPUS\nPOS', 'Peer\nCDP', 'SharkTank\n通路行銷', '明天再來!', ];
                         resolve({
                             get: 1,
                             index: index,
@@ -70,11 +70,7 @@
                 var index = data.index
                 var prize = data.prize
                 turntable.done(index, function() {
-                    if (index == 3 || index == 7) {
-                        alert('明天再來！')
-                    } else {
-                        alert('恭喜您抽中 「' + prize + '」')
-                    }
+                    alert(prize)
 
                 })
             }

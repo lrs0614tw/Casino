@@ -35,7 +35,7 @@
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
         var giftImg = ["{% static 'img/botone/octopus-logo.jpg' %}", "{% static 'img/botone/peer-logo.jpg' %}", "{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}", "{% static 'img/botone/wecan-logo.jpg' %}", "{% static 'img/botone/wows-logo.jpg' %}"]
-        var giftName = ['octopus', 'peer', 'Sharktank', '明天再來', 'uupon', 'wecan', 'wows']
+        var giftName = ['OCTOPUS\nPOS', 'Peer\nCDP', 'SharkTank\n通路行銷', '明天再來！', 'UUPON\n點數', 'WEcan\n數位行銷', 'WOWS\n電商平台']
         document.getElementById("robot").src = giftImg['{{index}}'];
         addEventListener("load", init, false);
 
@@ -201,7 +201,7 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
-                                alert('恭喜獲得 ' + giftName['{{index}}'])
+                                alert(giftName['{{index}}']);
                                 $("#redux").eraser('clear');
                             }
                         }
