@@ -24,34 +24,6 @@
     <div class="background">
         <div class="container">
             <div class="turntable" id="turntable">
-                <div class="turns">
-                    <h3>獎品一</h3>
-                </div>
-                <div class="turns">
-                    <h3>獎品二</h3>
-                </div>
-
-                <div class="turns">
-                    <h3>獎品三</h3>
-                </div>
-
-                <div class="turns">
-                    <h3>獎品四</h3>
-                </div>
-
-                <div class="turns">
-                    <h3>獎品五</h3>
-                </div>
-
-                <div class="turns">
-                    <h3>獎品六</h3>
-                </div>
-                <div class="turns">
-                    <h3>獎品七</h3>
-                </div>
-                <div class="turns">
-                    <h3>獎品八</h3>
-                </div>
             </div>
             <div class="btn">
             </div>
@@ -82,7 +54,7 @@
                 if (status == 1) {
                     setTimeout(function() {
                         var index = Math.floor(Math.random() * turnsCount)
-                        var list = ['獎品一', '獎品二', '獎品三', '獎品四', '獎品五', '獎品六', '獎品七', '獎品八', ];
+                        var list = ['wecan', 'wows', 'uupon', '明天再來!', 'octopus', 'peer', 'SHARKTANK', '明天再來!', ];
                         resolve({
                             get: 1,
                             index: index,
@@ -98,7 +70,12 @@
                 var index = data.index
                 var prize = data.prize
                 turntable.done(index, function() {
-                    alert('恭喜您抽中 「' + prize + '」')
+                    if (index == 3 || index == 7) {
+                        alert('明天再來！')
+                    } else {
+                        alert('恭喜您抽中 「' + prize + '」')
+                    }
+
                 })
             }
             $.ajax({

@@ -22,8 +22,8 @@
     <div class="background">
         <center>
             <span class="container">
-                <img id="robot" src="{{pictureurl}}" />
-                <img id="redux" src="{% static 'img/scratchofftop.png' %}" />
+                <img id="robot" src="{{pictureurl}}"/>
+                <img id="redux" src="{% static 'img/botone/scratchofftop.png' %}"  width='550px' height='550px'/>
             </span>
         </center>
         <div id='winwin' style='position: fixed;width: 100%;height: 100%;z-index: 13;display: none;top: 790px;left: 5px;'>
@@ -34,8 +34,8 @@
     </div>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
-        var giftImg = ["{% static 'img/scratchGift/baby.jpg' %}", "{% static 'img/scratchGift/bao.jpg' %}", "{% static 'img/scratchGift/diamond.jpg' %}", "{% static 'img/scratchGift/horse.jpg' %}", "{% static 'img/scratchGift/shoes.jpg' %}"]
-        var giftName = ['寶寶奶嘴', '包包', '閃亮亮鑽石', '寶寶搖搖馬', '高跟鞋']
+        var giftImg = ["{% static 'img/botone/octopus-logo.jpg' %}", "{% static 'img/botone/peer-logo.jpg' %}", "{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}", "{% static 'img/botone/wecan-logo.jpg' %}", "{% static 'img/botone/wows-logo.jpg' %}"]
+        var giftName = ['octopus', 'peer', 'Sharktank', '明天再來', 'uupon', 'wecan', 'wows']
         document.getElementById("robot").src = giftImg['{{index}}'];
         addEventListener("load", init, false);
 
