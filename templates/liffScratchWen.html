@@ -46,7 +46,7 @@
                     else {
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./huiScratch?uid=' + profile.userId);
+                                window.location.replace('./wenScratch?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);
