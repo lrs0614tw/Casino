@@ -208,3 +208,31 @@ def slotUpdate(request):
     score=request.POST['score']
     slot_info.objects.filter(uid=uid).update(score=score)
     return HttpResponse("表單回傳成功") 
+def liffScratchWen(request):
+    finish=request.GET.get('finish','')
+    return render(request,'liffScratchWen.html',locals())
+def wenScratch(request):
+    uid = request.GET.get('uid','')
+    if(wen_Done.objects.filter(uid=uid).exists()==True):
+        info=wen_Done.objects.filter(uid=uid)
+        finish='1'
+        print(finish)
+        prize=info[0].prize
+        if(prize=='恭喜獲得乾洗手！'):
+            index=0
+        else:
+            index=1
+    else:
+        finish='0'
+        r=random.randint(0,9)
+        if(r>=3):
+            index=1
+        else:
+            index=0
+    return render(request,'wenScratch.html',locals())
+def wenGameDone(request):
+    uid=request.POST['uid']
+    prize=request.POST['prize']
+    today=datetime.date.today()
+    wen_Done.objects.create(uid=uid,prize=prize)
+    return HttpResponse("表單回傳成功") 

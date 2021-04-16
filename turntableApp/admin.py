@@ -27,4 +27,7 @@ admin.site.register(hui_Done,hui_Done_Admin)
 class slot_info_Admin(admin.ModelAdmin):
     list_display = ('uid','score','invite')
 admin.site.register(slot_info,slot_info_Admin)
+class wen_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','prize','time')
+admin.site.register(wen_Done,wen_Done_Admin)
 # Register your models here.
