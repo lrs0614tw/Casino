@@ -227,7 +227,7 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
-                                alert(giftName['{{index}}'])
+                                alert(giftName['{{index}}']);
                                 $("#redux").eraser('clear');
                                 window.location.replace('./liffScratchWen?finish={{index}}');
                             }
