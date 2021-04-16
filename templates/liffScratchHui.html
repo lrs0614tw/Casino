@@ -11,7 +11,7 @@
         $(document).ready(function() {
             // Using a Promise object
             liff.init({
-                    liffId: '1655747800-qBmpDaGx'
+                    liffId: '1654889690-Da6bY6Qm'
 
                 })
                 .then(() => {
@@ -45,7 +45,7 @@
                     else {
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./wenScratch?uid=' + profile.userId);
+                                window.location.replace('./huiScratch?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);
