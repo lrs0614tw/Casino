@@ -11,7 +11,8 @@
         $(document).ready(function() {
             // Using a Promise object
             liff.init({
-                    liffId: '1654889690-Da6bY6Qm'
+
+                    liffId: '1655747800-qBmpDaGx'
 
                 })
                 .then(() => {
@@ -19,7 +20,7 @@
                     if (ifFinish == '0') {
                         liff.sendMessages([{
                                 type: 'text',
-                                text: '我獲得肥皂!'
+                                text: '我獲得乾洗手!'
                             }])
                             .then(() => {
                                 console.log('message sent');
@@ -31,7 +32,7 @@
                     } else if (ifFinish == '1') {
                         liff.sendMessages([{
                                 type: 'text',
-                                text: '我獲得口罩!'
+                                text: '哎呀沒有中!'
                             }])
                             .then(() => {
                                 console.log('message sent');
