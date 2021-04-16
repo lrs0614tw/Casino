@@ -47,6 +47,9 @@ urlpatterns = [
     path('slotDemo',views.slotDemo),
     path('liffSlot',views.liffSlot),
     path('slotUpdate',views.slotUpdate),
+    path('liffScratchWen', views.liffScratchWen),
+    path('wenScratch', views.wenScratch),
+    path('wenGameDone', views.wenGameDone),
     
 ]
 def page_not_found(request, exception):

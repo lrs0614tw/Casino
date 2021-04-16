@@ -11,7 +11,7 @@
         $(document).ready(function() {
             // Using a Promise object
             liff.init({
-                    liffId: '1655747800-qBmpDaGx'
+                    liffId: '1654889690-Da6bY6Qm'
 
                 })
                 .then(() => {
@@ -19,7 +19,7 @@
                     if (ifFinish == '0') {
                         liff.sendMessages([{
                                 type: 'text',
-                                text: '我獲得乾洗手!'
+                                text: '我獲得肥皂!'
                             }])
                             .then(() => {
                                 console.log('message sent');
@@ -31,7 +31,7 @@
                     } else if (ifFinish == '1') {
                         liff.sendMessages([{
                                 type: 'text',
-                                text: '哎呀沒有中!'
+                                text: '我獲得口罩!'
                             }])
                             .then(() => {
                                 console.log('message sent');
@@ -45,7 +45,7 @@
                     else {
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./wenScratch?uid=' + profile.userId);
+                                window.location.replace('./huiScratch?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);
