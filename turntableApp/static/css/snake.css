@@ -26,7 +26,7 @@ body {
 }
 
 .map {
-    margin: 190px auto 0;
+    margin: 250px auto 0;
     height: 900px;
     width: 900px;
     background: #f0b47d;
@@ -35,7 +35,7 @@ body {
 }
 
 #start {
-    margin: 250px auto;
+    margin: 350px auto;
     height: 480px;
     width: 608px;
     border-radius: 8px;
@@ -64,7 +64,7 @@ body {
 }
 
 #gameover {
-    margin: 250px auto;
+    margin: 350px auto;
     height: 480px;
     width: 608px;
     border-radius: 8px;
@@ -100,6 +100,7 @@ body {
     display: grid;
     row-gap: 8px;
     width: 85%;
+    height: 350px;
 }
 
 .leaderboard__profile {
@@ -122,9 +123,9 @@ body {
 
 .leaderboard__picture {
     max-width: 100%;
-    width: 90px;
+    width: 50px;
     border-radius: 50%;
-    box-shadow: 0 0 0 10px #ebeef3, 0 0 0 22px #f3f4f6;
+    box-shadow: 0 0 0 10px #ebeef3, 0 0 0 4px #f3f4f6;
 }
 
 .leaderboard__name {
