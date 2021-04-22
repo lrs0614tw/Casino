@@ -236,3 +236,10 @@ def wenGameDone(request):
     today=datetime.date.today()
     wen_Done.objects.create(uid=uid,prize=prize)
     return HttpResponse("表單回傳成功") 
+def liffSnake(request):
+    return render(request,'liffSnake.html',locals())
+def snake(request):
+    uid = request.GET.get('uid','')
+    displayname = request.GET.get('displayname','')
+    pictureurl = request.GET.get('pictureurl','')
+    return render(request,'snake.html',locals())
