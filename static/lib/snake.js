@@ -142,43 +142,11 @@ function isEat() //吃到食物後長度加1
 
 function isDead() {
     if (snake[snakeCount - 1].x > 855 || snake[snakeCount - 1].y > 855 || snake[snakeCount - 1].x < 0 || snake[snakeCount - 1].y < 0) {
-        clearInterval(moveInterval);
-        document.getElementById('gameover').style.display = 'block';
-        document.getElementById('highscoreShow').innerText = '本次得分： ' + score;
-        $.ajax({
-            'url': '/snakeUpdate',
-            'type': 'POST',
-            'data': {
-                uid: '{{uid}}',
-                highscore: highscore,
-            },
-        }).done(function(data) {
-            if (data.status == 200) {
-                console.log('a');
-            } else if (data.status == 400) {
-                alert(data.message);
-            }
-        })
+        lose();
     }
     for (var i = snakeCount - 2; i--; i >= 0) {
         if (snake[snakeCount - 1].x == snake[i].x && snake[snakeCount - 1].y == snake[i].y) {
-            clearInterval(moveInterval);
-            document.getElementById('gameover').style.display = 'block';
-            document.getElementById('highscoreShow').innerText = '本次得分： ' + score;
-            $.ajax({
-                'url': '/snakeUpdate',
-                'type': 'POST',
-                'data': {
-                    uid: '{{uid}}',
-                    highscore: highscore,
-                },
-            }).done(function(data) {
-                if (data.status == 200) {
-                    console.log('a');
-                } else if (data.status == 400) {
-                    alert(data.message);
-                }
-            })
+            lose();
         }
     }
 }
