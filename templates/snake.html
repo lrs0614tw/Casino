@@ -97,6 +97,26 @@
         var h = '{{highscore}}';
         var highscore = parseInt(h)
         var uid = '{{uid}}'
+
+        function lose() {
+            clearInterval(moveInterval);
+            document.getElementById('gameover').style.display = 'block';
+            document.getElementById('highscoreShow').innerText = '本次得分： ' + score;
+            $.ajax({
+                'url': '/snakeUpdate',
+                'type': 'POST',
+                'data': {
+                    uid: '{{uid}}',
+                    highscore: highscore,
+                },
+            }).done(function(data) {
+                if (data.status == 200) {
+                    console.log('a');
+                } else if (data.status == 400) {
+                    alert(data.message);
+                }
+            })
+        }
     </script>
     <script src="{% static 'lib/snake.js' %}"></script>
 </body>

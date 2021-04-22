@@ -150,7 +150,7 @@ function isDead() {
             'type': 'POST',
             'data': {
                 uid: '{{uid}}',
-                highscore: score,
+                highscore: highscore,
             },
         }).done(function(data) {
             if (data.status == 200) {
@@ -170,7 +170,7 @@ function isDead() {
                 'type': 'POST',
                 'data': {
                     uid: '{{uid}}',
-                    highscore: score,
+                    highscore: highscore,
                 },
             }).done(function(data) {
                 if (data.status == 200) {
