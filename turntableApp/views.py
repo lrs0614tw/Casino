@@ -242,4 +242,14 @@ def snake(request):
     uid = request.GET.get('uid','')
     displayname = request.GET.get('displayname','')
     pictureurl = request.GET.get('pictureurl','')
+    if(snake_Player.objects.filter(uid=uid).exists()==False):
+        snake_Player.objects.create(uid=uid,name=displayname,picture=pictureurl,highscore=0,prize=0)
+    highscore=snake_Player.objects.filter(uid=uid)[0].highscore
+    winnerList=snake_Player.objects.all().order_by('-highscore')[:5]     
     return render(request,'snake.html',locals())
+@csrf_exempt
+def snakeUpdate(request):
+    uid=request.POST['uid']
+    highscore=request.POST['highscore']
+    snake_Player.objects.filter(uid=uid).update(highscore=highscore)
+    return HttpResponse("表單回傳成功") 

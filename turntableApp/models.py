@@ -59,3 +59,12 @@ class wen_Done(models.Model):
     time = models.DateTimeField(auto_now=True)                          
     def __str__(self):
         return self.uid
+class snake_Player(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')
+    name = models.CharField(max_length=50,null=False,default='')
+    picture = models.CharField(max_length=100,null=False,default='')
+    highscore = models.IntegerField()
+    prize = models.CharField(max_length=500,null=False,default='')          
+    time = models.DateTimeField(auto_now=True)                          
+    def __str__(self):
+        return self.uid

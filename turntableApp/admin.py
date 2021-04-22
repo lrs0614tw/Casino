@@ -30,4 +30,7 @@ admin.site.register(slot_info,slot_info_Admin)
 class wen_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','prize','time')
 admin.site.register(wen_Done,wen_Done_Admin)
+class snake_Player_Admin(admin.ModelAdmin):
+    list_display = ('uid','name','picture','highscore','prize','time')
+admin.site.register(snake_Player,snake_Player_Admin)
 # Register your models here.
