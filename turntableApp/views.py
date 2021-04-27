@@ -148,6 +148,8 @@ def achi(request):
         gameDone=1
     if(claire_Done.objects.filter(uid=uid).exists()):
         claireDone=1
+    if(scratchDemo_Done.objects.filter(uid=uid).exists()):
+        scratchDone=1
     return render(request,'Achi.html',locals())
 def liffClaire(request):
     return render(request,'liffClaire.html',locals())
@@ -252,4 +254,8 @@ def snakeUpdate(request):
     uid=request.POST['uid']
     highscore=request.POST['highscore']
     snake_Player.objects.filter(uid=uid).update(highscore=highscore)
+    return HttpResponse("表單回傳成功") 
+def scratchDone(request):
+    uid=request.POST['uid']
+    scratchDemo_Done.objects.create(uid=uid)
     return HttpResponse("表單回傳成功") 

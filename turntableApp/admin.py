@@ -18,9 +18,9 @@ admin.site.register(Userdemo_Done,Userdemo_Done_Admin)
 class claire_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','time')
 admin.site.register(claire_Done,claire_Done_Admin)
-class spinwheel_Done_Admin(admin.ModelAdmin):
+class scratchDemo_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','time')
-admin.site.register(spinwheel_Done,spinwheel_Done_Admin)
+admin.site.register(scratchDemo_Done,scratchDemo_Done_Admin)
 class hui_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','prize','time')
 admin.site.register(hui_Done,hui_Done_Admin)

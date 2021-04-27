@@ -67,20 +67,34 @@
             background: wheat;">新竹快閃!</h2>
         </center>
     </div>
+    <div style="display:inline-flex;flex-direction: column;">
+        <img id='scratch'>
+        <center>
+            <h2 id='scratchText' style="border: 1px solid black;
+            width: 50%;
+            font-size: 2rem;
+            border-radius: 20px;
+            background: wheat;">刮刮刮刮刮!</h2>
+        </center>
+    </div>
     <script>
         var gameDone = '{{gameDone}}'
         if (gameDone == 1) {
             document.getElementById("spinwheel").style.filter = 'none';
-        }
-        else{
+        } else {
             document.getElementById("spinwheelText").style.backgroundColor = 'gray';
         }
         var claireDone = '{{claireDone}}'
         if (claireDone == 1) {
             document.getElementById("claire").style.filter = 'none';
-        }
-        else{
+        } else {
             document.getElementById("claireText").style.backgroundColor = 'gray';
+        }
+        var scratchDone = '{{scratchDone}}'
+        if (scratchDone == 1) {
+            document.getElementById("scratch").style.filter = 'none';
+        } else {
+            document.getElementById("scratchText").style.backgroundColor = 'gray';
         }
     </script>
 

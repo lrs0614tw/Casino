@@ -34,10 +34,10 @@
     </div>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
-        //var giftImg = ["{% static 'img/botone/octopus-logo.jpg' %}", "{% static 'img/botone/peer-logo.jpg' %}", "{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}", "{% static 'img/botone/wecan-logo.jpg' %}", "{% static 'img/botone/wows-logo.jpg' %}"]
-        //var giftName = ['OCTOPUS\nPOS', 'Peer\nCDP', 'SharkTank\n通路行銷', '明天再來！', 'UUPON\n點數', 'WEcan\n數位行銷', 'WOWS\n電商平台']
-        var giftImg = ["{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}"]
-        var giftName = ['SharkTank\n通路行銷', '明天再來！', 'UUPON\n點數']
+        var giftImg = ["{% static 'img/botone/octopus-logo.jpg' %}", "{% static 'img/botone/peer-logo.jpg' %}", "{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}", "{% static 'img/botone/wecan-logo.jpg' %}", "{% static 'img/botone/wows-logo.jpg' %}"]
+        var giftName = ['OCTOPUS\nPOS', 'Peer\nCDP', 'SharkTank\n通路行銷', '明天再來！', 'UUPON\n點數', 'WEcan\n數位行銷', 'WOWS\n電商平台']
+            //var giftImg = ["{% static 'img/botone/shanke-tanke-logo.jpg' %}", "{% static 'img/botone/sorry-logo.jpg' %}", "{% static 'img/botone/uupon-logo.jpg' %}"]
+            //var giftName = ['SharkTank\n通路行銷', '明天再來！', 'UUPON\n點數']
         document.getElementById("robot").src = giftImg['{{index}}'];
         addEventListener("load", init, false);
 
@@ -155,6 +155,20 @@
                         data.touchY = ty;
                         event.preventDefault();
                     }
+                    $.ajax({
+                        'url': '/scratchDone',
+                        'type': 'POST',
+                        'data': {
+                            uid: '{{uid}}',
+                            prize: giftName['{{index}}']
+                        },
+                    }).done(function(data) {
+                        if (data.status == 200) {
+                            console.log('a');
+                        } else if (data.status == 400) {
+                            alert(data.message);
+                        }
+                    })
                 },
                 touchMove: function(event) {
                     var $this = $(this),
