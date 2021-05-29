@@ -1,4 +1,7 @@
 from django.contrib import admin
+from rest_framework.authtoken.admin import TokenAdmin
+
+TokenAdmin.raw_id_fields = ['user']
 
 # Register your models here.
 from turntableApp.models import *
@@ -33,4 +36,16 @@ admin.site.register(wen_Done,wen_Done_Admin)
 class snake_Player_Admin(admin.ModelAdmin):
     list_display = ('uid','name','picture','highscore','prize','time')
 admin.site.register(snake_Player,snake_Player_Admin)
+class heysongUid_Admin(admin.ModelAdmin):
+    list_display = ('uid','time')
+admin.site.register(heysongUid,heysongUid_Admin)
+class HeysongScratch_User_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','name','time')
+admin.site.register(HeysongScratch_User_Done,HeysongScratch_User_Done_Admin)
+class HeysongScratch_Winner_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','prize','name','phone','address','time')
+admin.site.register(HeysongScratch_Winner_Done,HeysongScratch_Winner_Done_Admin)
+class HeysongScratch_Prize_Rate_Admin(admin.ModelAdmin):
+    list_display = ('index','prize','rate','left','today')
+admin.site.register(HeysongScratch_Prize_Rate,HeysongScratch_Prize_Rate_Admin)
 # Register your models here.

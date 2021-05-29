@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
 from turntableApp import views
 from django.conf import settings
 from django.conf.urls. static import static
+from rest_framework.authtoken import views as tokenViews
+
+router = DefaultRouter()
+router.register('heysongUid', views.heysongUidViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,7 +59,11 @@ urlpatterns = [
     path('snake',views.snake),
     path('snakeUpdate',views.snakeUpdate),
     path('scratchDone', views.scratchDone),
-    
+    url('^admin/', admin.site.urls),
+    url('^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('heysongScratch', views.heysongScratch.as_view()),
+    path('api-token-auth/', tokenViews.obtain_auth_token)
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

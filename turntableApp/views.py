@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
@@ -9,6 +8,15 @@ import datetime
 import json
 import random
 from turntableApp.models import *
+from turntableApp.serializers import heysongUidSerializer
+
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.views import APIView
+from rest_framework.authentication import TokenAuthentication, BasicAuthentication
 
 # Create your views here.
 def index(request,day):
@@ -259,3 +267,18 @@ def scratchDone(request):
     uid=request.POST['uid']
     scratchDemo_Done.objects.create(uid=uid)
     return HttpResponse("表單回傳成功") 
+class heysongUidViewSet(viewsets.ModelViewSet):
+    queryset = heysongUid.objects.all()
+    serializer_class = heysongUidSerializer
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticated,)
+class heysongScratch(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'heysongScratch.html'
+    authentication_classes = (BasicAuthentication,TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    def get(self,request):
+        uid = request.GET.get('uid','')
+        return Response({'uid':uid})
+    
+    
