@@ -62,7 +62,7 @@ urlpatterns = [
     url('^admin/', admin.site.urls),
     url('^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('heysongScratch', views.heysongScratch.as_view()),
+    path('heysongScratch', views.heysongScratch),
     path('api-token-auth/', tokenViews.obtain_auth_token),
     path('heysongScratchForm',views.heysongScratchForm),
     path('heysongScratch_form_done', views.heysongScratchFormDone),
