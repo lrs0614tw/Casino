@@ -1,0 +1,98 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>居家辦公防疫應援</title>
+    <link rel="stylesheet" href="{% static 'css/HeysongScratchForm.css' %}">
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+    <script src="{% static 'lib/er.twzipcode.data.js' %}"></script>
+    <script src="{% static 'lib/er.twzipcode.min.js' %}"></script>
+
+    <!--<script>
+		$(document).ready(function(){
+            $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            })});
+	</script>-->
+</head>
+
+<body>
+    <div id="bgf" style="position: absolute;top: 0;left:0;margin: 0;padding: 0;width: 100%;height: 300%;z-index: 19; background-color: rgba(34,30,0,0.7);">
+    </div>
+    <div class="background">
+    </div>
+    <div class='container'>
+        <form id='winner' action="/heysongScratch_form_done" method="post">
+            <center>
+                <div class="form_group">
+                    <div>
+                        <label style="font-family:Notobold;">恭喜中獎！獲得{{prize}}</label>
+                    </div>
+                </div>
+            </center>
+            {% csrf_token %}
+            <div class="form_group">
+                <div>
+                    <label for="name">收件人姓名</label>
+                </div>
+                <input id="name" type="text" class="form_text" name="name" placeholder="請輸入收件人姓名">
+            </div>
+            <div class="form_group">
+                <div>
+                    <label for="phone">手機號碼</label>
+                </div>
+                <input id="phone" type="text" class="form_text" name="phone" placeholder="請輸入手機號碼">
+            </div>
+            <div class="form_group">
+                <div>
+                    <label for="address">收件地址</label>
+                </div>
+                <!--<input id="address" type="text" class="form_text" name="address" placeholder="請輸入收件地址">-->
+                <div class="row pl-3 pr-3" id="twzipcode">
+                    <select id="county" class="form_text" name="county" aria-describedby="form-county" required=""></select>
+                    <select id="district" class="form_text" name="district" aria-describedby="form-district" zipcode-align="left" required=""></select>
+                    <input id="address" class="form_text" type="text" name="address" aria-describedby="form-address-input" required="" placeholder="路, 巷, 門牌, 樓層">
+                    <input id="zipcode" class="d-none" name="zipcode" style="display: none;">
+                </div>
+                <script>
+                    erTWZipcode();
+                </script>
+            </div>
+            <div class="form_group" style="display: none;">
+                <div>
+                    <label for="uid">uid</label>
+                </div>
+                <input id="uid" type="text" class="form_text" name="uid" value="{{uid}}">
+            </div>
+            <div class="form_group" style="display: none;">
+                <div>
+                    <label for="prize">prize</label>
+                </div>
+                <input id="prize" type="text" class="form_text" name="prize" value="{{prize}}">
+            </div>
+            <div class="form_group">
+                <div class="form_submit">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function submitOn() {
+            console.log($('#winner input[name="name"]').val() == "")
+            if ($('#winner input[name="name"]').val() == "")
+                alert("請輸入收件人姓名");
+            else if ($('#winner  input[name="phone"]').val() == "")
+                alert("請輸入手機號碼");
+            else if ($('#winner  input[name="address"]').val() == "" || $('#winner  input[name="county"]').val() == "" || $('#winner  input[name="town"]').val() == "")
+                alert("請輸入收件地址");
+            else
+                winner.submit();
+        }
+        document.querySelector(".form_submit").addEventListener("click", submitOn)
+    </script>
+</body>
+
+</html>
