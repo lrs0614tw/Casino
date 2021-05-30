@@ -277,8 +277,95 @@ class heysongScratch(APIView):
     template_name = 'heysongScratch.html'
     authentication_classes = (BasicAuthentication,TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    @csrf_exempt
     def get(self,request):
         uid = request.GET.get('uid','')
-        return Response({'uid':uid})
-    
-    
+        today=datetime.date.today()
+        tomorrow = today + datetime.timedelta(days=1)
+        ifCanPlay=1
+        prize_object=HeysongScratch_Prize_Rate.objects.all()
+        prize_rate={}
+        prize_left={}
+        for i in prize_object:
+            prize_rate[i.index]=int(i.rate)
+            prize_left[i.index]=int(i.left)
+        print(prize_left)
+        j = {}
+        sum = 0
+        for i in range(4):
+            if (prize_left[str(i)] > 0 and prize_rate[str(i)]> 0):
+                sum = sum + prize_rate[str(i)]
+        jsonCount = 0
+        for i in range(4):
+            if (prize_left[str(i)] > 0 and prize_rate[str(i)]> 0):
+                j[str(i)] = (prize_rate[str(i)] / sum) + jsonCount
+                jsonCount = jsonCount + (prize_rate[str(i)] / sum)
+            else:
+                j[str(i)] = -1
+            index = -1
+            rand = random.random()
+        for i in [3,2,1,0]:
+            if (prize_left[str(i)] > 0):
+                if (j[str(i)] > rand):
+                    index = i
+        if(HeysongScratch_Winner_Done.objects.filter(uid=uid).exists()):
+            index=3
+        if (index < 0):
+            index = 3
+        print(index)
+        newleft=prize_left[str(index)]-1
+        print(index,newleft)
+        HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
+        if(HeysongScratch_User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()==True):
+            if(HeysongScratch_Winner_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()):
+                index=3
+                ifCanPlay=0
+            else:
+                user=HeysongScratch_User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today)
+                prize=user[0].name
+                if(prize!='明日再試！'):
+                    if(prize=='PKL250FIN乳酸菌補給飲料'):
+                        index=0
+                    elif(prize=='羅技 Stream Cam 直播攝影機'):
+                        index=1
+                    elif(prize=='美國BLUE YETI X 專業USB麥克風'):
+                        index=2
+                    ifCanPlay=0
+                else:
+                    prize=user[0].name=0
+                    index=3   
+        elif(uid!=''):
+            return render(request,'game.html',locals())
+        else:
+            index=3
+        return Response({'uid':uid,'index':index,'ifCanPlay':ifCanPlay})
+def heysongScratchgameDone(request):
+    uid=request.POST['uid']
+    prize=request.POST['prize']
+    today=datetime.date.today()
+    HeysongScratch_User_Done.objects.create(uid=uid,name=prize)
+    return HttpResponse("表單回傳成功") 
+def heysongScratchForm(request):
+    prize=request.GET.get('prize','')
+    uid=request.GET.get('uid','')
+    return render(request,'heysongScratchForm.html',locals())
+@csrf_exempt
+def heysongScratchFormDone(request):
+    name=request.POST['name']
+    phone=request.POST['phone']
+    address=request.POST['address']
+    district=request.POST['district']
+    county=request.POST['county']
+    zipcode=request.POST['zipcode']
+    prize=request.POST['prize']
+    uid=request.POST['uid']
+    return render(request,'heysongScratchformDone.html',locals())
+@csrf_exempt
+def heysongScratchAllDone(request):
+    uid=request.POST['uid']
+    prize=request.POST['prize']
+    name=request.POST['name']
+    phone=request.POST['phone']
+    address=request.POST['address']
+    HeysongScratch_Winner_Done.objects.create(uid=uid,prize=prize,name=name,phone=phone,address=address)
+    return HttpResponse("表單回傳成功") 

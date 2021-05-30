@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-size: 2rem;
+}
+
+font {
+    color: #00863c;
+    font-size: 2.2rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-display: swap;
+    margin-right: 30px;
+}
+
+strong {
+    color: #00863c;
+    font-size: 3rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+    font-weight: 700;
+}
+
+.form_group {
+    font-size: 2rem;
+    padding: 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+}
+
+.form_text {
+    font-size: 2rem;
+    padding: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-display: swap;
+}
+
+.form_submit {
+    position: relative;
+    height: 300px;
+    width: 350px;
+    border: 0;
+    top: -50px;
+    left: 370px;
+    background: url(../img/heysongScratch/submit.png) no-repeat center center;
+    background-size: contain;
+}
+
+.background {
+    background: url(../img/heysongScratch/bg.png);
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: calc(460vw);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 700px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 70px;
+    position: absolute;
+    top: 561px;
+    left: 70px;
+    z-index: 30;
+    border-radius: 30px;
+}
+
+#winner {
+    z-index: 30;
+}

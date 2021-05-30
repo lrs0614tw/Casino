@@ -19,38 +19,49 @@
 </head>
 
 <body>
+    <div id="bgf" style="display:none;position: absolute;top: 0;left:0;margin: 0;padding: 0;width: 100%;height: 300%;z-index: 19; background-color: rgba(34,30,0,0.7);">
+    </div>
     <div class="background">
-        <script>
-            alert('{{uid}}')
-        </script>
-        <!--<center>
+        <center>
             <span class="container">
                 <img id="robot" />
-                <img id="redux" src="{% static 'img/scratchofftop.png' %}" />
+                <img id="redux" src="{% static 'img/heysongScratch/unscratch.png' %}" />
             </span>
         </center>
-        <div id='winwin' style='position: fixed;width: 100%;height: 100%;z-index: 13;display: none;top: 790px;left: 5px;'>
+        <div id='winwin' style='position: fixed;width: 100%;height: 100%;z-index: 23;display: none;top:270px'>
             <div id='win'>
-                <div id='x'></div>
+                <div id='winBtn' style="display: none;"></div>
+                <div id='homeBtn' style="display: none;"></div>
             </div>
-        </div>-->
+        </div>
     </div>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
-        var giftImg = ["{% static 'img/scratchGift/soap.jpg' %}", "{% static 'img/scratchGift/facemask.jpg' %}"]
-        var giftName = ['台灣好浴皂', '好運犇騰口罩']
+        var index = '{{index}}'
+        var giftImg = ["{% static 'img/heysongScratch/fin.png' %}", "{% static 'img/heysongScratch/cam.png' %}", "{% static 'img/heysongScratch/mic.png' %}", "{% static 'img/heysongScratch/losep.png' %}"]
+        var winImg = ["url({% static 'img/heysongScratch/winFin.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winCam.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winMic.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/lose.png' %}) no-repeat center center"]
+        var giftName = ['PKL250FIN乳酸菌補給飲料', '羅技 Stream Cam 直播攝影機', '美國BLUE YETI X 專業USB麥克風', '明日再試']
         document.getElementById("robot").src = giftImg['{{index}}'];
-
-        console.log('{{finish}}')
-        var iffinish = '{{finish}}';
-        if (iffinish == '1') {
-            console.log('finish')
-            document.getElementById("redux").style.display = 'none';
-
-            function buttonOn() {
-                window.location.replace('./liffScratchHui?finish={{index}}');
+        document.querySelector("#homeBtn").addEventListener("click", function() {
+            window.close();
+        })
+        document.querySelector("#winBtn").addEventListener("click", function() {
+            window.location.replace('./HeysongScratchForm?prize=' + giftName[index] + '&uid={{uid}}');
+        })
+        var ifCanPlay = '{{ifCanPlay}}'
+        if (ifCanPlay == 0) {
+            data.complete = true;
+            $("#redux").eraser('clear');
+            document.getElementById("bgf").style.display = 'block';
+            document.getElementById("winwin").style.display = 'block';
+            document.getElementById("win").style.background = winImg['{{index}}'];
+            document.getElementById("win").style.backgroundSize = 'contain';
+            document.getElementsByTagName("body")[0].style.overflow = 'hidden';
+            if (index == 3) {
+                document.getElementById("homeBtn").style.display = 'block';
+            } else {
+                document.getElementById("winBtn").style.display = 'block';
             }
-            document.getElementById("robot").addEventListener("click", buttonOn);
         } else {
             addEventListener("load", init, false);
         }
@@ -85,8 +96,8 @@
                                 pos = $this.offset(),
                                 $canvas = $("<canvas/>"),
                                 canvas = $canvas.get(0),
-                                size = (options && options.size) ? options.size : 40,
-                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .4,
+                                size = (options && options.size) ? options.size : 50,
+                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .5,
                                 completeFunction = (options && options.completeFunction) ? options.completeFunction : methods.clear,
                                 parts = [],
                                 colParts = Math.floor(width / size),
@@ -168,8 +179,8 @@
                         data.touchY = ty;
                         event.preventDefault();
                     }
-                    $.ajax({
-                        'url': '/huiGameDone',
+                    /*$.ajax({
+                        'url': '/heysongScratch_game_done',
                         'type': 'POST',
                         'data': {
                             uid: '{{uid}}',
@@ -181,7 +192,7 @@
                         } else if (data.status == 400) {
                             alert(data.message);
                         }
-                    })
+                    })*/
                 },
                 touchMove: function(event) {
                     var $this = $(this),
@@ -230,9 +241,18 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
-                                alert('恭喜獲得 ' + giftName['{{index}}'] + "\n憑此畫面即可兌獎")
                                 $("#redux").eraser('clear');
-                                window.location.replace('./liffScratchHui?finish={{index}}');
+                                document.getElementById("bgf").style.display = 'block';
+                                document.getElementById("winwin").style.display = 'block';
+                                document.getElementById("win").style.background = winImg['{{index}}'];
+                                document.getElementById("win").style.backgroundSize = 'contain';
+                                document.getElementsByTagName("body")[0].style.overflow = 'hidden';
+                                if (index == 3) {
+                                    document.getElementById("homeBtn").style.display = 'block';
+                                } else {
+                                    document.getElementById("winBtn").style.display = 'block';
+                                }
+
                             }
                         }
                     }
