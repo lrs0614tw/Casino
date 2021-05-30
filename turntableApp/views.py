@@ -9,6 +9,9 @@ import json
 import random
 from turntableApp.models import *
 from turntableApp.serializers import heysongUidSerializer
+import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
@@ -275,21 +278,25 @@ class heysongUidViewSet(viewsets.ModelViewSet):
 class heysongScratch(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'heysongScratch.html'
-    authentication_classes = (BasicAuthentication,TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-    @csrf_exempt
     def get(self,request):
         uid = request.GET.get('uid','')
+        iv = b"VFNSJQXI0P6IZ7UC"
+        key = b"HQR9NSTXMCY7R463"
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        enc = base64.b64decode(uid)
+        deco_uid = unpad(cipher.decrypt(enc), AES.block_size).decode()
+        uid=deco_uid
         today=datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         ifCanPlay=1
         prize_object=HeysongScratch_Prize_Rate.objects.all()
         prize_rate={}
         prize_left={}
+        prize_prize={}
         for i in prize_object:
             prize_rate[i.index]=int(i.rate)
             prize_left[i.index]=int(i.left)
-        print(prize_left)
+            prize_prize[i.index]=i.prize
         j = {}
         sum = 0
         for i in range(4):
@@ -334,17 +341,13 @@ class heysongScratch(APIView):
                 else:
                     prize=user[0].name=0
                     index=3   
+                    ifCanPlay=0
         elif(uid!=''):
-            return render(request,'game.html',locals())
+            HeysongScratch_User_Done.objects.create(uid=uid,name=prize_prize[str(index)])
         else:
+            ifCanPlay=0
             index=3
         return Response({'uid':uid,'index':index,'ifCanPlay':ifCanPlay})
-def heysongScratchgameDone(request):
-    uid=request.POST['uid']
-    prize=request.POST['prize']
-    today=datetime.date.today()
-    HeysongScratch_User_Done.objects.create(uid=uid,name=prize)
-    return HttpResponse("表單回傳成功") 
 def heysongScratchForm(request):
     prize=request.GET.get('prize','')
     uid=request.GET.get('uid','')

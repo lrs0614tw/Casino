@@ -50,8 +50,7 @@
         })
         var ifCanPlay = '{{ifCanPlay}}'
         if (ifCanPlay == 0) {
-            data.complete = true;
-            $("#redux").eraser('clear');
+            document.getElementById("redux").style.display = 'none';
             document.getElementById("bgf").style.display = 'block';
             document.getElementById("winwin").style.display = 'block';
             document.getElementById("win").style.background = winImg['{{index}}'];
