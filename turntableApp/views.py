@@ -275,17 +275,18 @@ class heysongUidViewSet(viewsets.ModelViewSet):
     serializer_class = heysongUidSerializer
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticated,)
-class heysongScratch(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'heysongScratch.html'
-    def get(self,request):
+def heysongScratch(request):
+    try:
         uid = request.GET.get('uid','')
         iv = b"VFNSJQXI0P6IZ7UC"
         key = b"HQR9NSTXMCY7R463"
         cipher = AES.new(key, AES.MODE_CBC, iv)
         enc = base64.b64decode(uid)
         deco_uid = unpad(cipher.decrypt(enc), AES.block_size).decode()
-        uid=deco_uid
+        uid = deco_uid.split("_")[1]
+    except:
+        return render(request,'error.html',locals())
+    if(deco_uid.split("_")[0] == "CHECKOK"):
         today=datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         ifCanPlay=1
@@ -315,14 +316,11 @@ class heysongScratch(APIView):
             if (prize_left[str(i)] > 0):
                 if (j[str(i)] > rand):
                     index = i
-        if(HeysongScratch_Winner_Done.objects.filter(uid=uid).exists()):
-            index=3
         if (index < 0):
             index = 3
         print(index)
         newleft=prize_left[str(index)]-1
         print(index,newleft)
-        HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
         if(HeysongScratch_User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()==True):
             if(HeysongScratch_Winner_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()):
                 index=3
@@ -339,15 +337,21 @@ class heysongScratch(APIView):
                         index=2
                     ifCanPlay=0
                 else:
-                    prize=user[0].name=0
                     index=3   
                     ifCanPlay=0
         elif(uid!=''):
-            HeysongScratch_User_Done.objects.create(uid=uid,name=prize_prize[str(index)])
+            if(HeysongScratch_Winner_Done.objects.filter(uid=uid).exists()):
+                index=3
+                HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
+            else:
+                HeysongScratch_User_Done.objects.create(uid=uid,name=prize_prize[str(index)])
+                HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
         else:
             ifCanPlay=0
             index=3
-        return Response({'uid':uid,'index':index,'ifCanPlay':ifCanPlay})
+        return render(request,'heysongScratch.html',locals())
+    else:
+        return render(request,'error.html',locals())
 def heysongScratchForm(request):
     prize=request.GET.get('prize','')
     uid=request.GET.get('uid','')
