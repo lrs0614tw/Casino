@@ -77,7 +77,8 @@
                     address: '{{zipcode}}' + '{{county}}' + '{{district}}' + '{{address}}',
                 },
             }).done(function(data) {
-                window.location.replace('./liffHeysongScratch?finish=ok');
+                alert('恭喜您獲得' + '{{prize}}' + '👏\n感謝您的參與～別忘了填寫得獎資訊才能順利收到贈品唷!\n另外，邀請一位好友加入黑松LINE官方帳號\n還有機會抽Logitech G x 英雄聯盟「K/DA COLLECTION」限量套組\n快邀請好友一起來玩吧😉 😉')
+                window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
                 if (data.status == 200) {
                     console.log('a');
                 } else if (data.status == 400) {
