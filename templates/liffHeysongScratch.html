@@ -30,6 +30,17 @@
                             });
                         liff.closeWindow()
                     } else if (ifFinish == 'bye') {
+                        liff.sendMessages([{
+                                type: 'text',
+                                text: '已完成抽獎!bye'
+                            }])
+                            .then(() => {
+                                window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
+                                console.log('message sent');
+                            })
+                            .catch((err) => {
+                                console.log('error', err);
+                            });
                         liff.closeWindow()
                     }
                 })
