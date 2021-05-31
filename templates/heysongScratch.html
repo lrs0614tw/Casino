@@ -32,6 +32,7 @@
             <div id='win'>
                 <div id='winBtn' style="display: none;"></div>
                 <div id='homeBtn' style="display: none;"></div>
+                <div id='x' style="display: none;"></div>
             </div>
         </div>
     </div>
@@ -40,13 +41,16 @@
         var index = '{{index}}'
         var giftImg = ["{% static 'img/heysongScratch/fin.png' %}", "{% static 'img/heysongScratch/cam.png' %}", "{% static 'img/heysongScratch/mic.png' %}", "{% static 'img/heysongScratch/losep.png' %}"]
         var winImg = ["url({% static 'img/heysongScratch/winFin.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winCam.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winMic.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/lose.png' %}) no-repeat center center"]
-        var giftName = ['PKL250FIN乳酸菌補給飲料', '羅技 Stream Cam 直播攝影機', '美國BLUE YETI X 專業USB麥克風', '明日再試']
+        var giftName = ['PKL250FIN乳酸菌補給飲料乙箱', '羅技 Stream Cam 直播攝影機', '美國BLUE YETI X 專業USB麥克風', '明日再試']
         document.getElementById("robot").src = giftImg['{{index}}'];
         document.querySelector("#homeBtn").addEventListener("click", function() {
-            window.location.replace('./liffHeysongScratch?finish=bye');
+            window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
         })
         document.querySelector("#winBtn").addEventListener("click", function() {
             window.location.replace('./heysongScratchForm?prize=' + giftName[index] + '&uid={{uid}}');
+        })
+        document.querySelector("#winBtn").addEventListener("click", function() {
+            window.location.replace('./liffHeysongScratch?finish=bye');
         })
         var ifCanPlay = '{{ifCanPlay}}'
         if (ifCanPlay == 0) {
@@ -58,6 +62,7 @@
             document.getElementsByTagName("body")[0].style.overflow = 'hidden';
             if (index == 3) {
                 document.getElementById("homeBtn").style.display = 'block';
+                document.getElementById("x").style.display = 'block';
             } else {
                 document.getElementById("winBtn").style.display = 'block';
             }
@@ -248,6 +253,7 @@
                                 document.getElementsByTagName("body")[0].style.overflow = 'hidden';
                                 if (index == 3) {
                                     document.getElementById("homeBtn").style.display = 'block';
+                                    document.getElementById("x").style.display = 'block';
                                 } else {
                                     document.getElementById("winBtn").style.display = 'block';
                                 }

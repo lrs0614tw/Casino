@@ -98,11 +98,21 @@ a.box {
 }
 
 #homeBtn {
-    background: url(../img/heysongScratch/homeBtn.png) no-repeat center center;
+    background: url(../img/heysongScratch/inviteBtn.png) no-repeat center center;
     background-size: contain;
     width: 500px;
     height: 100px;
     top: 1100px;
     left: 250px;
+    position: relative;
+}
+
+#x {
+    background: url(../img/heysongScratch/x.png) no-repeat center center;
+    background-size: contain;
+    width: 160px;
+    height: 160px;
+    top: -120px;
+    left: 761px;
     position: relative;
 }
