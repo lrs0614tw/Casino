@@ -77,7 +77,7 @@
                     address: '{{zipcode}}' + '{{county}}' + '{{district}}' + '{{address}}',
                 },
             }).done(function(data) {
-                window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
+                window.location.replace('./liffHeysongScratch?finish=ok');
                 if (data.status == 200) {
                     console.log('a');
                 } else if (data.status == 400) {
