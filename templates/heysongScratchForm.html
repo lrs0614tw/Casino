@@ -49,6 +49,12 @@
             </div>
             <div class="form_group">
                 <div>
+                    <label for="email">E-mail</label>
+                </div>
+                <input id="email" type="text" class="form_text" name="email" placeholder="請輸入E-mail">
+            </div>
+            <div class="form_group">
+                <div>
                     <label for="address">收件地址</label>
                 </div>
                 <!--<input id="address" type="text" class="form_text" name="address" placeholder="請輸入收件地址">-->
@@ -87,6 +93,8 @@
                 alert("請輸入收件人姓名");
             else if ($('#winner  input[name="phone"]').val() == "")
                 alert("請輸入手機號碼");
+            else if ($('#winner  input[name="email"]').val() == "")
+                alert("請輸入E-mail");
             else if ($('#winner  input[name="address"]').val() == "" || $('#winner  input[name="county"]').val() == "" || $('#winner  input[name="town"]').val() == "")
                 alert("請輸入收件地址");
             else

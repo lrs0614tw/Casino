@@ -95,6 +95,7 @@ class HeysongScratch_Winner_Done(models.Model):
     prize = models.CharField(max_length=255,blank=True,null=False) 
     name = models.CharField(max_length=255,blank=True,null=False)   
     phone = models.CharField(max_length=255,blank=True,null=False) 
+    email = models.CharField(max_length=255,blank=True,null=False) 
     address = models.CharField(max_length=255,blank=True,null=False)   
     time = models.DateTimeField(auto_now=True)      
     def __str__(self):

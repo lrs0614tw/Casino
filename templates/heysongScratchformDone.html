@@ -33,13 +33,19 @@
             <div>
                 <label for="name">收件人姓名</label>
             </div>
-            <label for="address">{{name}}</label>
+            <label for="name">{{name}}</label>
         </div>
         <div class="form_group">
             <div>
                 <label for="phone">手機號碼</label>
             </div>
-            <label for="address">{{phone}}</label>
+            <label for="phone">{{phone}}</label>
+        </div>
+        <div class="form_group">
+            <div>
+                <label for="email">E-mail</label>
+            </div>
+            <label for="email">{{email}}</label>
         </div>
         <div class="form_group">
             <div>
@@ -67,10 +73,11 @@
                     prize: '{{prize}}',
                     name: '{{name}}',
                     phone: '{{phone}}',
+                    email: '{{email}}',
                     address: '{{zipcode}}' + '{{county}}' + '{{district}}' + '{{address}}',
                 },
             }).done(function(data) {
-                window.location.replace('./liffHeysongScratch?finish=ok');
+                window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
                 if (data.status == 200) {
                     console.log('a');
                 } else if (data.status == 400) {

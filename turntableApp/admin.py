@@ -43,7 +43,7 @@ class HeysongScratch_User_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','name','time')
 admin.site.register(HeysongScratch_User_Done,HeysongScratch_User_Done_Admin)
 class HeysongScratch_Winner_Done_Admin(admin.ModelAdmin):
-    list_display = ('uid','prize','name','phone','address','time')
+    list_display = ('uid','prize','name','phone','email','address','time')
 admin.site.register(HeysongScratch_Winner_Done,HeysongScratch_Winner_Done_Admin)
 class HeysongScratch_Prize_Rate_Admin(admin.ModelAdmin):
     list_display = ('index','prize','rate','left','today')
