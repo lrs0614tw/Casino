@@ -67,7 +67,7 @@ urlpatterns = [
     path('heysongScratchForm',views.heysongScratchForm),
     path('heysongScratch_form_done', views.heysongScratchFormDone),
     path('heysongScratch_all_done', views.heysongScratchAllDone),
-
+    path('liffHeysongScratch', views.liffHeysongScratch),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')
