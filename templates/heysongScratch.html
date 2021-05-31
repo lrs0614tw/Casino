@@ -43,7 +43,7 @@
         var giftName = ['PKL250FIN乳酸菌補給飲料', '羅技 Stream Cam 直播攝影機', '美國BLUE YETI X 專業USB麥克風', '明日再試']
         document.getElementById("robot").src = giftImg['{{index}}'];
         document.querySelector("#homeBtn").addEventListener("click", function() {
-            window.close();
+            window.location.replace('./liffHeysongScratch?finish=bye');
         })
         document.querySelector("#winBtn").addEventListener("click", function() {
             window.location.replace('./heysongScratchForm?prize=' + giftName[index] + '&uid={{uid}}');
@@ -67,7 +67,7 @@
 
         function init(event) {
             $("#redux").eraser({
-                size: 40
+                size: 80
             });
         }
 
@@ -95,8 +95,8 @@
                                 pos = $this.offset(),
                                 $canvas = $("<canvas/>"),
                                 canvas = $canvas.get(0),
-                                size = (options && options.size) ? options.size : 50,
-                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .5,
+                                size = (options && options.size) ? options.size : 80,
+                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .75,
                                 completeFunction = (options && options.completeFunction) ? options.completeFunction : methods.clear,
                                 parts = [],
                                 colParts = Math.floor(width / size),

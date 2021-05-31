@@ -376,3 +376,6 @@ def heysongScratchAllDone(request):
     address=request.POST['address']
     HeysongScratch_Winner_Done.objects.create(uid=uid,prize=prize,name=name,phone=phone,address=address)
     return HttpResponse("表單回傳成功") 
+def liffHeysongScratch(request):
+    finish=request.GET.get('finish','')
+    return render(request,'liffHeysongScratch.html',locals())
