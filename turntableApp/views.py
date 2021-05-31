@@ -342,7 +342,7 @@ def heysongScratch(request):
         elif(uid!=''):
             if(HeysongScratch_Winner_Done.objects.filter(uid=uid).exists()):
                 index=3
-                HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
+                HeysongScratch_User_Done.objects.create(uid=uid,name=prize_prize[str(index)])
             else:
                 HeysongScratch_User_Done.objects.create(uid=uid,name=prize_prize[str(index)])
                 HeysongScratch_Prize_Rate.objects.filter(index=index).update(left=newleft)
@@ -366,6 +366,7 @@ def heysongScratchFormDone(request):
     zipcode=request.POST['zipcode']
     prize=request.POST['prize']
     uid=request.POST['uid']
+    email=request.POST['email']
     return render(request,'heysongScratchformDone.html',locals())
 @csrf_exempt
 def heysongScratchAllDone(request):
@@ -373,8 +374,9 @@ def heysongScratchAllDone(request):
     prize=request.POST['prize']
     name=request.POST['name']
     phone=request.POST['phone']
+    email=request.POST['email']
     address=request.POST['address']
-    HeysongScratch_Winner_Done.objects.create(uid=uid,prize=prize,name=name,phone=phone,address=address)
+    HeysongScratch_Winner_Done.objects.create(uid=uid,prize=prize,name=name,phone=phone,email=email,address=address)
     return HttpResponse("表單回傳成功") 
 def liffHeysongScratch(request):
     finish=request.GET.get('finish','')
