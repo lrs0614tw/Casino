@@ -70,14 +70,14 @@
                     address: '{{zipcode}}' + '{{county}}' + '{{district}}' + '{{address}}',
                 },
             }).done(function(data) {
-
+                window.location.replace('./liffHeysongScratch?finish=ok');
                 if (data.status == 200) {
                     console.log('a');
                 } else if (data.status == 400) {
                     alert(data.message);
                 }
             })
-            window.location.replace('./liffHeysongScratch?finish=ok');
+
         }
         document.querySelector("#ok").addEventListener("click", okOn)
     </script>
