@@ -381,3 +381,13 @@ def heysongScratchAllDone(request):
 def liffHeysongScratch(request):
     finish=request.GET.get('finish','')
     return render(request,'liffHeysongScratch.html',locals())
+    HeysongScratchplayer
+def HeysongScratchplayer(request):
+    allPlayer=HeysongScratch_User_Done.objects.all()
+    post_list = serializers.serialize('json', allPlayer)
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())
