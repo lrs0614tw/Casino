@@ -381,7 +381,6 @@ def heysongScratchAllDone(request):
 def liffHeysongScratch(request):
     finish=request.GET.get('finish','')
     return render(request,'liffHeysongScratch.html',locals())
-    HeysongScratchplayer
 def HeysongScratchplayer(request):
     allPlayer=HeysongScratch_User_Done.objects.all()
     post_list = serializers.serialize('json', allPlayer)
