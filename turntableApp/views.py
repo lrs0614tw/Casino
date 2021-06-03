@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbid
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
+from datetime import date, timedelta
 import datetime
 import json
 import random
@@ -388,5 +389,18 @@ def HeysongScratchplayer(request):
     p=request.GET.get('p','')
     if(a=='admin' and p=='admin'):
         return HttpResponse(post_list, content_type="text/json-comment-filtered;charset=utf-8")
+    else:
+        return render(request,'error.html',locals())
+def heysongScratchbackstage(request):
+    today=datetime.date.today()
+    startDay=date(2021,5,31)
+    delta = timedelta(days=1)
+    tomorrow = today + datetime.timedelta(days=1)
+    todayDone=HeysongScratch_User_Done.objects.filter(time__lt=tomorrow,time__gte=today)
+    AllDone=HeysongScratch_User_Done.objects.all()
+    a=request.GET.get('a','')
+    p=request.GET.get('p','')
+    if(a=='admin' and p=='admin'):
+        return render(request,'heysongScratchbackstage.html',locals())
     else:
         return render(request,'error.html',locals())
