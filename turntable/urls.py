@@ -69,6 +69,7 @@ urlpatterns = [
     path('heysongScratch_all_done', views.heysongScratchAllDone),
     path('liffHeysongScratch', views.liffHeysongScratch),
     path('HeysongScratchplayer',views.HeysongScratchplayer),
+    path('heysongScratchbackstage',views.heysongScratchbackstage),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')
