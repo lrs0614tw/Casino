@@ -233,7 +233,7 @@ def wenScratch(request):
         prize=info[0].prize
         if(prize=='恭喜您！得到500ml乾洗手1罐！'):
             index=0
-        else(prize=='恭喜您！得到特製口罩3個！'):
+        else:
             index=1
     else:
         finish='0'
