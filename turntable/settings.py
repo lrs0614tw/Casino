@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'j5ud4ah6n$g^@qn^miy1et20ih21zjzzbw!-+@o&lvb68_+zaf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'casino.oakrange.io','6c9742f3588a.ngrok.io']
 
