@@ -11,16 +11,16 @@
         $(document).ready(function() {
             // Using a Promise object
             liff.init({
-
-                    liffId: '1655747800-qBmpDaGx'
+                    //liffId: '1655755802-8R72prpM' // heysong
+                    liffId: '1655753427-1656061801-KP3oLgLW'
 
                 })
                 .then(() => {
                     ifFinish = '{{finish}}';
-                    if (ifFinish == '0') {
+                    if (ifFinish == 'ok') {
                         liff.sendMessages([{
                                 type: 'text',
-                                text: '恭喜您！得到500ml乾洗手1罐！'
+                                text: '已完成抽獎!'
                             }])
                             .then(() => {
                                 console.log('message sent');
@@ -29,24 +29,13 @@
                                 console.log('error', err);
                             });
                         liff.closeWindow()
-                    } else if (ifFinish == '1') {
-                        liff.sendMessages([{
-                                type: 'text',
-                                text: '恭喜您！得到特製口罩3個！'
-                            }])
-                            .then(() => {
-                                console.log('message sent');
-                            })
-                            .catch((err) => {
-                                console.log('error', err);
-                            });
+                    } else if (ifFinish == 'bye') {
                         liff.closeWindow()
-                    }
-                    // Start to use liff's api
-                    else {
+                    } else {
+                        // Start to use liff's api
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./wenScratch?uid=' + profile.userId);
+                                window.location.replace('./game?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);

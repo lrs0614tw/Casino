@@ -230,16 +230,15 @@ def wenScratch(request):
     if(wen_Done.objects.filter(uid=uid).exists()==True):
         info=wen_Done.objects.filter(uid=uid)
         finish='1'
-        print(finish)
         prize=info[0].prize
-        if(prize=='恭喜獲得乾洗手！'):
+        if(prize=='恭喜您！得到500ml乾洗手1罐！'):
             index=0
-        else:
+        elif(prize=='恭喜您！得到特製口罩3個！'):
             index=1
     else:
         finish='0'
         r=random.randint(0,9)
-        if(r>=3):
+        if(r>=2):
             index=1
         else:
             index=0
@@ -404,3 +403,50 @@ def heysongScratchbackstage(request):
         return render(request,'heysongScratchbackstage.html',locals())
     else:
         return render(request,'error.html',locals())
+def heysongScratchRecord(request):
+    uid = request.GET.get('uid','')
+    user=HeysongScratch_User_Done.objects.filter(uid=uid)
+    recordShow=[]
+    notDone=['前往填寫資料']
+    for i in user:
+        if(i.name!='明日再試！'):
+            if(HeysongScratch_Winner_Done.objects.filter(uid=uid,prize=i.name).exists()):
+                recordShow.append([i.name,i.time.strftime('%Y-%m-%d'),'已領取'])
+            else:
+                recordShow.append([i.name,i.time.strftime('%Y-%m-%d'),'前往填寫資料'])
+        else:
+            recordShow.append([i.name,i.time.strftime('%Y-%m-%d'),'-'])
+    return render(request,'heysongScratchRecord.html',locals())
+def liffTraveltobuys(request):
+    finish=request.GET.get('finish','')
+    return render(request,'liffTraveltobuys.html',locals())
+def gameTraveltobuys(request):
+    uid = request.GET.get('uid','')
+    today=datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    prize_object=Prize_Rate.objects.filter(today=today)
+    prize_rate={}
+    prize_left={}
+    for i in prize_object:
+        prize_rate[i.index]=i.rate
+        prize_left[i.index]=i.left
+    prize_rate2=json.dumps(prize_rate)
+    prize_left2=json.dumps(prize_left)
+    beenWin='0'
+    if(Winner_Done.objects.filter(uid=uid).exists()):
+        beenWin='1'
+    if(User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()==True):
+        if(Winner_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today).exists()):
+            return render(request,'gameAlready.html',locals())
+        else:
+            user=User_Done.objects.filter(uid=uid,time__lt=tomorrow,time__gte=today)
+            prize=user[0].name
+            if(prize!='明日再試！'):
+                return render(request,'gameWin.html',locals()) 
+            else:
+                return render(request,'gameAlready.html',locals())
+                
+    elif(uid!=''):
+        return render(request,'game.html',locals())
+    else:
+        return render(request,'gameAlready.html',locals())
