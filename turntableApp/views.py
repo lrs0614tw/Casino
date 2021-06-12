@@ -230,16 +230,15 @@ def wenScratch(request):
     if(wen_Done.objects.filter(uid=uid).exists()==True):
         info=wen_Done.objects.filter(uid=uid)
         finish='1'
-        print(finish)
         prize=info[0].prize
-        if(prize=='恭喜獲得乾洗手！'):
+        if(prize=='恭喜您！得到500ml乾洗手1罐！'):
             index=0
-        else:
+        elif(prize=='恭喜您！得到特製口罩3個！'):
             index=1
     else:
         finish='0'
         r=random.randint(0,9)
-        if(r>=3):
+        if(r>=2):
             index=1
         else:
             index=0
@@ -421,7 +420,7 @@ def heysongScratchRecord(request):
 def liffTraveltobuys(request):
     finish=request.GET.get('finish','')
     return render(request,'liffTraveltobuys.html',locals())
-def game(request):
+def gameTraveltobuys(request):
     uid = request.GET.get('uid','')
     today=datetime.date.today()
     tomorrow = today + datetime.timedelta(days=1)
