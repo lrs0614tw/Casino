@@ -16,26 +16,65 @@
 
                 })
                 .then(() => {
-                    ifFinish = '{{finish}}';
+                    var ifFinish = '{{finish}}';
+                    var prize = '{{prize}}'
                     if (ifFinish == 'ok') {
-                        liff.sendMessages([{
-                                type: 'text',
-                                text: '已完成抽獎!'
-                            }])
-                            .then(() => {
-                                console.log('message sent');
-                            })
-                            .catch((err) => {
-                                console.log('error', err);
-                            });
-                        liff.closeWindow()
+                        if (prize == '200元') {
+                            liff.sendMessages([{
+                                    type: 'text',
+                                    text: '已完成抽獎!(200元)'
+                                }])
+                                .then(() => {
+                                    console.log('message sent');
+                                })
+                                .catch((err) => {
+                                    console.log('error', err);
+                                });
+                            liff.closeWindow()
+                        } else if (prize == '5000元') {
+                            liff.sendMessages([{
+                                    type: 'text',
+                                    text: '已完成抽獎!(5000元)'
+                                }])
+                                .then(() => {
+                                    console.log('message sent');
+                                })
+                                .catch((err) => {
+                                    console.log('error', err);
+                                });
+                            liff.closeWindow()
+                        } else if (prize == '150元') {
+                            liff.sendMessages([{
+                                    type: 'text',
+                                    text: '已完成抽獎!(150元)'
+                                }])
+                                .then(() => {
+                                    console.log('message sent');
+                                })
+                                .catch((err) => {
+                                    console.log('error', err);
+                                });
+                            liff.closeWindow()
+                        } else if (prize == '明日再試！') {
+                            liff.sendMessages([{
+                                    type: 'text',
+                                    text: '已完成抽獎!(明日再試！)'
+                                }])
+                                .then(() => {
+                                    console.log('message sent');
+                                })
+                                .catch((err) => {
+                                    console.log('error', err);
+                                });
+                            liff.closeWindow()
+                        }
                     } else if (ifFinish == 'bye') {
                         liff.closeWindow()
                     } else {
                         // Start to use liff's api
                         liff.getProfile()
                             .then(profile => {
-                                window.location.replace('./game?uid=' + profile.userId);
+                                window.location.replace('./gameTraveltobuys?uid=' + profile.userId);
                             })
                             .catch((err) => {
                                 console.log('error', err);

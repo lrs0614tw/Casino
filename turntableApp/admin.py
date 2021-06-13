@@ -48,4 +48,14 @@ admin.site.register(HeysongScratch_Winner_Done,HeysongScratch_Winner_Done_Admin)
 class HeysongScratch_Prize_Rate_Admin(admin.ModelAdmin):
     list_display = ('index','prize','rate','left','today')
 admin.site.register(HeysongScratch_Prize_Rate,HeysongScratch_Prize_Rate_Admin)
+class Traveltobuys_User_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','name','time')
+admin.site.register(Traveltobuys_User_Done,Traveltobuys_User_Done_Admin)
+class Traveltobuys_Winner_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','prize','name','phone','email','address','time')
+admin.site.register(Traveltobuys_Winner_Done,Traveltobuys_Winner_Done_Admin)
+class Traveltobuys_Prize_Rate_Admin(admin.ModelAdmin):
+    list_display = ('index','prize','rate','left','today')
+admin.site.register(Traveltobuys_Prize_Rate,Traveltobuys_Prize_Rate_Admin)
+
 # Register your models here.

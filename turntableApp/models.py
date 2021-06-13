@@ -108,3 +108,29 @@ class HeysongScratch_Prize_Rate(models.Model):
     today = models.DateField(default=date.today)
     def __str__(self):
         return self.index
+class Traveltobuys_User_Done(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')         
+    name = models.CharField(max_length=255,blank=True,null=False)      
+    time = models.DateTimeField(auto_now=True)                          
+
+    def __str__(self):
+        return self.uid
+# Create your models here.
+class Traveltobuys_Winner_Done(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')         
+    prize = models.CharField(max_length=255,blank=True,null=False) 
+    name = models.CharField(max_length=255,blank=True,null=False)   
+    phone = models.CharField(max_length=255,blank=True,null=False) 
+    email = models.CharField(max_length=255,blank=True,null=False) 
+    address = models.CharField(max_length=255,blank=True,null=False)   
+    time = models.DateTimeField(auto_now=True)      
+    def __str__(self):
+        return self.uid
+class Traveltobuys_Prize_Rate(models.Model):
+    index = models.CharField(max_length=50,null=False,default='')         
+    prize = models.CharField(max_length=255,blank=True,null=False) 
+    rate = models.CharField(max_length=255,blank=True,null=False)   
+    left = models.CharField(max_length=255,blank=True,null=False) 
+    today = models.DateField(default=date.today)
+    def __str__(self):
+        return self.index

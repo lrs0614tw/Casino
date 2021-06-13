@@ -1,0 +1,85 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Turntable</title>
+    <link rel="stylesheet" href="{% static 'css/formDoneTraveltobuys.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="form_group">
+                <div>
+                    <label for="prize">獲得獎品</label>
+                </div>
+                <label for="prize">{{prize}}</label>
+            </div>
+            <div class="form_group">
+                <div>
+                    <label for="name">收件人姓名</label>
+                </div>
+                <label for="address">{{name}}</label>
+            </div>
+            <div class="form_group">
+                <div>
+                    <label for="phone">手機號碼</label>
+                </div>
+                <label for="address">{{phone}}</label>
+            </div>
+            <div class="form_group">
+                <div>
+                    <label for="address">收件地址</label>
+                </div>
+                <label for="address">{{address}}</label>
+            </div>
+            <div class="form_group">
+                <div id='edit' class='btn' style="color:blue">重新輸入</div>
+            </div>
+            <div id='ok' class='form_submit'></div>
+        </div>
+        <script>
+            function editOn() {
+                window.location.replace('./gameFormTraveltobuys?prize={{prize}}&uid={{uid}}');
+            }
+            document.querySelector("#edit").addEventListener("click", editOn)
+
+            function okOn() {
+                $.ajax({
+                    'url': '/all_doneTraveltobuys',
+                    'type': 'POST',
+                    'data': {
+                        uid: '{{uid}}',
+                        prize: '{{prize}}',
+                        name: '{{name}}',
+                        phone: '{{phone}}',
+                        address: '{{address}}'
+                    },
+                }).done(function(data) {
+                    window.location.replace('./liff?finish=ok');
+                    if (data.status == 200) {
+
+                    } else if (data.status == 400) {
+                        alert(data.message);
+                    }
+                })
+
+
+            }
+            document.querySelector("#ok").addEventListener("click", okOn)
+        </script>
+    </div>
+</body>
+
+</html>
