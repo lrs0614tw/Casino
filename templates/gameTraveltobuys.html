@@ -88,6 +88,7 @@
                 turntable.done(index, function() {
                     if (index == 1 || index == 3 || index == 5 || index == 7) {
                         alert('明日再試！');
+                        window.location.replace('./liffTraveltobuys?finish=ok&prize=' + data.name);
                     } else {
                         var yes = alert('恭喜您抽中了' + data.name + '\n請按確認');
                         if (index != 0) {
