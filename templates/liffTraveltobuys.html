@@ -67,7 +67,20 @@
                                     console.log('error', err);
                                 });
                             liff.closeWindow()
+                        } else if (prize == '量子天使100ml乙瓶') {
+                            liff.sendMessages([{
+                                    type: 'text',
+                                    text: '已完成抽獎!(量子天使100ml乙瓶)'
+                                }])
+                                .then(() => {
+                                    console.log('message sent');
+                                })
+                                .catch((err) => {
+                                    console.log('error', err);
+                                });
+                            liff.closeWindow()
                         }
+
                     } else if (ifFinish == 'bye') {
                         liff.closeWindow()
                     } else {
