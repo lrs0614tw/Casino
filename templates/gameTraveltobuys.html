@@ -58,12 +58,15 @@
             var index = '{{index}}'
             var prize = '{{prize}}'
             if (index != 0) {
-                var name = ["量子天使100ml3瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
+                var name = ["量子天使100ml乙瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
                 console.log(prize)
                 window.location.replace('./liffTraveltobuys?finish=ok&prize=' + prize);
             }
         } else if (ifCanPlay == 2) {
-
+            var prize = '{{prize}}'
+            document.querySelector(".btn").removeEventListener("click", buttonOn);
+            alert('恭喜中獎，獲得量子天使100ml乙瓶！\n請點選確認填寫收件資料');
+            window.location.replace('./gameFormTraveltobuys?prize=' + prize + '&uid={{uid}}');
         }
 
         function ajax(status) {
@@ -71,7 +74,7 @@
                 if (status == 1) {
                     setTimeout(function() {
                         var index = '{{index}}'
-                        var name = ["量子天使100ml3瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
+                        var name = ["量子天使100ml乙瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
                         resolve({
                             get: 1,
                             index: index,
@@ -90,9 +93,11 @@
                         alert('明日再試！');
                         window.location.replace('./liffTraveltobuys?finish=ok&prize=' + data.name);
                     } else {
-                        var yes = alert('恭喜您抽中了' + data.name + '\n請按確認');
+                        var yes = alert('恭喜您抽中了' + data.name);
                         if (index != 0) {
                             window.location.replace('./liffTraveltobuys?finish=ok&prize=' + data.name);
+                        } else {
+                            window.location.replace('./gameFormTraveltobuys?prize=' + data.name + '&uid={{uid}}');
                         }
                     }
                     document.querySelector(".btn").removeEventListener("click", buttonOn);

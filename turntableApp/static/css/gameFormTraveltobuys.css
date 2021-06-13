@@ -46,18 +46,17 @@ strong {
     height: 292px;
     width: 266px;
     border: 0;
-    top: -50px;
-    left: 520px;
-    background: url(../img/submit.png) no-repeat center center;
-    background-size: contain;
+    top: 10px;
+    left: 566px;
+    font-size: 3rem;
 }
 
 .background {
-    background: url(../img/bg.png);
+    background: url(../img/traveltobuys/bg.jpg);
     background-size: cover;
     overflow: hidden;
     width: 100%;
-    height: calc(275vw);
+    height: calc(305vw);
     margin: 0;
     padding: 0;
 }

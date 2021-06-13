@@ -295,15 +295,6 @@ def wenScratch(request):
             index = 0
         else:
             index = 1
-    uid = request.GET.get('uid','')
-    if(wen_Done.objects.filter(uid=uid).exists()==True):
-        info=wen_Done.objects.filter(uid=uid)
-        finish='1'
-        prize=info[0].prize
-        if(prize=='恭喜您！得到500ml乾洗手1罐！'):
-            index=0
-        else:
-            index=1
     else:
         finish = '0'
         r = random.randint(0, 9)
@@ -575,13 +566,16 @@ def gameTraveltobuys(request):
             if(prize != '明日再試！'):
                 if(prize == '150元'):
                     index = 6
+                    ifCanPlay = 0
                 elif(prize == '5,000元'):
                     index = 4
+                    ifCanPlay = 0
                 elif(prize == '200元'):
                     index = 2
-                elif(prize == '量子天使100ml3瓶'):
+                    ifCanPlay = 0
+                elif(prize == '量子天使100ml乙瓶'):
                     index = 0
-                ifCanPlay = 0
+                    ifCanPlay = 2
             else:
                 index = 1
                 prize='明日再試！'
@@ -599,3 +593,29 @@ def gameTraveltobuys(request):
         prize='明日再試！'
         index = 1
     return render(request, 'gameTraveltobuys.html', locals())
+def gameFormTraveltobuys(request):
+    prize = request.GET.get('prize', '')
+    uid = request.GET.get('uid', '')
+    return render(request, 'gameFormTraveltobuys.html', locals())
+
+
+@csrf_exempt
+def formDoneTraveltobuys(request):
+    name = request.POST['name']
+    phone = request.POST['phone']
+    address = request.POST['address']
+    prize = request.POST['prize']
+    uid = request.POST['uid']
+    return render(request, 'formDoneTraveltobuys.html', locals())
+
+
+@csrf_exempt
+def allDoneTraveltobuys(request):
+    uid = request.POST['uid']
+    prize = request.POST['prize']
+    name = request.POST['name']
+    phone = request.POST['phone']
+    address = request.POST['address']
+    Traveltobuys_Winner_Done.objects.create(
+        uid=uid, prize=prize, name=name, phone=phone, address=address)
+    return HttpResponse("表單回傳成功")

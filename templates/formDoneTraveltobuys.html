@@ -47,7 +47,7 @@
             <div class="form_group">
                 <div id='edit' class='btn' style="color:blue">重新輸入</div>
             </div>
-            <div id='ok' class='form_submit'></div>
+            <div id='ok' class='form_submit' style="color:blue">確認</div>
         </div>
         <script>
             function editOn() {
@@ -67,7 +67,7 @@
                         address: '{{address}}'
                     },
                 }).done(function(data) {
-                    window.location.replace('./liff?finish=ok');
+                    window.location.replace('./liffTraveltobuys?finish=ok&prize=量子天使100ml3瓶');
                     if (data.status == 200) {
 
                     } else if (data.status == 400) {
