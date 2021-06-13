@@ -28,11 +28,11 @@ strong {
 }
 
 .background {
-    background: url(../img/traveltobuys/bg.png);
+    background: url(../img/traveltobuys/bg.jpg);
     background-size: cover;
     overflow: hidden;
     width: 100%;
-    height: calc(275vw);
+    height: calc(305vw);
     margin: 0;
     padding: 0;
 }
@@ -42,13 +42,13 @@ strong {
     height: 700px;
     margin-left: auto;
     margin-right: auto;
-    -webkit-transform: translate(0px, 420px);
+    -webkit-transform: translate(40px, 420px);
     overflow: visible;
 }
 
 .turntable {
-    width: 100%;
-    height: 100%;
+    width: 92%;
+    height: 92%;
     background: url(../img/traveltobuys/turntable.png) no-repeat;
     background-size: 100% 100%;
     position: relative;
@@ -60,16 +60,16 @@ strong {
     width: 486px;
     height: 486px;
     background-size: 100% 100%;
-    -webkit-transform: translate(107px, -593px);
-    background: url(../img/go.png) no-repeat center center;
+    -webkit-transform: translate(78px, -566px);
+    background: url(../img/traveltobuys/go.png) no-repeat center center;
     background-size: contain;
     z-index: 11;
 }
 
 .pointer {
     position: relative;
-    -webkit-transform: translate(317px, -1200px);
-    background: url(../img/point.png) no-repeat center center;
+    -webkit-transform: translate(289px, -1140px);
+    background: url(../img/traveltobuys/point.png) no-repeat center center;
     background-size: contain;
     width: 66px;
     height: 94px;
@@ -78,8 +78,8 @@ strong {
 
 .base {
     position: relative;
-    -webkit-transform: translate(10px, -650px);
-    background: url(../img/base.png) no-repeat center center;
+    -webkit-transform: translate(-21px, -650px);
+    background: url(../img/traveltobuys/base.png) no-repeat center center;
     background-size: contain;
     width: 680px;
     height: 182px;

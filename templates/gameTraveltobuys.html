@@ -29,6 +29,8 @@
             </div>
             <div class="pointer" id="pointer">
             </div>
+            <div class="base">
+            </div>
         </div>
     </div>
     <div id="end">
@@ -49,66 +51,31 @@
             document.querySelector(".btn").removeEventListener("click", buttonOn);
         }
         document.querySelector(".btn").addEventListener("click", buttonOn)
+        var ifCanPlay = '{{ifCanPlay}}'
+        if (ifCanPlay == 0) {
+            document.querySelector(".btn").removeEventListener("click", buttonOn);
+            alert('今天已經抽過囉，請明天再試！');
+            var index = '{{index}}'
+            var prize = '{{prize}}'
+            if (index != 0) {
+                var name = ["量子天使100ml3瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
+                console.log(prize)
+                window.location.replace('./liffTraveltobuys?finish=ok&prize=' + prize);
+            }
+        } else if (ifCanPlay == 2) {
+
+        }
 
         function ajax(status) {
             return new Promise(function(resolve, reject) {
                 if (status == 1) {
                     setTimeout(function() {
-                        var rate = JSON.parse('{{prize_rate2|safe}}');
-                        var left = JSON.parse('{{prize_left2|safe}}');
-                        var j = {};
-                        var sum = 0;
-                        for (var i = 0; i < 6; i++) {
-                            if (parseInt(left[i.toString()]) > 0 && parseInt(rate[i.toString()]) > 0) {
-                                sum = sum + parseInt(rate[i.toString()])
-                            }
-                        }
-                        var jsonCount = 0;
-                        for (var i = 0; i < 6; i++) {
-                            if (parseInt(left[i.toString()]) > 0 && parseInt(rate[i.toString()]) > 0) {
-                                j[i.toString()] = parseInt(rate[i.toString()]) / sum + jsonCount;
-                                jsonCount = jsonCount + parseInt(rate[i.toString()]) / sum;
-                            } else {
-                                j[i.toString()] = -1;
-                            }
-                        }
-                        var index = -1;
-                        var rand = Math.random();
-                        for (var i = 5; i >= 0; i--) {
-                            if (parseInt(left[i.toString()]) > 0) {
-                                if (j[i.toString()] > rand) {
-                                    index = i;
-                                }
-                            }
-                        }
-                        if (index < 0) {
-                            index = 5
-                        }
-                        var beenWin = '{{beenWin}}';
-                        if (beenWin == '1') {
-                            index = 5;
-                        }
-                        console.log(index)
-                        console.log(j)
-                        var newLeft = parseInt(left[index.toString()]) - 1;
-
-                        //var index = Math.floor(Math.random() * turnsCount)
-                        var name = ["焦糖韋恩咖啡", "明日再試！", "FIN旅行洗漱包", "明日再試！", "焦糖韋恩咖啡", "明日再試！"]
-                        var fullName = ["CAN320ml焦糖韋恩咖啡乙箱", "明日再試！", "FIN旅行洗漱包乙個", "明日再試！", "CAN320ml焦糖韋恩咖啡乙箱", "明日再試！"]
-                        var endBackgroundImg = ["url( {% static 'img/winCan.png' %}) no-repeat center center", "url({% static 'img/lose.png' %}) no-repeat center center", "url( {% static 'img/winFin.png' %}) no-repeat center center", "url({% static 'img/lose.png' %}) no-repeat center center", "url( {% static 'img/winCan.png' %}) no-repeat center center", "url({% static 'img/lose.png' %}) no-repeat center center"]
-                        var endCloseBackgroundImg = ["url({% static 'img/goWin.png' %}) no-repeat center center", "url({% static 'img/goHome.png' %}) no-repeat center center", "url({% static 'img/goWin.png' %}) no-repeat center center", "url({% static 'img/goHome.png' %}) no-repeat center center", "url({% static 'img/goWin.png' %}) no-repeat center center", "url({% static 'img/goHome.png' %}) no-repeat center center"]
-                        var endCloseTop = ["540px", "455px", "540px", "455px", "540px", "455px"]
-                        var ifWin = ['1', '0', '1', '0', '1', '0'];
+                        var index = '{{index}}'
+                        var name = ["量子天使100ml3瓶", "明日再試！", "200元", "明日再試！", "5000元", "明日再試！", "150元", "明日再試！"];
                         resolve({
                             get: 1,
                             index: index,
                             name: name[index],
-                            fullName: fullName[index],
-                            endBackgroundImg: endBackgroundImg[index],
-                            endCloseBackgroundImg: endCloseBackgroundImg[index],
-                            top: endCloseTop[index],
-                            ifWin: ifWin[index],
-                            newLeft: newLeft,
                         })
                     }, 200)
                 }
@@ -119,48 +86,16 @@
             if (data.get == 1) {
                 var index = data.index
                 turntable.done(index, function() {
-                    document.getElementById("price").innerText = data.name;
-                    document.getElementById("end").style.display = "flex";
-                    document.getElementById("end").style.background = data.endBackgroundImg;
-                    document.getElementById("end").style.backgroundSize = "contain";
-                    document.getElementById("end_close").style.background = data.endCloseBackgroundImg;
-                    document.getElementById("end_close").style.backgroundSize = "contain";
-                    document.getElementById("end_close").style.display = "block";
-                    document.getElementById("end_close").style.top = data.top;
+                    if (index == 1 || index == 3 || index == 5 || index == 7) {
+                        alert('明日再試！');
+                    } else {
+                        var yes = alert('恭喜您抽中了' + data.name + '\n請按確認');
+                        if (index != 0) {
+                            window.location.replace('./liffTraveltobuys?finish=ok&prize=' + data.name);
+                        }
+                    }
                     document.querySelector(".btn").removeEventListener("click", buttonOn);
-                    document.getElementById("bgf").style.display = 'block';
-                    document.getElementsByTagName("body")[0].style.overflow = 'hidden';
-                    console.log(data.newLeft, 'new')
-                    if (data.ifWin == 1) {
-
-                        document.querySelector("#end_close").addEventListener("click", function() {
-                            window.location.replace('./gameForm?prize=' + data.fullName + '&uid={{uid}}');
-                        })
-                    } else if (data.ifWin == 0) {
-                        document.querySelector("#end_close").addEventListener("click", function() {
-                            window.location.replace('./liff?finish=bye');
-                        })
-                    }
-                    //finish.submit();
                 });
-                $.ajax({
-                    'url': '/game_done',
-                    'type': 'POST',
-                    'data': {
-                        uid: '{{uid}}',
-                        pname: data.name,
-                        prize: '{{prize}}',
-                        newLeft: data.newLeft,
-                        index: data.index
-                    },
-                }).done(function(data) {
-                    if (data.status == 200) {
-                        console.log('a');
-                    } else if (data.status == 400) {
-                        alert(data.message);
-                    }
-                })
-
             }
         }
     </script>
