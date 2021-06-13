@@ -595,11 +595,8 @@ def gameTraveltobuys(request):
             Traveltobuys_User_Done.objects.create(uid=uid, name=prize_prize[str(index)])
             Traveltobuys_Prize_Rate.objects.filter(index=index).update(left=newleft)
     else:
-<<<<<<< HEAD
         ifCanPlay = 0
         prize='明日再試！'
         index = 1
     return render(request, 'gameTraveltobuys.html', locals())
-=======
         return render(request,'gameAlready.html',locals())
->>>>>>> ae9ecae003d9891a09958c336210e61947a9d442
