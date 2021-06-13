@@ -286,7 +286,6 @@ def liffScratchWen(request):
 
 
 def wenScratch(request):
-<<<<<<< HEAD
     uid = request.GET.get('uid', '')
     if(wen_Done.objects.filter(uid=uid).exists() == True):
         info = wen_Done.objects.filter(uid=uid)
@@ -296,7 +295,6 @@ def wenScratch(request):
             index = 0
         else:
             index = 1
-=======
     uid = request.GET.get('uid','')
     if(wen_Done.objects.filter(uid=uid).exists()==True):
         info=wen_Done.objects.filter(uid=uid)
@@ -306,7 +304,6 @@ def wenScratch(request):
             index=0
         else:
             index=1
->>>>>>> ae9ecae003d9891a09958c336210e61947a9d442
     else:
         finish = '0'
         r = random.randint(0, 9)
