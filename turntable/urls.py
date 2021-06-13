@@ -59,7 +59,6 @@ urlpatterns = [
     path('snake',views.snake),
     path('snakeUpdate',views.snakeUpdate),
     path('scratchDone', views.scratchDone),
-    url('^admin/', admin.site.urls),
     url('^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('heysongScratch', views.heysongScratch),
@@ -73,6 +72,9 @@ urlpatterns = [
     path('heysongScratchRecord',views.heysongScratchRecord),
     path('gameTraveltobuys',views.gameTraveltobuys),
     path('liffTraveltobuys',views.liffTraveltobuys),
+    path('gameFormTraveltobuys',views.gameFormTraveltobuys),
+    path('form_doneTraveltobuys', views.formDoneTraveltobuys),
+    path('all_doneTraveltobuys', views.allDoneTraveltobuys),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')
