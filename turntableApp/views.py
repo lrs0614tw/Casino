@@ -599,4 +599,3 @@ def gameTraveltobuys(request):
         prize='明日再試！'
         index = 1
     return render(request, 'gameTraveltobuys.html', locals())
-        return render(request,'gameAlready.html',locals())
