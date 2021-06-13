@@ -286,6 +286,7 @@ def liffScratchWen(request):
 
 
 def wenScratch(request):
+<<<<<<< HEAD
     uid = request.GET.get('uid', '')
     if(wen_Done.objects.filter(uid=uid).exists() == True):
         info = wen_Done.objects.filter(uid=uid)
@@ -295,6 +296,17 @@ def wenScratch(request):
             index = 0
         else:
             index = 1
+=======
+    uid = request.GET.get('uid','')
+    if(wen_Done.objects.filter(uid=uid).exists()==True):
+        info=wen_Done.objects.filter(uid=uid)
+        finish='1'
+        prize=info[0].prize
+        if(prize=='恭喜您！得到500ml乾洗手1罐！'):
+            index=0
+        else:
+            index=1
+>>>>>>> ae9ecae003d9891a09958c336210e61947a9d442
     else:
         finish = '0'
         r = random.randint(0, 9)
@@ -586,7 +598,11 @@ def gameTraveltobuys(request):
             Traveltobuys_User_Done.objects.create(uid=uid, name=prize_prize[str(index)])
             Traveltobuys_Prize_Rate.objects.filter(index=index).update(left=newleft)
     else:
+<<<<<<< HEAD
         ifCanPlay = 0
         prize='明日再試！'
         index = 1
     return render(request, 'gameTraveltobuys.html', locals())
+=======
+        return render(request,'gameAlready.html',locals())
+>>>>>>> ae9ecae003d9891a09958c336210e61947a9d442
