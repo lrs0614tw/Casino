@@ -80,7 +80,7 @@
     </div>
     <div class="background">
     </div>
-    <div class='container'>
+    <div class='container' style="overflow: scroll;">
         <center>
             <div class="css_table" id="prizeTable">
                 <div class="css_tr">
@@ -88,7 +88,7 @@
                     <div class="css_th">日期</div>
                     <div class="css_th">狀態</div>
                 </div>
-                {% for p in recordShow %}
+                {% for p in newRecordShow %}
                 <div class="css_tr" id='table{{p.index}}'>
                     {% for i in p %} {% if i in notDone %}
                     <div class="css_td" id='table{{p.index}}' style="color: red;">

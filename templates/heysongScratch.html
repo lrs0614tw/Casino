@@ -36,6 +36,12 @@
             </div>
         </div>
     </div>
+    <div id='record' style="position: absolute;width: 120px;height: 120px;top:0;left: 0;z-index: 50;"></div>
+    <script>
+        document.querySelector("#record").addEventListener("click", function() {
+            window.location.replace('./heysongScratchRecord?uid={{uid}}');
+        })
+    </script>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
         var index = '{{index}}'
@@ -47,7 +53,7 @@
             window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
         })
         document.querySelector("#winBtn").addEventListener("click", function() {
-            window.location.replace('./heysongScratchForm?prize=' + giftName[index] + '&uid={{uid}}');
+            window.location.replace('./heysongScratchRecord?uid={{uid}}');
         })
         document.querySelector("#x").addEventListener("click", function() {
             window.location.replace('./liffHeysongScratch?finish=bye');

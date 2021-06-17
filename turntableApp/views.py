@@ -512,6 +512,12 @@ def heysongScratchRecord(request):
                     [i.name, i.time.strftime('%Y-%m-%d'), '前往填寫資料'])
         else:
             recordShow.append([i.name, i.time.strftime('%Y-%m-%d'), '-'])
+    newRecordShow=[]
+    for i in recordShow:
+        if(i[0]!='明日再試！'):
+            newRecordShow.insert(0,i)
+        else:
+            newRecordShow.append(i)
     return render(request, 'heysongScratchRecord.html', locals())
 
 
