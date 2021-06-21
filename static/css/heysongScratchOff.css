@@ -107,6 +107,16 @@ a.box {
     position: relative;
 }
 
+#recordBtn {
+    background: url(../img/heysongScratch/record.png) no-repeat center center;
+    background-size: contain;
+    width: 500px;
+    height: 100px;
+    top: 980px;
+    left: 250px;
+    position: relative;
+}
+
 #x {
     background: url(../img/heysongScratch/x.png) no-repeat center center;
     background-size: contain;
