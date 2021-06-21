@@ -35,13 +35,14 @@
             <div id='win'>
                 <div id='winBtn' style="display: none;"></div>
                 <div id='homeBtn' style="display: none;"></div>
+
                 <div id='x' style="display: none;"></div>
+                <div id='recordBtn' style="display: none;"></div>
             </div>
         </div>
     </div>
-    <div id='record' style="position: absolute;width: 120px;height: 120px;top:0;left: 0;z-index: 50;"></div>
     <script>
-        document.querySelector("#record").addEventListener("click", function() {
+        document.querySelector("#recordBtn").addEventListener("click", function() {
             window.location.replace('./heysongScratchRecord?uid={{uid}}');
         })
     </script>
@@ -74,6 +75,7 @@
             } else {
                 document.getElementById("winBtn").style.display = 'block';
             }
+            document.getElementById("recordBtn").style.display = 'block';
         } else {
             addEventListener("load", init, false);
         }
@@ -264,6 +266,7 @@
                                 } else {
                                     document.getElementById("winBtn").style.display = 'block';
                                 }
+                                //document.getElementById("recordBtn").style.display = 'block';
 
                             }
                         }
