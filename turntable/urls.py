@@ -75,6 +75,9 @@ urlpatterns = [
     path('gameFormTraveltobuys',views.gameFormTraveltobuys),
     path('form_doneTraveltobuys', views.formDoneTraveltobuys),
     path('all_doneTraveltobuys', views.allDoneTraveltobuys),
+    path('liffScratchJie', views.liffScratchJie),
+    path('jieScratch', views.jieScratch),
+    path('jieGameDone', views.jieGameDone),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

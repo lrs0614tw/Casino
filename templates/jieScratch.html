@@ -3,13 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>居家辦公防疫應援</title>
-    <link rel="stylesheet" href="{% static 'css/heysongScratchOff.css' %}">
+    <title>謝豪杰 刮刮樂</title>
+    <link rel="stylesheet" href="{% static 'css/jieScratchOff.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
-    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
-    <META HTTP-EQUIV="expires" CONTENT="0">
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -22,67 +19,42 @@
 </head>
 
 <body>
-    <div id="bgf" style="display:none;position: absolute;top: 0;left:0;margin: 0;padding: 0;width: 100%;height: 300%;z-index: 19; background-color: rgba(34,30,0,0.7);">
-    </div>
     <div class="background">
         <center>
             <span class="container">
                 <img id="robot" />
-                <img id="redux" src="{% static 'img/heysongScratch/unscratch.png' %}" />
+                <img id="redux" src="{% static 'img/scratchofftop.png' %}" />
             </span>
         </center>
-        <div id='winwin' style='position: absolute;width: 100%;height: 100%;z-index: 23;display: none;top:270px'>
+        <div id='winwin' style='position: fixed;width: 100%;height: 100%;z-index: 13;display: none;top: 790px;left: 5px;'>
             <div id='win'>
-                <div id='winBtn' style="display: none;"></div>
-                <div id='homeBtn' style="display: none;"></div>
-
-                <div id='x' style="display: none;"></div>
-                <div id='recordBtn' style="display: none;"></div>
+                <div id='x'></div>
             </div>
         </div>
     </div>
-    <script>
-        document.querySelector("#recordBtn").addEventListener("click", function() {
-            window.location.replace('./heysongScratchRecord?uid={{uid}}');
-        })
-    </script>
     <!--<script src="{% static 'lib/scratchOff.js' %}"></script>-->
     <script type="text/javascript">
-        var index = '{{index}}'
-        var giftImg = ["{% static 'img/heysongScratch/fin.png' %}", "{% static 'img/heysongScratch/cam.png' %}", "{% static 'img/heysongScratch/mic.png' %}", "{% static 'img/heysongScratch/losep.png' %}"]
-        var winImg = ["url({% static 'img/heysongScratch/winFin.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winCam.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/winMic.png' %}) no-repeat center center", "url({% static 'img/heysongScratch/lose.png' %}) no-repeat center center"]
-        var giftName = ['PKL250FIN乳酸菌補給飲料乙箱', '羅技 Stream Cam 直播攝影機', '美國BLUE YETI X 專業USB麥克風', '明日再試']
+        var giftImg = ["{% static 'img/scratchGift/jiemask.jpg' %}", "{% static 'img/scratchGift/jieglass.jpg' %}"]
+        var giftName = ['恭喜您！得到防疫口罩套組！', ' 恭喜您！得到防疫護目鏡！']
         document.getElementById("robot").src = giftImg['{{index}}'];
-        document.querySelector("#homeBtn").addEventListener("click", function() {
-            window.location.replace('https://liff.line.me/1655755802-YO5BPZPA/share@heysongtw/');
-        })
-        document.querySelector("#winBtn").addEventListener("click", function() {
-            window.location.replace('./heysongScratchRecord?uid={{uid}}');
-        })
-        document.querySelector("#x").addEventListener("click", function() {
-            window.location.replace('./liffHeysongScratch?finish=bye');
-        })
-        var ifCanPlay = '{{ifCanPlay}}'
-        if (ifCanPlay == 0) {
+
+        console.log('{{finish}}')
+        var iffinish = '{{finish}}';
+        if (iffinish == '1') {
+            console.log('finish')
             document.getElementById("redux").style.display = 'none';
-            document.getElementById("bgf").style.display = 'block';
-            document.getElementById("winwin").style.display = 'block';
-            document.getElementById("win").style.background = winImg['{{index}}'];
-            document.getElementById("win").style.backgroundSize = 'contain';
-            if (index == 3) {
-                document.getElementById("homeBtn").style.display = 'block';
-                document.getElementById("x").style.display = 'block';
-            } else {
-                document.getElementById("winBtn").style.display = 'block';
+
+            function buttonOn() {
+                window.location.replace('./liffScratchJie?finish={{index}}');
             }
-            document.getElementById("recordBtn").style.display = 'block';
+            document.getElementById("robot").addEventListener("click", buttonOn);
         } else {
             addEventListener("load", init, false);
         }
 
         function init(event) {
             $("#redux").eraser({
-                size: 80
+                size: 40
             });
         }
 
@@ -110,8 +82,8 @@
                                 pos = $this.offset(),
                                 $canvas = $("<canvas/>"),
                                 canvas = $canvas.get(0),
-                                size = (options && options.size) ? options.size : 80,
-                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .75,
+                                size = (options && options.size) ? options.size : 40,
+                                completeRatio = (options && options.completeRatio) ? options.completeRatio : .4,
                                 completeFunction = (options && options.completeFunction) ? options.completeFunction : methods.clear,
                                 parts = [],
                                 colParts = Math.floor(width / size),
@@ -193,8 +165,8 @@
                         data.touchY = ty;
                         event.preventDefault();
                     }
-                    /*$.ajax({
-                        'url': '/heysongScratch_game_done',
+                    $.ajax({
+                        'url': '/jieGameDone',
                         'type': 'POST',
                         'data': {
                             uid: '{{uid}}',
@@ -206,7 +178,7 @@
                         } else if (data.status == 400) {
                             alert(data.message);
                         }
-                    })*/
+                    })
                 },
                 touchMove: function(event) {
                     var $this = $(this),
@@ -255,19 +227,9 @@
                         if (!data.complete) {
                             if (data.ratio / data.numParts >= data.completeRatio) {
                                 data.complete = true;
+                                alert(giftName['{{index}}']);
                                 $("#redux").eraser('clear');
-                                document.getElementById("bgf").style.display = 'block';
-                                document.getElementById("winwin").style.display = 'block';
-                                document.getElementById("win").style.background = winImg['{{index}}'];
-                                document.getElementById("win").style.backgroundSize = 'contain';
-                                if (index == 3) {
-                                    document.getElementById("homeBtn").style.display = 'block';
-                                    document.getElementById("x").style.display = 'block';
-                                } else {
-                                    document.getElementById("winBtn").style.display = 'block';
-                                }
-                                document.getElementById("recordBtn").style.display = 'block';
-
+                                window.location.replace('./liffScratchJie?finish={{index}}');
                             }
                         }
                     }

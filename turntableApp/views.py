@@ -625,3 +625,34 @@ def allDoneTraveltobuys(request):
     Traveltobuys_Winner_Done.objects.create(
         uid=uid, prize=prize, name=name, phone=phone, address=address)
     return HttpResponse("表單回傳成功")
+def liffScratchJie(request):
+    finish = request.GET.get('finish', '')
+    return render(request, 'liffScratchJie.html', locals())
+
+
+def jieScratch(request):
+    uid = request.GET.get('uid', '')
+    if(jie_Done.objects.filter(uid=uid).exists() == True):
+        info = jie_Done.objects.filter(uid=uid)
+        finish = '1'
+        prize = info[0].prize
+        if(prize == '恭喜您！得到防疫口罩套組！'):
+            index = 0
+        else:
+            index = 1
+    else:
+        finish = '0'
+        r = random.randint(0, 9)
+        if(r >= 4):
+            index = 1
+        else:
+            index = 0
+    return render(request, 'jieScratch.html', locals())
+
+
+def jieGameDone(request):
+    uid = request.POST['uid']
+    prize = request.POST['prize']
+    today = datetime.date.today()
+    jie_Done.objects.create(uid=uid, prize=prize)
+    return HttpResponse("表單回傳成功")
