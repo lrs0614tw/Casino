@@ -1,0 +1,240 @@
+<!DOCTYPE html>{% load static %}
+<html>
+
+<head>
+    <title>消毒遊戲</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="消毒遊戲">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+        window.alert = function(name) {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/xiaodu.css' %}">
+</head>
+
+<body style="background-color: rgb(234,44,91);">
+    <div id="bgf" style="display:none;position: absolute;top: 0;left:0;margin: 0;padding: 0;width: 100%;height: 200%;z-index: 19; background-color: rgba(3,44,9,0.7);">
+    </div>
+    <span id="Check_Txt" style="color:black;font-size: 3rem;font-weight: 700;top: 70px;right: 60px;position: absolute;">遊戲時間：<span id="Check_i" >00:00:00</span></span>
+    <script type="text/javascript">
+        var SetMinute = 0;
+
+        function Check_Time() {
+            SetMinute += 1;
+            var Check_i = document.getElementById("Check_i");
+
+            var Cal_Hour = (Math.floor(SetMinute / 3600)) < 10 ? '0' + (Math.floor(SetMinute / 3600)) : (Math.floor(SetMinute / 3600));
+            var Cal_Minute = (Math.floor(Math.floor(SetMinute % 3600) / 60)) < 10 ? '0' + (Math.floor(Math.floor(SetMinute % 3600) / 60)) : (Math.floor(Math.floor(SetMinute % 3600) / 60));
+            var Cal_Second = (SetMinute % 60) < 10 ? '0' + (SetMinute % 60) : (SetMinute % 60);
+
+            Check_i.innerHTML = Cal_Hour + ":" + Cal_Minute + ":" + Cal_Second;
+
+        }
+        var mm = window.setInterval("Check_Time()", 1000);
+    </script>
+    <div id="scene">
+        <div class='virus' id='virus0'></div>
+        <div class='virus' id='virus1'></div>
+        <div class='virus' id='virus2'></div>
+        <div class='virus' id='virus3' style='display: none;'></div>
+        <div class='virus' id='virus4' style='display: none;'></div>
+        <div class='virus' id='virus5' style='display: none;'></div>
+        <div class='virus' id='virus6' style='display: none;'></div>
+        <div class='virus' id='virus7' style='display: none;'></div>
+        <div class='virus' id='virus8' style='display: none;'></div>
+        <div class='virus' id='virus9' style='display: none;'></div>
+    </div>
+    <audio src="{% static 'img/xiaodu/xiu.mp3' %}"></audio>
+    <div id='man' style="display:none"></div>
+    <div id="toolList">
+        <div class="tool" id="jiujing">
+        </div>
+        <div class="tool" id="liangzi">
+        </div>
+        <div class="tool" id="piaobai">
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+<script>
+    const scene = document.querySelector("#scene");
+    const audio = document.getElementsByTagName("audio")[0];
+
+    function init() {
+        if (level == 2) {
+            document.getElementById("scene").style.background = "url({% static 'img/xiaodu/scene2.png' %})"
+            var cc = window.setInterval("change()", 1000);
+        } else if (level == 3) {
+            document.getElementById("scene").style.background = "url({% static 'img/xiaodu/scene3.png' %})"
+            var cc = window.setInterval("change()", 500);
+        }
+
+        virusAlive = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        blood = []
+        fullblood = []
+        for (var i = 0; i < 10; i++) {
+            var r = getRandomInt(3);
+            document.getElementsByClassName('virus')[i].style.background = virusImg[r];
+            document.getElementsByClassName('virus')[i].style.backgroundSize = "100% 100%";
+            document.getElementsByClassName('virus')[i].style.width = virusSize[r];
+            document.getElementsByClassName('virus')[i].style.height = virusSize[r];
+            blood.push(virusBlood[r]);
+            fullblood.push(virusBlood[r]);
+            document.getElementsByClassName('virus')[i].style.animationDuration = ((getRandomInt(3) + 1) * 0.5).toString() + 's';
+            document.getElementsByClassName('virus')[i].style.top = (getRandomInt(600) + 140).toString() + 'px';
+            document.getElementsByClassName('virus')[i].style.left = (getRandomInt(570) + 70).toString() + 'px';
+            document.getElementsByClassName('virus')[i].style.opacity = 1
+        }
+        document.getElementsByClassName('virus')[0].style.display = 'block'
+        document.getElementsByClassName('virus')[1].style.display = 'block'
+        document.getElementsByClassName('virus')[2].style.display = 'block'
+        var mm = window.setInterval("Check_Time()", 1000);
+    }
+
+    function change() {
+        for (var i = 0; i < 10; i++) {
+            document.getElementsByClassName('virus')[i].style.top = (getRandomInt(600) + 140).toString() + 'px';
+            document.getElementsByClassName('virus')[i].style.left = (getRandomInt(570) + 70).toString() + 'px';
+        }
+    }
+    scene.addEventListener('touchmove', function(e) {
+        //audio.play();
+        var clientX = e.touches[0].clientX;
+        var clientY = e.touches[0].clientY;
+        if (clientX < 920 && clientY < 842) {
+            document.getElementById('man').style.display = 'block'
+            document.getElementById('man').style.left = (clientX - 250).toString() + 'px';
+            document.getElementById('man').style.top = (clientY - 100).toString() + 'px';
+        } else {
+            document.getElementById('man').style.display = 'none'
+                //audio.pause();
+        }
+        for (var i = 0; i < 10; i++) {
+            var v = document.getElementsByClassName('virus')[i]
+            var vy = v.offsetTop;
+            var vx = v.offsetLeft;
+            var vwidth = v.offsetWidth;
+            var vheight = v.offsetHeight;
+            var ty = clientY + 30;
+            var tx = clientX - 130;
+            var twidth = 110;
+            var theight = 80;
+            if (vx <= tx + twidth && vx >= tx - vwidth && vy <= ty + theight && vy >= ty - vheight) {
+                pu(i);
+            }
+        }
+
+    });
+    scene.addEventListener('touchend', function(e) {
+        document.getElementById('man').style.display = 'none'
+            //audio.pause();
+    });
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    var level = 1;
+    var toolChoose = 1;
+    var toolattack = [2, 20, 1]
+    var virusAlive = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    var blood = []
+    var fullblood = []
+    var virusImg = ["url({% static 'img/xiaodu/virus1.png' %})", "url({% static 'img/xiaodu/virus2.png' %})", "url({% static 'img/xiaodu/virus3.png' %})"]
+    var virusSize = ["250px", "200px", "100px"]
+    var virusBlood = [250, 500, 1000]
+    for (var i = 0; i < 10; i++) {
+        var r = getRandomInt(3);
+        document.getElementsByClassName('virus')[i].style.background = virusImg[r];
+        document.getElementsByClassName('virus')[i].style.backgroundSize = "100% 100%";
+        document.getElementsByClassName('virus')[i].style.width = virusSize[r];
+        document.getElementsByClassName('virus')[i].style.height = virusSize[r];
+        blood.push(virusBlood[r]);
+        fullblood.push(virusBlood[r]);
+        document.getElementsByClassName('virus')[i].style.animationDuration = ((getRandomInt(3) + 1) * 0.5).toString() + 's';
+        document.getElementsByClassName('virus')[i].style.top = (getRandomInt(600) + 140).toString() + 'px';
+        document.getElementsByClassName('virus')[i].style.left = (getRandomInt(570) + 70).toString() + 'px';
+    }
+
+    function pu(i) {
+
+        var nowtool = toolChoose - 1;
+        var nowattack = toolattack[nowtool];
+        blood[i] = blood[i] - nowattack;
+        var t = blood[i] / fullblood[i]
+        document.getElementsByClassName('virus')[i].style.opacity = t + 0.1
+        if (blood[i] <= 0) {
+            document.getElementsByClassName('virus')[i].style.display = 'none'
+            virusAlive[i] = 0;
+            if (i <= 6) {
+                document.getElementsByClassName('virus')[i + 3].style.display = 'block'
+            }
+            if (!virusAlive.includes(1)) {
+                clearInterval(mm);
+                if (level == 3) {
+                    alert('恭喜勝利')
+                } else {
+                    document.getElementById('man').style.display = 'none'
+                    alert('消滅所有病毒！前往下一關')
+                    level = level + 1;
+                    init();
+                }
+
+
+
+
+            }
+        }
+    }
+
+    function jiujingbuttonOn() {
+        document.getElementById("liangzi").style.padding = '20px';
+        document.getElementById("piaobai").style.padding = '20px';
+        document.getElementById("liangzi").style.border = '1px solid black';
+        document.getElementById("piaobai").style.border = '1px solid black';
+        document.getElementById("jiujing").style.padding = '10px';
+        document.getElementById("jiujing").style.border = ' 10px solid yellow';
+        toolChoose = 1
+    }
+
+    function liangzibuttonOn() {
+        document.getElementById("jiujing").style.padding = '20px';
+        document.getElementById("piaobai").style.padding = '20px';
+        document.getElementById("jiujing").style.border = '1px solid black';
+        document.getElementById("piaobai").style.border = '1px solid black';
+        document.getElementById("liangzi").style.padding = '10px';
+        document.getElementById("liangzi").style.border = ' 10px solid yellow';
+        toolChoose = 2
+    }
+
+    function piaobaibuttonOn() {
+        document.getElementById("jiujing").style.padding = '20px';
+        document.getElementById("liangzi").style.padding = '20px';
+        document.getElementById("jiujing").style.border = '1px solid black';
+        document.getElementById("liangzi").style.border = '1px solid black';
+        document.getElementById("piaobai").style.padding = '10px';
+        document.getElementById("piaobai").style.border = ' 10px solid yellow';
+        toolChoose = 2
+    }
+    document.querySelector("#jiujing").addEventListener("click", jiujingbuttonOn)
+    document.querySelector("#liangzi").addEventListener("click", liangzibuttonOn)
+    document.querySelector("#piaobai").addEventListener("click", piaobaibuttonOn)
+</script>
+
+</html>
