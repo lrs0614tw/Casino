@@ -656,3 +656,15 @@ def jieGameDone(request):
     today = datetime.date.today()
     jie_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
+def xiaodu(request):
+    uid = request.GET.get('uid', '')
+    displayname = request.GET.get('displayname', '')
+    pictureurl = request.GET.get('pictureurl', '')
+    #if(snake_Player.objects.filter(uid=uid).exists() == False):
+        #snake_Player.objects.create(
+            #uid=uid, name=displayname, picture=pictureurl, highscore=0, prize=0)
+    #highscore = snake_Player.objects.filter(uid=uid)[0].highscore
+    #winnerList = snake_Player.objects.all().order_by('-highscore')[:5]
+    return render(request, 'xiaodu.html', locals())
+def liffTravelMember(request):
+    return render(request, 'liffTravelMember.html', locals())
