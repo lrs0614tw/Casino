@@ -60,5 +60,8 @@ admin.site.register(Traveltobuys_Prize_Rate,Traveltobuys_Prize_Rate_Admin)
 class jie_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','prize','time')
 admin.site.register(jie_Done,jie_Done_Admin)
+class pei_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','prize','time')
+admin.site.register(pei_Done,pei_Done_Admin)
 
 # Register your models here.

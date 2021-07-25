@@ -668,3 +668,34 @@ def xiaodu(request):
     return render(request, 'xiaodu.html', locals())
 def liffTravelMember(request):
     return render(request, 'liffTravelMember.html', locals())
+def liffScratchPei(request):
+    finish = request.GET.get('finish', '')
+    return render(request, 'liffScratchPei.html', locals())
+
+
+def peiScratch(request):
+    uid = request.GET.get('uid', '')
+    if(pei_Done.objects.filter(uid=uid).exists() == True):
+        info = pei_Done.objects.filter(uid=uid)
+        finish = '1'
+        prize = info[0].prize
+        if(prize == '隨身肥皂盒'):
+            index = 0
+        else:
+            index = 1
+    else:
+        finish = '0'
+        r = random.randint(0, 9)
+        if(r >= 4):
+            index = 1
+        else:
+            index = 0
+    return render(request, 'peiScratch.html', locals())
+
+
+def peiGameDone(request):
+    uid = request.POST['uid']
+    prize = request.POST['prize']
+    today = datetime.date.today()
+    pei_Done.objects.create(uid=uid, prize=prize)
+    return HttpResponse("表單回傳成功")
