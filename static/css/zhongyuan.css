@@ -1,0 +1,168 @@
+body {
+    background-color: rgba(147, 1, 11, 0.8);
+}
+
+.cbg {
+    background: url(../img/pudu/bg.png) no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    margin: auto;
+    width: 900px;
+    top: 30px;
+    align-items: center;
+    height: 1620px;
+    position: relative;
+}
+
+.cintro {
+    background: url(../img/pudu/遊戲說明.png) no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    margin: auto;
+    width: 900px;
+    left: 40px;
+    top: 36px;
+    align-items: center;
+    height: 1620px;
+    position: absolute;
+    z-index: 20000;
+}
+
+#x {
+    background: url(../img/pudu/x.png) no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    margin: auto;
+    width: 100px;
+    left: 250px;
+    top: 380px;
+    position: relative;
+    height: 100px;
+}
+
+#putable {
+    background: url(../img/pudu/供桌.png) no-repeat;
+    background-size: contain;
+    height: 810px;
+    width: 810px;
+    margin: auto;
+    top: 180px;
+    position: relative;
+    z-index: 1;
+}
+
+#ghost1 {
+    background: url(../img/pudu/ghost.png) no-repeat;
+    background-size: contain;
+    height: 122px;
+    width: 130px;
+    top: -640px;
+    left: 750px;
+    position: relative;
+    z-index: 10000;
+}
+
+#ghost2 {
+    background: url(../img/pudu/ghost2.png) no-repeat;
+    background-size: contain;
+    height: 244px;
+    width: 168px;
+    top: -795px;
+    left: 5px;
+    position: relative;
+    z-index: 10001;
+}
+
+.gongpingText {
+    background: url(../img/pudu/供品.png) no-repeat;
+    background-size: contain;
+    height: 85px;
+    width: 300px;
+    top: -170px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.type {
+    display: flex;
+    position: relative;
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+    top: -160px;
+}
+
+.drinks {
+    background: url(../img/pudu/必BUY飲品.png) no-repeat;
+    background-size: contain;
+    padding: 20px;
+    margin: 5px;
+    height: 48px;
+    width: 230px;
+}
+
+.foods {
+    background: url(../img/pudu/三牲四果.png) no-repeat;
+    background-size: contain;
+    padding: 20px;
+    margin: 5px;
+    height: 48px;
+    width: 230px;
+}
+
+.tools {
+    background: url(../img/pudu/普渡用品.png) no-repeat;
+    background-size: contain;
+    padding: 20px;
+    margin: 5px;
+    height: 48px;
+    width: 230px;
+}
+
+.gongpingColumn {
+    display: flex;
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    top: -180px;
+}
+
+.gongpingRow {
+    display: flex;
+    position: relative;
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.gongpingbg {
+    background: url(../img/pudu/供品背景.png) no-repeat;
+    background-size: contain;
+    height: 166px;
+    width: 240px;
+    padding: 2px;
+    margin: 5px;
+}
+
+#finish {
+    background: url(../img/pudu/完成.png) no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 220px;
+    top: -175px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+#trash {
+    background: url(../img/pudu/垃圾桶.png) no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+    top: -265px;
+    left: 810px;
+    position: relative;
+}
