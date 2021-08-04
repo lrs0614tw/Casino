@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <title></title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Using a Promise object
+            liff.init({
+                    //liffId: '1655755802-8R72prpM' // heysong
+                    liffId: '1655755802-EQqmb6b8'
+
+                })
+                .then(() => {
+                    // Start to use liff's api
+                    liff.getProfile()
+                        .then(profile => {
+                            window.location.replace('./zhongyuan?uid=' + profile.userId);
+                        })
+                        .catch((err) => {
+                            console.log('error', err);
+                        });
+
+
+                })
+                .catch((err) => {
+                    // Error happens during initialization
+                    console.log(err.code, err.message);
+                });
+
+        });
+    </script>
+</head>
+
+<body>
+    <h6>網頁跳轉中</h6>
+</body>
+
+</html>

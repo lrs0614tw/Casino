@@ -699,3 +699,9 @@ def peiGameDone(request):
     today = datetime.date.today()
     pei_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
+def zhongyuan(request):
+    uid = request.GET.get('uid', '')
+    return render(request, 'zhongyuan.html', locals())
+def puduliff(request):
+    finish = request.GET.get('finish', '')
+    return render(request, 'puduliff.html', locals())
