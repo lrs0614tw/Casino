@@ -705,3 +705,6 @@ def zhongyuan(request):
 def puduliff(request):
     finish = request.GET.get('finish', '')
     return render(request, 'puduliff.html', locals())
+def zhongyuantest(request):
+    durl = request.GET.get('durl', '')
+    return render(request, 'zhongyuantest.html', locals())
