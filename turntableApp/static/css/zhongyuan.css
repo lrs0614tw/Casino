@@ -1,5 +1,9 @@
 body {
     background-color: rgba(147, 1, 11, 0.8);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .cbg {

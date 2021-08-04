@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -36,14 +37,14 @@
             </div>
             <div class="gongpingColumn">
                 <div class="gongpingRow">
-                    <div id="gongping0" class="gongpingbg" onclick="createping(0)"></div>
-                    <div id="gongping1" class="gongpingbg" onclick="createping(1)"></div>
-                    <div id="gongping2" class="gongpingbg" onclick="createping(2)"></div>
+                    <div id="gongping0" class="gongpingbg" ontouchstart="createping(0)"></div>
+                    <div id="gongping1" class="gongpingbg" ontouchstart="createping(1)"></div>
+                    <div id="gongping2" class="gongpingbg" ontouchstart="createping(2)"></div>
                 </div>
                 <div class="gongpingRow">
-                    <div id="gongping3" class="gongpingbg" onclick="createping(3)"></div>
-                    <div id="gongping4" class="gongpingbg" onclick="createping(4)"></div>
-                    <div id="gongping5" class="gongpingbg" onclick="createping(5)"></div>
+                    <div id="gongping3" class="gongpingbg" ontouchstart="createping(3)"></div>
+                    <div id="gongping4" class="gongpingbg" ontouchstart="createping(4)"></div>
+                    <div id="gongping5" class="gongpingbg" ontouchstart="createping(5)"></div>
                 </div>
             </div>
             <div id="finish">
@@ -207,7 +208,7 @@
         function createImg() {
             html2canvas(document.querySelector("#putable")).then(function(canvas) {
                 a = document.createElement('a');
-                a.href = canvas.toDataURL("image/jpeg", 1).replace("image/jpeg", "image/octet-stream");
+                a.href = canvas.toDataURL("image/jpeg", 5).replace("image/jpeg", "image/octet-stream");
                 a.download = 'image.jpg';
                 a.click();
             });
