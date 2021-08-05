@@ -705,6 +705,8 @@ def zhongyuan(request):
     return render(request, 'zhongyuan.html', locals())
 def puduliff(request):
     finish = request.GET.get('finish', '')
+    imgUrl = request.GET.get('imgUrl', '')
+    uid = request.GET.get('uid', '')
     return render(request, 'puduliff.html', locals())
 def zhongyuantest(request):
     img = request.GET.get('img', '')
@@ -719,8 +721,6 @@ def fileupload(request):
     score = request.POST['score']
     a=image.split("data:image/png;base64,")[1]
     data = base64.b64decode(a)
-    
-    #answer = puduImg(img=imagene)
     file_name='img'+uid+time+'.png'
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
