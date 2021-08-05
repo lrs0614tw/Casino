@@ -720,9 +720,9 @@ def fileupload(request):
     uid = request.POST['uid']
     time = request.POST['time']
     score = request.POST['score']
-    a=image.split("data:image/png;base64,")[1]
+    a=image.split("data:image/jpeg;base64,")[1]
     data = base64.b64decode(a)
-    file_name='img'+uid+time+'.png'
+    file_name='img'+uid+time+'.jpeg'
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
     return HttpResponse("表單回傳成功")
