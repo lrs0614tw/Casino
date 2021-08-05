@@ -86,6 +86,7 @@ urlpatterns = [
     path('zhongyuan', views.zhongyuan),
     path('puduliff', views.puduliff),
     path('zhongyuantest', views.zhongyuantest),
+    path('fileupload', views.fileupload),
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

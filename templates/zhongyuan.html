@@ -108,7 +108,7 @@
             var imgreUrl = imgUrl.replace('thing', nowList[i])
             newelement.style.background = imgreUrl
             newelement.style.backgroundSize = "contain";
-            switch (i) {
+            /*switch (i) {
                 case 0:
                     newelement.style.left = "74px"
                     newelement.style.top = "993px"
@@ -135,7 +135,9 @@
                     break;
 
 
-            }
+            }*/
+            newelement.style.left = "300px"
+            newelement.style.top = "400px"
             newelement.style.width = "200px";
             newelement.style.height = "200px";
             newelement.style.position = "absolute";
@@ -175,14 +177,14 @@
                     e.preventDefault();
                     moveX = e.originalEvent.targetTouches[0].pageX; //移动过程中X轴的坐标
                     moveY = e.originalEvent.targetTouches[0].pageY; //移动过程中Y轴的坐标
-                    if (moveX < leftX) {
-                        moveX = leftX;
+                    if (moveX < leftX + 40) {
+                        moveX = leftX + 40;
                     }
-                    if (moveX > (rightX + 50)) {
-                        moveX = rightX + 50;
+                    if (moveX > (rightX - 30)) {
+                        moveX = rightX - 30;
                     }
-                    if (moveY < topY) {
-                        moveY = topY;
+                    if (moveY < topY + 200) {
+                        moveY = topY + 200;
                     }
                     if (moveY > bottomY) {
                         moveY = bottomY;
@@ -208,9 +210,27 @@
         function createImg() {
             html2canvas(document.querySelector("#putable")).then(function(canvas) {
                 a = document.createElement('a');
-                a.href = canvas.toDataURL("image/jpeg", 5).replace("image/jpeg", "image/octet-stream");
-                a.download = 'image.jpg';
-                a.click();
+                var imgData = canvas.toDataURL("image/png", 1);
+                console.log(typeof(imgData))
+                const dateTime = Date.now();
+                var time = dateTime.toString();
+                var uid = "{{uid}}"
+                $.ajax({
+                    'url': '/fileupload',
+                    'type': 'POST',
+                    'data': {
+                        image: imgData,
+                        uid: uid,
+                        time: time
+                    },
+                }).done(function(data) {
+                    if (data.status == 200) {
+
+                    } else if (data.status == 400) {
+                        alert(data.message);
+                    }
+                })
+                window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png');
                 /*var dataURL = canvas.toDataURL('image/png', 1.0);
                 console.log(dataURL)
                 window.location.replace('./zhongyuantest?durl=' + dataURL);*/

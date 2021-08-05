@@ -706,5 +706,18 @@ def puduliff(request):
     finish = request.GET.get('finish', '')
     return render(request, 'puduliff.html', locals())
 def zhongyuantest(request):
-    durl = request.GET.get('durl', '')
+    img = request.GET.get('img', '')
     return render(request, 'zhongyuantest.html', locals())
+@csrf_exempt
+def fileupload(request):
+    image = request.POST['image']
+    uid = request.POST['uid']
+    time = request.POST['time']
+    a=image.split("data:image/png;base64,")[1]
+    data = base64.b64decode(a)
+    file_name='img'+uid+time+'.png'
+    #with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
+        #f.write(data)
+    with open("./static/img/puduuserimg/"+file_name, 'wb') as f:
+        f.write(data)
+    return HttpResponse("表單回傳成功")
