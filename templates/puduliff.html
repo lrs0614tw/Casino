@@ -80,14 +80,14 @@
                                             console.log('TargetPicker was closed!')
                                         }
                                     }
-                                    window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
+                                    liff.closeWindow()
                                 }).catch(function(error) {
                                     // something went wrong before sending a message
                                     console.log('something wrong happen')
                                 })
 
                         }
-                        window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
+
                     } else {
                         liff.getProfile()
                             .then(profile => {
