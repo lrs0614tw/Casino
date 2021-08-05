@@ -234,9 +234,11 @@
 
         function createImg() {
             html2canvas(document.querySelector("#putable")).then(function(canvas) {
+                canvas.style.width = "300px";
+                canvas.style.height = "300px";
                 a = document.createElement('a');
-                var imgData = canvas.toDataURL("image/png", 0.5);
-                console.log(typeof(imgData))
+                var imgData = canvas.toDataURL("image/png", 0.1);
+                console.log(imgData)
                 const dateTime = Date.now();
                 var time = dateTime.toString();
                 var uid = "{{uid}}"
@@ -288,7 +290,7 @@
                         score: score
                     },
                 }).done(function(data) {
-                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
+                    //window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
                     console.log('A')
                     if (data.status == 200) {
 
