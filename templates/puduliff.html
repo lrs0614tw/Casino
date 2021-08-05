@@ -40,13 +40,26 @@
                     } else if (ifFinish == 'share') {
                         if (liff.isApiAvailable('shareTargetPicker')) {
                             liff.shareTargetPicker([{
-                                    'type': 'text',
-                                    'text': '快來加入黑松官方帳號'
-                                }, {
-                                    "type": "image",
-                                    "originalContentUrl": s,
-                                    "previewImageUrl": s
-                                }])
+                                        "type": "template",
+                                        "altText": "this is a image carousel template",
+                                        "template": {
+                                            "type": "image_carousel",
+                                            "columns": [{
+                                                "imageUrl": s,
+                                                "action": {
+                                                    "type": "uri",
+                                                    "label": "去玩",
+                                                    "uri": "https://liff.line.me/1655755802-YO5BPZPA/cWSJao/"
+                                                }
+                                            }]
+                                        }
+                                    },
+                                    /*{
+                                                                       "type": "image",
+                                                                       "originalContentUrl": s,
+                                                                       "previewImageUrl": s
+                                                                   }*/
+                                ])
                                 .then(function(res) {
                                     if (res) {
                                         // succeeded in sending a message through TargetPicker
