@@ -724,3 +724,11 @@ def fileupload(request):
     with open("./static/img/puduuserimg/"+file_name, 'wb') as f:
         f.write(data)
     return HttpResponse("表單回傳成功")
+def my_image(request,news_id):
+    d = path.dirname(__file__)
+    #parent_path = path.dirname(d)
+    print("d="+str(d))
+    imagepath = path.join(d,"static/img/"+str(news_id)+".png")
+    print("imagepath="+str(imagepath))
+    image_data = open(imagepath,"rb").read()
+    return HttpResponse(image_data,content_type="image/png")

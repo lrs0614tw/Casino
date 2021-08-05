@@ -87,6 +87,7 @@ urlpatterns = [
     path('puduliff', views.puduliff),
     path('zhongyuantest', views.zhongyuantest),
     path('fileupload', views.fileupload),
+    url(r'^image/(?P<news_id>. )/$',views.my_image,name="image")
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')
