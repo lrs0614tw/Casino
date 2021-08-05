@@ -26,6 +26,7 @@
             <div id="putable">
                 <script>
                     var img = "{{img}}"
+                    var score = "{{score}}"
                     var s = "url(./media/uploads/thing) no-repeat".replace("thing", img)
                     document.getElementById("putable").style.background = s
                     document.getElementById("putable").style.backgroundSize = "contain"
@@ -46,10 +47,10 @@
                         window.location.replace('./zhongyuan?uid=' + uid);
                     })
                     document.querySelector("#save").addEventListener("click", function() {
-                        window.location.replace('./puduliff?uid=' + uid + '&finish=save&imgUrl=' + img);
+                        window.location.replace('./puduliff?uid=' + uid + '&finish=save&imgUrl=' + img + '&score=' + score.toString());
                     })
                     document.querySelector("#share").addEventListener("click", function() {
-                        window.location.replace('./puduliff?uid=' + uid + '&finish=share&imgUrl=' + img);
+                        window.location.replace('./puduliff?uid=' + uid + '&finish=share&imgUrl=' + img + '&score=' + score.toString());
                     })
                 </script>
             </div>

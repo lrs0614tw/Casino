@@ -707,6 +707,7 @@ def puduliff(request):
     finish = request.GET.get('finish', '')
     imgUrl = request.GET.get('imgUrl', '')
     uid = request.GET.get('uid', '')
+    score=request.GET.get('score','')
     return render(request, 'puduliff.html', locals())
 def zhongyuantest(request):
     img = request.GET.get('img', '')

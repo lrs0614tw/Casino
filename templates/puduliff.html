@@ -19,6 +19,8 @@
                     // Start to use liff's api
                     var ifFinish = '{{finish}}';
                     var imgUrl = '{{imgUrl}}'
+                    var score = '{{score}}'
+                    var uid = '{{uid}}'
                     var s = "https://casino.oakrange.io/media/uploads/thing".replace("thing", imgUrl)
 
                     if (ifFinish == 'save') {
@@ -33,6 +35,7 @@
                             .catch((err) => {
                                 console.log('error', err);
                             });
+                        window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
                     } else if (ifFinish == 'share') {
                         if (liff.isApiAvailable('shareTargetPicker')) {
                             liff.shareTargetPicker([{
