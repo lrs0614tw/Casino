@@ -36,10 +36,7 @@
                             .catch((err) => {
                                 console.log('error', err);
                             });
-                        liff.openWindow({
-                            url: 'https://casino.oakrange.io/zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid,
-                            external: true
-                        });
+                        window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
 
                     } else if (ifFinish == 'share') {
                         if (liff.isApiAvailable('shareTargetPicker')) {
@@ -83,13 +80,14 @@
                                             console.log('TargetPicker was closed!')
                                         }
                                     }
-                                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + 'jpeg&score=' + score.toString() + '&uid=' + uid);
+                                    window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
                                 }).catch(function(error) {
                                     // something went wrong before sending a message
                                     console.log('something wrong happen')
                                 })
-                            liff.closeWindow()
+
                         }
+                        window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
                     } else {
                         liff.getProfile()
                             .then(profile => {
