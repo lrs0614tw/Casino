@@ -31,7 +31,7 @@
                             }])
                             .then(() => {
                                 console.log('message sent');
-                                window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
+                                window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.jpeg&score=' + score.toString() + '&uid=' + uid);
                             })
                             .catch((err) => {
                                 console.log('error', err);
@@ -79,7 +79,7 @@
                                             console.log('TargetPicker was closed!')
                                         }
                                     }
-                                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
+                                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + 'jpeg&score=' + score.toString() + '&uid=' + uid);
                                 }).catch(function(error) {
                                     // something went wrong before sending a message
                                     console.log('something wrong happen')
