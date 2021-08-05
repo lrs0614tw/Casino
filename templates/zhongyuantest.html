@@ -26,7 +26,7 @@
             <div id="putable">
                 <script>
                     var img = "{{img}}"
-                    var s = "url({% static 'img/puduuserimg/thing' %}) no-repeat".replace("thing", img)
+                    var s = "url(./media/uploads/thing) no-repeat".replace("thing", img)
                     document.getElementById("putable").style.background = s
                     document.getElementById("putable").style.backgroundSize = "contain"
                 </script>
@@ -40,6 +40,12 @@
                 <div class="btn" id="save"></div>
                 <div class="btn" id="share"></div>
                 <div class="btn" id="letgo"></div>
+                <script>
+                    var uid = "{{uid}}"
+                    document.querySelector("#again").addEventListener("click", function() {
+                        window.location.replace('./zhongyuan?uid=' + uid);
+                    })
+                </script>
             </div>
             <div id="ghost1"></div>
             <div id="ghost2"></div>

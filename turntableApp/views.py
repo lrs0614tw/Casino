@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
 from datetime import date, timedelta
+from django.core.files.base import ContentFile
 import datetime
 import json
 import random
@@ -718,17 +719,9 @@ def fileupload(request):
     score = request.POST['score']
     a=image.split("data:image/png;base64,")[1]
     data = base64.b64decode(a)
+    
+    #answer = puduImg(img=imagene)
     file_name='img'+uid+time+'.png'
-    with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
-        f.write(data)
-    with open("./static/img/puduuserimg/"+file_name, 'wb') as f:
-        f.write(data)
+    imagene = ContentFile(data, file_name)
+    puduImg.objects.create(uid=uid,name=file_name,img=imagene)
     return HttpResponse("表單回傳成功")
-def my_image(request,news_id):
-    d = path.dirname(__file__)
-    #parent_path = path.dirname(d)
-    print("d="+str(d))
-    imagepath = path.join(d,"static/img/"+str(news_id)+".png")
-    print("imagepath="+str(imagepath))
-    image_data = open(imagepath,"rb").read()
-    return HttpResponse(image_data,content_type="image/png")

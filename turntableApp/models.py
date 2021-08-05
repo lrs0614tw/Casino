@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-
+import os
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -146,3 +146,19 @@ class pei_Done(models.Model):
     time = models.DateTimeField(auto_now=True)                          
     def __str__(self):
         return self.uid
+def get_image_path(instance, filename):
+    return os.path.join('uploads', filename)
+
+class puduImg(models.Model):
+    uid = models.CharField(max_length=50,null=False,default='')
+    name= models.CharField(
+      max_length=100, blank=False
+    )
+    img = models.ImageField(
+      upload_to=get_image_path, 
+      default=get_image_path(
+        instance=0, filename='product-1.jpg'
+      )
+    )
+    def __str__(self):
+        return self.name
