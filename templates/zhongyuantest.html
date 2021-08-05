@@ -45,6 +45,12 @@
                     document.querySelector("#again").addEventListener("click", function() {
                         window.location.replace('./zhongyuan?uid=' + uid);
                     })
+                    document.querySelector("#save").addEventListener("click", function() {
+                        window.location.replace('./puduliff?uid=' + uid + '&finish=save&imgUrl=' + img);
+                    })
+                    document.querySelector("#share").addEventListener("click", function() {
+                        window.location.replace('./puduliff?uid=' + uid + '&finish=share&imgUrl=' + img);
+                    })
                 </script>
             </div>
             <div id="ghost1"></div>
