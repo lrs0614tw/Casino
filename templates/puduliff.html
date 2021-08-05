@@ -19,14 +19,13 @@
                     // Start to use liff's api
                     var ifFinish = '{{finish}}';
                     var imgUrl = '{{imgUrl}}'
-                    var s = "./media/uploads/thing".replace("thing", imgUrl)
+                    var s = "https://casino.oakrange.io/media/uploads/thing".replace("thing", imgUrl)
 
                     if (ifFinish == 'save') {
-                        alert(s)
                         liff.sendMessages([{
                                 "type": "image",
-                                "originalContentUrl": "https://casino.oakrange.io/media/uploads/img1628197758562.png",
-                                "previewImageUrl": "https://casino.oakrange.io/media/uploads/img1628197758562.png"
+                                "originalContentUrl": s,
+                                "previewImageUrl": s
                             }])
                             .then(() => {
                                 console.log('message sent');
@@ -35,15 +34,14 @@
                                 console.log('error', err);
                             });
                     } else if (ifFinish == 'share') {
-                        alert(s)
                         if (liff.isApiAvailable('shareTargetPicker')) {
                             liff.shareTargetPicker([{
                                     'type': 'text',
                                     'text': 'Hello, World!'
                                 }, {
                                     "type": "image",
-                                    "originalContentUrl": "https://casino.oakrange.io/media/uploads/img1628197758562.png",
-                                    "previewImageUrl": "https://casino.oakrange.io/media/uploads/img1628197758562.png"
+                                    "originalContentUrl": s,
+                                    "previewImageUrl": s
                                 }])
                                 .then(function(res) {
                                     if (res) {
