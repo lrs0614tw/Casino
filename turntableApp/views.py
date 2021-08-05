@@ -716,8 +716,8 @@ def fileupload(request):
     a=image.split("data:image/png;base64,")[1]
     data = base64.b64decode(a)
     file_name='img'+uid+time+'.png'
-    #with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
-        #f.write(data)
+    with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
+        f.write(data)
     with open("./static/img/puduuserimg/"+file_name, 'wb') as f:
         f.write(data)
     return HttpResponse("表單回傳成功")

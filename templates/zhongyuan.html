@@ -224,13 +224,15 @@
                         time: time
                     },
                 }).done(function(data) {
+                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png');
+                    console.log('A')
                     if (data.status == 200) {
 
                     } else if (data.status == 400) {
                         alert(data.message);
                     }
                 })
-                window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png');
+
                 /*var dataURL = canvas.toDataURL('image/png', 1.0);
                 console.log(dataURL)
                 window.location.replace('./zhongyuantest?durl=' + dataURL);*/
