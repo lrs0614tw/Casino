@@ -48,7 +48,7 @@ body {
 #putable {
     background: url(../img/pudu/供桌.png) no-repeat;
     background-size: contain;
-    height: 810px;
+    height: 795px;
     width: 785px;
     margin: auto;
     top: 180px;
@@ -169,5 +169,61 @@ body {
     width: 80px;
     top: -265px;
     left: 810px;
+    position: relative;
+}
+
+#score {
+    background: url(../img/pudu/score.png) no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 290px;
+    margin: auto;
+    top: 0;
+    position: relative;
+    z-index: 1;
+    font-size: 2.5rem;
+    color: #760008;
+    text-align: center;
+    line-height: 110px;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+#again {
+    background: url(../img/pudu/再玩一次.png) no-repeat;
+    background-size: contain;
+    height: 106px;
+    width: 500px;
+    margin: auto;
+    top: 750px;
+    position: relative;
+}
+
+#save {
+    background: url(../img/pudu/儲存到相簿.png) no-repeat;
+    background-size: contain;
+    height: 106px;
+    width: 500px;
+    margin: auto;
+    top: 780px;
+    position: relative;
+}
+
+#share {
+    background: url(../img/pudu/分享給好友.png) no-repeat;
+    background-size: contain;
+    height: 106px;
+    width: 500px;
+    margin: auto;
+    top: 810px;
+    position: relative;
+}
+
+#letgo {
+    background: url(../img/pudu/抽黑松.png) no-repeat;
+    background-size: contain;
+    height: 40px;
+    width: 500px;
+    margin: auto;
+    top: 840px;
     position: relative;
 }
