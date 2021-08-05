@@ -32,8 +32,7 @@
                             .catch((err) => {
                                 console.log('error', err);
                             });
-                    }
-                    if (ifFinish == 'share') {
+                    } else if (ifFinish == 'share') {
                         if (liff.isApiAvailable('shareTargetPicker')) {
                             liff.shareTargetPicker([{
                                     'type': 'text',
@@ -64,14 +63,15 @@
                                     console.log('something wrong happen')
                                 })
                         }
+                    } else {
+                        liff.getProfile()
+                            .then(profile => {
+                                window.location.replace('./zhongyuan?uid=' + profile.userId);
+                            })
+                            .catch((err) => {
+                                console.log('error', err);
+                            });
                     }
-                    liff.getProfile()
-                        .then(profile => {
-                            window.location.replace('./zhongyuan?uid=' + profile.userId);
-                        })
-                        .catch((err) => {
-                            console.log('error', err);
-                        });
 
 
                 })
