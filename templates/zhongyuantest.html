@@ -30,30 +30,19 @@
                     document.getElementById("putable").style.background = s
                     document.getElementById("putable").style.backgroundSize = "contain"
                 </script>
+                <div id="score">
+                    <script>
+                        console.log("{{score}}")
+                        document.getElementById("score").innerText = "{{score}}"
+                    </script>
+                </div>
+                <div class="btn" id="again"></div>
+                <div class="btn" id="save"></div>
+                <div class="btn" id="share"></div>
+                <div class="btn" id="letgo"></div>
             </div>
             <div id="ghost1"></div>
             <div id="ghost2"></div>
-            <div class="gongpingText"></div>
-            <div class=" type ">
-                <div class="drinks"></div>
-                <div class="foods"></div>
-                <div class="tools"></div>
-            </div>
-            <div class="gongpingColumn">
-                <div class="gongpingRow">
-                    <div id="gongping0" class="gongpingbg" ontouchstart="createping(0)"></div>
-                    <div id="gongping1" class="gongpingbg" ontouchstart="createping(1)"></div>
-                    <div id="gongping2" class="gongpingbg" ontouchstart="createping(2)"></div>
-                </div>
-                <div class="gongpingRow">
-                    <div id="gongping3" class="gongpingbg" ontouchstart="createping(3)"></div>
-                    <div id="gongping4" class="gongpingbg" ontouchstart="createping(4)"></div>
-                    <div id="gongping5" class="gongpingbg" ontouchstart="createping(5)"></div>
-                </div>
-            </div>
-            <div id="finish">
-            </div>
-            <div id="trash"></div>
         </div>
     </div>
 </body>

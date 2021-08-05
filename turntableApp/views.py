@@ -707,17 +707,20 @@ def puduliff(request):
     return render(request, 'puduliff.html', locals())
 def zhongyuantest(request):
     img = request.GET.get('img', '')
+    score = request.GET.get('score', '')
+    uid = request.GET.get('uid', '')
     return render(request, 'zhongyuantest.html', locals())
 @csrf_exempt
 def fileupload(request):
     image = request.POST['image']
     uid = request.POST['uid']
     time = request.POST['time']
+    score = request.POST['score']
     a=image.split("data:image/png;base64,")[1]
     data = base64.b64decode(a)
     file_name='img'+uid+time+'.png'
-    with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
-        f.write(data)
+    #with open("./turntableApp/static/img/puduuserimg/"+file_name, 'wb') as f:
+        #f.write(data)
     with open("./static/img/puduuserimg/"+file_name, 'wb') as f:
         f.write(data)
     return HttpResponse("表單回傳成功")

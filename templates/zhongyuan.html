@@ -93,8 +93,8 @@
         document.querySelector(".tools").addEventListener("click", toolsOn)
         var zIndexNow = 2;
         var count = 0
+        var heysongCount = 0
         var pingList = []
-        var pingIsDownList = []
         let mouseX = 0
         let mouseY = 0
         let offsetX = 0
@@ -102,6 +102,10 @@
         var topElement = ''
 
         function createping(i) {
+            if (nowList == drinksList) {
+                heysongCount = heysongCount + 1
+            }
+
             var putable = document.getElementById("putable")
             var newelement = document.createElement("div")
             var imgUrl = "url( {% static 'img/pudu/gongping/thing.png' %}) no-repeat";
@@ -215,16 +219,55 @@
                 const dateTime = Date.now();
                 var time = dateTime.toString();
                 var uid = "{{uid}}"
+                var score;
+                if (count == 0) {
+                    score = 0
+                }
+                if (count > 0) {
+                    score = 60;
+                }
+                if (count > 10) {
+                    score = 70
+                }
+                if (count > 20) {
+                    score = 80
+                }
+                if (count > 30) {
+                    score = 90
+                }
+                if ((heysongCount / count) > 0.3) {
+                    score = score + 4
+                }
+                if ((heysongCount / count) > 0.4) {
+                    score = score + 2
+                }
+                if ((heysongCount / count) > 0.5) {
+                    score = score + 2
+                }
+                if ((heysongCount / count) > 0.6) {
+                    score = score + 2
+                }
+                if ((heysongCount / count) > 0.7) {
+                    score = score - 2
+                }
+                if ((heysongCount / count) > 0.8) {
+                    score = score - 2
+                }
+                if ((heysongCount / count) > 0.9) {
+                    score = score - 2
+                }
+                console.log(score)
                 $.ajax({
                     'url': '/fileupload',
                     'type': 'POST',
                     'data': {
                         image: imgData,
                         uid: uid,
-                        time: time
+                        time: time,
+                        score: score
                     },
                 }).done(function(data) {
-                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png');
+                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.png&score=' + score.toString() + '&uid=' + uid);
                     console.log('A')
                     if (data.status == 200) {
 
