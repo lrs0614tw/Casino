@@ -764,3 +764,28 @@ def zhongyuanMgmliff(request):
     if(new!=''):
         zhongyuanMgm.objects.create(old=old,new=new)
     return render(request, 'zhongyuanMgmliff.html', locals())
+def liffScratchCi(request):
+    finish = request.GET.get('finish', '')
+    return render(request, 'liffScratchCi.html', locals())
+
+
+def ciScratch(request):
+    uid = request.GET.get('uid', '')
+    if(ci_Done.objects.filter(uid=uid).exists() == True):
+        info = ci_Done.objects.filter(uid=uid)
+        finish = '1'
+        prize = info[0].prize
+        if(prize == '我得到防疫護目鏡'):
+            index = 0
+    else:
+        finish = '0'
+        index = 0
+    return render(request, 'ciScratch.html', locals())
+
+
+def ciGameDone(request):
+    uid = request.POST['uid']
+    prize = request.POST['prize']
+    today = datetime.date.today()
+    ci_Done.objects.create(uid=uid, prize=prize)
+    return HttpResponse("表單回傳成功")

@@ -69,5 +69,8 @@ admin.site.register(puduImg,puduImg_Admin)
 class zhongyuanMgm_Admin(admin.ModelAdmin):
     list_display = ('old','new','time')
 admin.site.register(zhongyuanMgm,zhongyuanMgm_Admin)
+class ci_Done_Admin(admin.ModelAdmin):
+    list_display = ('uid','prize','time')
+admin.site.register(ci_Done,ci_Done_Admin)
 
 # Register your models here.
