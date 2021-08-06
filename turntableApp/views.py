@@ -713,7 +713,10 @@ def zhongyuan(request):
             return render(request, 'zhongyuan.html', locals())
     except:
         uid=uid
-        return render(request, 'zhongyuan.html', locals())
+        if(len(uid)>20):
+            return render(request, 'error.html', locals())
+        else:
+            return render(request, 'zhongyuan.html', locals())
 def puduliff(request):
     finish = request.GET.get('finish', '')
     imgUrl = request.GET.get('imgUrl', '')
