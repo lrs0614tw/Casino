@@ -6,7 +6,16 @@
     <title></title>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
+    <script>
+        window.alert = function(name) {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        }
+    </script>
     <script>
         $(document).ready(function() {
             // Using a Promise object
@@ -19,6 +28,7 @@
                     // Start to use liff's api
                     var ifFinish = '{{finish}}';
                     var imgUrl = '{{imgUrl}}'
+                    var oldUrl = imgUrl.replace('share', '')
                     var score = '{{score}}'
                     var uid = '{{uid}}'
                     var s = "https://casino.oakrange.io/media/uploads/thing".replace("thing", imgUrl)
@@ -31,7 +41,8 @@
                             }])
                             .then(() => {
                                 console.log('message sent');
-                                window.location.replace('./zhongyuantest?img=' + imgUrl + '&score=' + score.toString() + '&uid=' + uid);
+                                alert('已傳送至LINE')
+                                window.location.replace('./zhongyuantest?img=' + oldUrl + '&score=' + score.toString() + '&uid=' + uid);
                             })
                             .catch((err) => {
                                 console.log('error', err);
