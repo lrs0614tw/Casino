@@ -1,0 +1,122 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>中元buy黑松 平安好運勢</title>
+    <link rel="stylesheet" href="{% static 'css/zhongyuan.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="background">
+        <div id="sharebg">
+            <img id="putableshare">
+            <div id="ghost2share"></div>
+            <div id="score">70</div>
+        </div>
+    </div>
+    <style>
+        #sharebg {
+            background: url("{% static 'img/pudu/分享bg.png' %}") no-repeat;
+            background-size: contain;
+            height: 785px;
+            width: 785px;
+            margin: auto;
+            top: 180px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #putableshare {
+            height: 550px;
+            width: 550px;
+            margin: auto;
+            top: 168px;
+            left: 117px;
+            position: relative;
+            z-index: 1;
+            border-radius: 10px;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.7));
+        }
+        
+        #ghost2share {
+            background: url("{% static 'img/pudu/ghost2分享.png' %}") no-repeat;
+            background-size: contain;
+            height: 785px;
+            width: 785px;
+            margin: auto;
+            top: -557px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #score {
+            background: url("{% static 'img/pudu/score.png' %}") no-repeat;
+            background-size: contain;
+            height: 50px;
+            width: 145px;
+            margin: auto;
+            top: -1170px;
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            color: #760008;
+            text-align: center;
+            line-height: 55px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+    </style>
+    <script>
+        document.getElementById("putableshare").src = "./media/uploads/" + imgUrl;
+        var finish = "{{finish}}"
+        var imgUrl = "{{imgUrl}}"
+        var uid = "{{uid}}"
+        var score = "{{score}}"
+        var newUrl = imgUrl.replace('.jpeg', 'share.jpeg')
+        document.getElementById("putableshare").src = "./media/uploads/" + imgUrl;
+        createImg()
+
+        function createImg() {
+            html2canvas(document.querySelector("#sharebg"), {
+                useCORS: true
+            }).then(function(canvas) {
+                var imgData = canvas.toDataURL("image/jpeg", 0.8);
+                console.log(imgData)
+                $.ajax({
+                    'url': '/sharefileupload',
+                    'type': 'POST',
+                    'data': {
+                        image: imgData,
+                        uid: uid,
+                        imgUrl: newUrl,
+                        score: score
+                    },
+                }).done(function(data) {
+                    window.location.replace('./puduliff?uid=' + uid + '&finish=' + finish + '&imgUrl=' + newUrl + '&score=' + score.toString());
+                    console.log('A')
+                    if (data.status == 200) {
+
+                    } else if (data.status == 400) {
+                        alert(data.message);
+                    }
+                })
+
+            });
+        }
+    </script>
+</body>
+
+</html>
