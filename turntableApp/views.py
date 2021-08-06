@@ -702,7 +702,19 @@ def peiGameDone(request):
     return HttpResponse("表單回傳成功")
 def zhongyuan(request):
     uid = request.GET.get('uid', '')
-    return render(request, 'zhongyuan.html', locals())
+    try:
+        iv = b"VFNSJQXI0P6IZ7UC"
+        key = b"HQR9NSTXMCY7R463"
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        enc = base64.b64decode(uid)
+        deco_uid = unpad(cipher.decrypt(enc), AES.block_size).decode()
+        uid = deco_uid.split("_")[1]
+    except:
+        a=0
+    if(deco_uid.split("_")[0] == "CHECKOK"):
+        return render(request, 'zhongyuan.html', locals())
+    else:
+        return render(request, 'zhongyuan.html', locals())
 def puduliff(request):
     finish = request.GET.get('finish', '')
     imgUrl = request.GET.get('imgUrl', '')
