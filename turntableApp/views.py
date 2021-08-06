@@ -764,6 +764,7 @@ def zhongyuanMgmliff(request):
     if(new!=''):
         zhongyuanMgm.objects.create(old=old,new=new)
     return render(request, 'zhongyuanMgmliff.html', locals())
+    
 def liffScratchCi(request):
     finish = request.GET.get('finish', '')
     return render(request, 'liffScratchCi.html', locals())
