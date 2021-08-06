@@ -89,6 +89,8 @@ urlpatterns = [
     path('createpudushare', views.createpudushare),
     path('fileupload', views.fileupload),
     path('sharefileupload', views.sharefileupload),
+    path('zhongyuanMgmliff', views.zhongyuanMgmliff),
+    
 ]
 def page_not_found(request, exception):
     return render(request, 'error.html')

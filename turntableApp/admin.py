@@ -66,5 +66,8 @@ admin.site.register(pei_Done,pei_Done_Admin)
 class puduImg_Admin(admin.ModelAdmin):
     list_display = ('uid','name','img')
 admin.site.register(puduImg,puduImg_Admin)
+class zhongyuanMgm_Admin(admin.ModelAdmin):
+    list_display = ('old','new','time')
+admin.site.register(zhongyuanMgm,zhongyuanMgm_Admin)
 
 # Register your models here.
