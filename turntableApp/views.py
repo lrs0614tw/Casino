@@ -713,7 +713,7 @@ def zhongyuan(request):
             return render(request, 'zhongyuan.html', locals())
     except:
         uid=uid
-        if(len(uid)>20):
+        if(len(uid)>40 or len(uid)<5):
             return render(request, 'error.html', locals())
         else:
             return render(request, 'zhongyuan.html', locals())
