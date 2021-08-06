@@ -283,7 +283,7 @@
                         "left": moveX + sX - startX - contW / 2,
                         "top": moveY + sY - startY - contH,
                     })
-                    if (moveX > 840 && moveY > 1488) {
+                    if (moveX > 800 && moveY > 1448) {
                         $(this).css({
                             "display": "none",
                         })
@@ -340,7 +340,7 @@
                     score = score - 2
                 }
                 if ((heysongCount / count) > 0.9) {
-                    score = score - 2
+                    score = score - 6
                 }
                 console.log(score)
                 $.ajax({
