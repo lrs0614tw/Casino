@@ -726,3 +726,22 @@ def fileupload(request):
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
     return HttpResponse("表單回傳成功")
+def createpudushare(request):
+    finish = request.GET.get('finish', '')
+    imgUrl = request.GET.get('imgUrl', '')
+    uid = request.GET.get('uid', '')
+    score=request.GET.get('score','')
+    return render(request, 'createpudushare.html', locals())
+def sharefileupload(request):
+    image = request.POST['image']
+    imgUrl = request.POST['imgUrl']
+    uid = request.POST['uid']
+    score = request.POST['score']
+    oldUrl=imgUrl.replace('share','')
+    a=image.split("data:image/jpeg;base64,")[1]
+    data = base64.b64decode(a)
+    file_name=imgUrl
+    imagene = ContentFile(data, file_name)
+    puduImg.objects.create(uid=uid,name=file_name,img=imagene)
+    puduImg.objects.filter(name=oldUrl).delete()
+    return HttpResponse("表單回傳成功")
