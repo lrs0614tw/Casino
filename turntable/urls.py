@@ -90,6 +90,9 @@ urlpatterns = [
     path('fileupload', views.fileupload),
     path('sharefileupload', views.sharefileupload),
     path('zhongyuanMgmliff', views.zhongyuanMgmliff),
+    path('liffScratchCi', views.liffScratchCi),
+    path('ciScratch', views.ciScratch),
+    path('ciGameDone', views.ciGameDone),
     
 ]
 def page_not_found(request, exception):
