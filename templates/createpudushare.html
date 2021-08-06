@@ -25,7 +25,7 @@
         <div id="sharebg">
             <img id="putableshare">
             <div id="ghost2share"></div>
-            <div id="score">70</div>
+            <div id="score"></div>
         </div>
     </div>
     <style>
@@ -64,7 +64,7 @@
         }
         
         #score {
-            background: url("{% static 'img/pudu/score.png' %}") no-repeat;
+            background: url("{% static 'img/pudu/Score.png' %}") no-repeat;
             background-size: contain;
             height: 50px;
             width: 145px;
@@ -87,6 +87,7 @@
         var score = "{{score}}"
         var newUrl = imgUrl.replace('.jpeg', 'share.jpeg')
         document.getElementById("putableshare").src = "./media/uploads/" + imgUrl;
+        document.getElementById("score").innerText = score;
         createImg()
 
         function createImg() {
