@@ -709,11 +709,10 @@ def zhongyuan(request):
         enc = base64.b64decode(uid)
         deco_uid = unpad(cipher.decrypt(enc), AES.block_size).decode()
         uid = deco_uid.split("_")[1]
+        if(deco_uid.split("_")[0] == "CHECKOK"):
+            return render(request, 'zhongyuan.html', locals())
     except:
-        a=0
-    if(deco_uid.split("_")[0] == "CHECKOK"):
-        return render(request, 'zhongyuan.html', locals())
-    else:
+        uid=uid
         return render(request, 'zhongyuan.html', locals())
 def puduliff(request):
     finish = request.GET.get('finish', '')
