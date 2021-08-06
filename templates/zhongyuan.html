@@ -45,14 +45,14 @@
             </div>
             <div class="gongpingColumn">
                 <div class="gongpingRow">
-                    <div id="gongping0" class="gongpingbg" ontouchstart="createping(0)"></div>
-                    <div id="gongping1" class="gongpingbg" ontouchstart="createping(1)"></div>
-                    <div id="gongping2" class="gongpingbg" ontouchstart="createping(2)"></div>
+                    <div id="gongping0" class="gongpingbg"></div>
+                    <div id="gongping1" class="gongpingbg"></div>
+                    <div id="gongping2" class="gongpingbg"></div>
                 </div>
                 <div class="gongpingRow">
-                    <div id="gongping3" class="gongpingbg" ontouchstart="createping(3)"></div>
-                    <div id="gongping4" class="gongpingbg" ontouchstart="createping(4)"></div>
-                    <div id="gongping5" class="gongpingbg" ontouchstart="createping(5)"></div>
+                    <div id="gongping3" class="gongpingbg"></div>
+                    <div id="gongping4" class="gongpingbg"></div>
+                    <div id="gongping5" class="gongpingbg"></div>
                 </div>
             </div>
             <div id="finish">
@@ -61,6 +61,20 @@
         </div>
     </div>
     <script>
+        function viewportToPixels(value) {
+            var parts = value.match(/([0-9\.]+)(vh|vw)/)
+            var q = Number(parts[1])
+            var side = window[['innerHeight', 'innerWidth'][
+                ['vh', 'vw'].indexOf(parts[2])
+            ]]
+            return side * (q / 100)
+        }
+        var vw = viewportToPixels('100vw')
+        var vh = viewportToPixels('100vh')
+        if (vh / (vw * 0.9) > 1.84) {
+            document.getElementsByTagName("body")[0].style.overflow = "hodden"
+        }
+
         function xOn() {
             document.getElementsByClassName("cintro")[0].style.display = 'none'
         }
@@ -116,36 +130,87 @@
         let offsetY = 0
         var topElement = ''
         var timer;
+        let startTime = ''
+        let endTime = ''
         document.getElementById("gongping0").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
+
                 alert(nowIntro[0])
             }, 700)
         }))
+        document.getElementById("gongping0").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(0);
+            }
+        })
         document.getElementById("gongping1").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
                 alert(nowIntro[1])
             }, 700)
         }))
+        document.getElementById("gongping1").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(1);
+            }
+        })
         document.getElementById("gongping2").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
                 alert(nowIntro[2])
             }, 700)
         }))
+        document.getElementById("gongping2").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(2);
+            }
+        })
         document.getElementById("gongping3").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
                 alert(nowIntro[3])
             }, 700)
         }))
+        document.getElementById("gongping3").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(3);
+            }
+        })
         document.getElementById("gongping4").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
                 alert(nowIntro[4])
             }, 700)
         }))
+        document.getElementById("gongping4").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(4);
+            }
+        })
         document.getElementById("gongping5").addEventListener('touchstart', (function() {
+            startTime = +new Date()
             timer = setTimeout(function() {
                 alert(nowIntro[5])
             }, 700)
         }))
+        document.getElementById("gongping5").addEventListener('touchend', function() {
+            endTime = +new Date()
+            clearTimeout(timer)
+            if (endTime - startTime < 700) {
+                createping(5);
+            }
+        })
         document.getElementsByClassName("gongpingColumn")[0].addEventListener('touchend', (function() {
             clearTimeout(timer);
         }))
@@ -211,9 +276,9 @@
                     if (moveY < topY + 200) {
                         moveY = topY + 200;
                     }
-                    if (moveY > bottomY) {
+                    /*if (moveY > bottomY) {
                         moveY = bottomY;
-                    }
+                    }*/
                     $(this).css({
                         "left": moveX + sX - startX - contW / 2,
                         "top": moveY + sY - startY - contH,
