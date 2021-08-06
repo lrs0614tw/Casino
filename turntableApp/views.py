@@ -737,11 +737,9 @@ def sharefileupload(request):
     imgUrl = request.POST['imgUrl']
     uid = request.POST['uid']
     score = request.POST['score']
-    oldUrl=imgUrl.replace('share','')
     a=image.split("data:image/jpeg;base64,")[1]
     data = base64.b64decode(a)
     file_name=imgUrl
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
-    puduImg.objects.filter(name=oldUrl).delete()
     return HttpResponse("表單回傳成功")
