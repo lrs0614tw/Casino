@@ -757,3 +757,10 @@ def sharefileupload(request):
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
     return HttpResponse("表單回傳成功")
+def zhongyuanMgmliff(request):
+    old = request.GET.get('old', '')
+    new = request.GET.get('new', '')
+    first = request.GET.get('first', '')
+    if(new!=''):
+        zhongyuanMgm.objects.create(old=old,new=new)
+    return render(request, 'zhongyuanMgmliff.html', locals())
