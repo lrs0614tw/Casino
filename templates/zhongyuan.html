@@ -55,320 +55,384 @@
                     <div id="gongping5" class="gongpingbg"></div>
                 </div>
             </div>
-            <div id="finish">
+            <div>
+                <div id="introduce" style="display:none">
+                    <div id='introduceX'></div>
+                    <div id='introduceText'>
+                        sssssssssssssssssss
+                    </div>
+
+
+                </div>
+                <div id="finish">
+                </div>
+                <div id="trash"></div>
             </div>
-            <div id="trash"></div>
         </div>
-    </div>
-    <script>
-        function viewportToPixels(value) {
-            var parts = value.match(/([0-9\.]+)(vh|vw)/)
-            var q = Number(parts[1])
-            var side = window[['innerHeight', 'innerWidth'][
-                ['vh', 'vw'].indexOf(parts[2])
-            ]]
-            return side * (q / 100)
-        }
-        var vw = viewportToPixels('100vw')
-        var vh = viewportToPixels('100vh')
-        if (vh / (vw * 0.9) > 1.84) {
-            document.getElementsByTagName("body")[0].style.overflow = "hidden"
-        }
-
-        function xOn() {
-            document.getElementsByClassName("cintro")[0].style.display = 'none'
-        }
-        document.querySelector("#x").addEventListener("click", xOn)
-        var drinksList = ["沙士", "茶花", "C&C", "FIN", "茶尋味", "韋恩咖啡"];
-        var foodsList = ["蘋果", "橘子", "哈密瓜", "三層肉", "魚", "雞"];
-        var toolsList = ["香爐", "紙錢", "酒", "臉盆", "飯", "中元旗子"];
-        var drinksIntro = ["中元拜拜最佳供品，能夠有效幫好兄弟消暑解熱，愉悅值增加100分，有了好兄弟保佑，每天都能平安好運勢！", "農曆七月貪吃鬼OUT！喝黑松茶花綠茶，健康雙脂GET！\n双項國家健康食品認證，具不易形成體脂肪及調節血脂的功效", "C&C添加果汁及維他命C，自然清新的黃金檸檬風味搭配清涼暢快的氣泡，讓每日清爽又有活力！", "FIN的等滲透壓讓身體能輕鬆吸收水分與適量的電解質，給好兄弟們剛剛好的補給，輕鬆解渴無負擔！", "黑松茶尋味採用溫差萃取工法，高溫凝香、低溫釋韻，並添加春茶，不只香更讓餘韻蔓延在口中，真是耐人尋味！", "使用100%阿拉比卡豆，無糖、無添加香料，散發堅果與黑巧克力悠長尾韻，呈現細緻不苦澀的多層次風味！"]
-        var foodsIntro = ["蘋果保平安，祭拜的數量必須為奇數", "柑橘類代表「吉利」，祭拜的數量必須為奇數", "你要不要吃...哈...密...瓜...", "豬肉可以用豬腳或肥瘦相間的豬肉，只要注意不要使用內臟就好！", "在普渡時需祭拜完整的全魚，代表將財運魚(餘)留在家中", "雞肉通常是一整隻雞，不能去頭去尾，這樣表示有頭有尾，也意味著幫自己留後"]
-        var toolsIntro = ["上香後香爐插三炷香，其他每件供品各插一炷香，表示歡迎好兄弟享用", "拜拜之後要燒紙錢，應先燒給神佛，再燒給好兄弟，燒給好兄弟的紙錢，須於焚燒前繞拜好兄弟香3圈，才能讓在這裡享用供品的好兄弟得到紙錢。燒紙錢要打開後丟入金爐，不然一整疊金紙會造成好兄弟搶成一團。", "祭拜結束、燒完紙錢後，要將敬拜酒杯內的水或酒在爐邊灑圓圈並繞3圈，代表圓滿結束及引孤魂至極樂世界。", "為了避免好兄弟彼此搶食造成衝突，或是太瘦小的好兄弟搶不到東西吃（例如電影《魔法阿嬤》中的小扁），人們在普渡會場的出入口放上盥洗用具，讓祂們藉著盥洗的機會冷靜自己的情緒，梳妝整齊後為了顧形象吃喝也會比較斯文。", "因為好兄弟數量眾多，準備的飲食勢必要量大又容易準備、有飽足感，因此白飯成為要點。", "旗子上須寫供奉者的姓名，插在每一道供品上，讓好兄弟清楚知道祭祀者是誰"]
-        var nowList = drinksList;
-        var nowIntro = drinksIntro;
-        changeThing(nowList);
-
-        function changeThing(nowList) {
-            for (var i = 0; i < 6; i++) {
-                var thing = nowList[i].toString();
-                var imgUrl = "url( {% static 'img/pudu/gongpingBg/thing.png' %}) no-repeat";
-                var imgreUrl = imgUrl.replace('thing', thing)
-                var gongpingIndex = document.getElementById("gongping" + i.toString())
-                gongpingIndex.style.background = imgreUrl
-                gongpingIndex.style.backgroundSize = "contain";
+        <script>
+            function viewportToPixels(value) {
+                var parts = value.match(/([0-9\.]+)(vh|vw)/)
+                var q = Number(parts[1])
+                var side = window[['innerHeight', 'innerWidth'][
+                    ['vh', 'vw'].indexOf(parts[2])
+                ]]
+                return side * (q / 100)
             }
-        }
+            var vw = viewportToPixels('100vw')
+            var vh = viewportToPixels('100vh')
+            if (vh / (vw * 0.9) > 1.84) {
+                document.getElementsByTagName("body")[0].style.overflow = "hidden"
+            }
 
-        function drinksOn() {
-            nowList = drinksList;
-            nowIntro = drinksIntro;
+            function xOn() {
+                document.getElementsByClassName("cintro")[0].style.display = 'none'
+            }
+            document.querySelector("#x").addEventListener("click", xOn)
+            var drinksList = ["沙士", "茶花", "C&C", "FIN", "茶尋味", "韋恩咖啡"];
+            var foodsList = ["蘋果", "橘子", "哈密瓜", "三層肉", "魚", "雞"];
+            var toolsList = ["香爐", "紙錢", "酒", "臉盆", "飯", "中元旗子"];
+            var drinksIntro = ["中元拜拜最佳供品，能夠有效幫好兄弟消暑解熱，愉悅值增加100分，有了好兄弟保佑，每天都能平安好運勢！", "農曆七月貪吃鬼OUT！喝黑松茶花綠茶，健康雙脂GET！\n双項國家健康食品認證，具不易形成體脂肪及調節血脂的功效", "C&C添加果汁及維他命C，自然清新的黃金檸檬風味搭配清涼暢快的氣泡，讓每日清爽又有活力！", "FIN的等滲透壓讓身體能輕鬆吸收水分與適量的電解質，給好兄弟們剛剛好的補給，輕鬆解渴無負擔！", "黑松茶尋味採用溫差萃取工法，高溫凝香、低溫釋韻，並添加春茶，不只香更讓餘韻蔓延在口中，真是耐人尋味！", "使用100%阿拉比卡豆，無糖、無添加香料，散發堅果與黑巧克力悠長尾韻，呈現細緻不苦澀的多層次風味！"]
+            var foodsIntro = ["蘋果保平安，祭拜的數量必須為奇數", "柑橘類代表「吉利」，祭拜的數量必須為奇數", "你要不要吃...哈...密...瓜...", "豬肉可以用豬腳或肥瘦相間的豬肉，只要注意不要使用內臟就好！", "在普渡時需祭拜完整的全魚，代表將財運魚(餘)留在家中", "雞肉通常是一整隻雞，不能去頭去尾，這樣表示有頭有尾，也意味著幫自己留後"]
+            var toolsIntro = ["上香後香爐插三炷香，其他每件供品各插一炷香，表示歡迎好兄弟享用", "拜拜之後要燒紙錢，應先燒給神佛，再燒給好兄弟，燒給好兄弟的紙錢，須於焚燒前繞拜好兄弟香3圈，才能讓在這裡享用供品的好兄弟得到紙錢。燒紙錢要打開後丟入金爐，不然一整疊金紙會造成好兄弟搶成一團。", "祭拜結束、燒完紙錢後，要將敬拜酒杯內的水或酒在爐邊灑圓圈並繞3圈，代表圓滿結束及引孤魂至極樂世界。", "為了避免好兄弟彼此搶食造成衝突，或是太瘦小的好兄弟搶不到東西吃（例如電影《魔法阿嬤》中的小扁），人們在普渡會場的出入口放上盥洗用具，讓祂們藉著盥洗的機會冷靜自己的情緒，梳妝整齊後為了顧形象吃喝也會比較斯文。", "因為好兄弟數量眾多，準備的飲食勢必要量大又容易準備、有飽足感，因此白飯成為要點。", "旗子上須寫供奉者的姓名，插在每一道供品上，讓好兄弟清楚知道祭祀者是誰"]
+            var nowList = drinksList;
+            var nowIntro = drinksIntro;
             changeThing(nowList);
-        }
 
-        function foodsOn() {
-            nowList = foodsList;
-            nowIntro = foodsIntro;
-            changeThing(nowList);
-        }
-
-        function toolsOn() {
-            nowList = toolsList;
-            nowIntro = toolsIntro;
-            changeThing(nowList);
-        }
-        document.querySelector(".drinks").addEventListener("click", drinksOn)
-        document.querySelector(".foods").addEventListener("click", foodsOn)
-        document.querySelector(".tools").addEventListener("click", toolsOn)
-        var zIndexNow = 2;
-        var count = 0
-        var heysongCount = 0
-        var pingList = []
-        let mouseX = 0
-        let mouseY = 0
-        let offsetX = 0
-        let offsetY = 0
-        var topElement = ''
-        var timer;
-        let startTime = ''
-        let endTime = ''
-        document.getElementById("gongping0").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-
-                alert(nowIntro[0])
-            }, 700)
-        }))
-        document.getElementById("gongping0").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(0);
-            }
-        })
-        document.getElementById("gongping1").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-                alert(nowIntro[1])
-            }, 700)
-        }))
-        document.getElementById("gongping1").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(1);
-            }
-        })
-        document.getElementById("gongping2").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-                alert(nowIntro[2])
-            }, 700)
-        }))
-        document.getElementById("gongping2").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(2);
-            }
-        })
-        document.getElementById("gongping3").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-                alert(nowIntro[3])
-            }, 700)
-        }))
-        document.getElementById("gongping3").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(3);
-            }
-        })
-        document.getElementById("gongping4").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-                alert(nowIntro[4])
-            }, 700)
-        }))
-        document.getElementById("gongping4").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(4);
-            }
-        })
-        document.getElementById("gongping5").addEventListener('touchstart', (function() {
-            startTime = +new Date()
-            timer = setTimeout(function() {
-                alert(nowIntro[5])
-            }, 700)
-        }))
-        document.getElementById("gongping5").addEventListener('touchend', function() {
-            endTime = +new Date()
-            clearTimeout(timer)
-            if (endTime - startTime < 700) {
-                createping(5);
-            }
-        })
-        document.getElementsByClassName("gongpingColumn")[0].addEventListener('touchend', (function() {
-            clearTimeout(timer);
-        }))
-
-        function createping(i) {
-            if (nowList == drinksList) {
-                heysongCount = heysongCount + 1
+            function changeThing(nowList) {
+                for (var i = 0; i < 6; i++) {
+                    var thing = nowList[i].toString();
+                    var imgUrl = "url( {% static 'img/pudu/gongpingBg/thing.png' %}) no-repeat";
+                    var imgreUrl = imgUrl.replace('thing', thing)
+                    var gongpingIndex = document.getElementById("gongping" + i.toString())
+                    gongpingIndex.style.background = imgreUrl
+                    gongpingIndex.style.backgroundSize = "contain";
+                }
             }
 
-            var putable = document.getElementById("putable")
-            var newelement = document.createElement("div")
-            var imgUrl = "url( {% static 'img/pudu/gongping/thing.png' %}) no-repeat";
-            var imgreUrl = imgUrl.replace('thing', nowList[i])
-            newelement.style.background = imgreUrl
-            newelement.style.backgroundSize = "contain";
-            newelement.style.left = "300px"
-            newelement.style.top = "400px"
-            newelement.style.width = "200px";
-            newelement.style.height = "200px";
-            newelement.style.position = "absolute";
-
-            newelement.style.zIndex = zIndexNow;
-
-            var id = "#gongPingCount" + count.toString();
-            newelement.id = "gongPingCount" + count.toString()
-            newelement.onclick = function() {
-                topElement = id;
+            function drinksOn() {
+                nowList = drinksList;
+                nowIntro = drinksIntro;
+                changeThing(nowList);
             }
-            putable.appendChild(newelement);
-            zIndexNow = zIndexNow + 1
-            count = count + 1
-            var cont = $(id);
-            var contW = $(id).width();
-            var contH = $(id).height();
-            var startX, startY, sX, sY, moveX, moveY;
-            var winW = $(window).width();
-            var winH = $(window).height();
-            cont.on({ //绑定事件
-                touchstart: function(e) {
-                    startX = e.originalEvent.targetTouches[0].pageX; //获取点击点的X坐标
-                    startY = e.originalEvent.targetTouches[0].pageY; //获取点击点的Y坐标
-                    sX = $(this).offset().left; //相对于当前窗口X轴的偏移量
-                    sY = $(this).offset().top; //相对于当前窗口Y轴的偏移量
-                    leftX = startX - sX; //鼠标所能移动的最左端是当前鼠标距div左边距的位置
-                    rightX = winW - contW + leftX; //鼠标所能移动的最右端是当前窗口距离减去鼠标距div最右端位置
-                    topY = startY - sY; //鼠标所能移动最上端是当前鼠标距div上边距的位置
-                    bottomY = winH - contH + topY; //鼠标所能移动最下端是当前窗口距离减去鼠标距div最下端位置
-                    $(this).css({
-                        "z-index": zIndexNow + 1
-                    })
-                    zIndexNow = zIndexNow + 1
-                },
-                touchmove: function(e) {
-                    e.preventDefault();
-                    moveX = e.originalEvent.targetTouches[0].pageX; //移动过程中X轴的坐标
-                    moveY = e.originalEvent.targetTouches[0].pageY; //移动过程中Y轴的坐标
-                    if (moveX < leftX + 40) {
-                        moveX = leftX + 40;
-                    }
-                    if (moveX > (rightX - 30)) {
-                        moveX = rightX - 30;
-                    }
-                    if (moveY < topY + 200) {
-                        moveY = topY + 200;
-                    }
-                    /*if (moveY > bottomY) {
-                        moveY = bottomY;
-                    }*/
-                    $(this).css({
-                        "left": moveX + sX - startX - contW / 2,
-                        "top": moveY + sY - startY - contH,
-                    })
-                    if (moveX > 800 && moveY > 1448) {
-                        $(this).css({
-                            "display": "none",
-                        })
-                    }
-                },
 
+            function foodsOn() {
+                nowList = foodsList;
+                nowIntro = foodsIntro;
+                changeThing(nowList);
+            }
+
+            function toolsOn() {
+                nowList = toolsList;
+                nowIntro = toolsIntro;
+                changeThing(nowList);
+            }
+            document.querySelector(".drinks").addEventListener("click", drinksOn)
+            document.querySelector(".foods").addEventListener("click", foodsOn)
+            document.querySelector(".tools").addEventListener("click", toolsOn)
+            var zIndexNow = 2;
+            var count = 0
+            var heysongCount = 0
+            var pingXYList = []
+            let mouseX = 0
+            let mouseY = 0
+            let offsetX = 0
+            let offsetY = 0
+            var topElement = ''
+            var timer;
+            let startTime = ''
+            let endTime = ''
+            document.getElementById("gongping0").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+
+                    showIntro(nowIntro[0])
+                }, 700)
+            }))
+            document.getElementById("gongping0").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(0);
+                }
             })
+            document.getElementById("gongping1").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+                    showIntro(nowIntro[1])
+                }, 700)
+            }))
+            document.getElementById("gongping1").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(1);
+                }
+            })
+            document.getElementById("gongping2").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+                    showIntro(nowIntro[2])
+                }, 700)
+            }))
+            document.getElementById("gongping2").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(2);
+                }
+            })
+            document.getElementById("gongping3").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+                    showIntro(nowIntro[3])
+                }, 700)
+            }))
+            document.getElementById("gongping3").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(3);
+                }
+            })
+            document.getElementById("gongping4").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+                    showIntro(nowIntro[4])
+                }, 700)
+            }))
+            document.getElementById("gongping4").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(4);
+                }
+            })
+            document.getElementById("gongping5").addEventListener('touchstart', (function() {
+                startTime = +new Date()
+                timer = setTimeout(function() {
+                    showIntro(nowIntro[5])
+                }, 700)
+            }))
+            document.getElementById("gongping5").addEventListener('touchend', function() {
+                endTime = +new Date()
+                clearTimeout(timer)
+                if (endTime - startTime < 700) {
+                    createping(5);
+                }
+            })
+            document.getElementsByClassName("gongpingColumn")[0].addEventListener('touchend', (function() {
+                clearTimeout(timer);
+            }))
 
+            function showIntro(text) {
+                document.getElementById('introduce').style.display = 'block';
+                document.getElementById('introduceText').innerText = text
+            }
 
-        }
+            function createping(i) {
+                if (nowList == drinksList) {
+                    heysongCount = heysongCount + 1
+                }
 
+                var putable = document.getElementById("putable")
+                var newelement = document.createElement("div")
+                var imgUrl = "url( {% static 'img/pudu/gongping/thing.png' %}) no-repeat";
+                var imgreUrl = imgUrl.replace('thing', nowList[i])
+                newelement.style.background = imgreUrl
+                newelement.style.backgroundSize = "contain";
+                newelement.style.left = "300px"
+                newelement.style.top = "400px"
+                newelement.style.width = "200px";
+                newelement.style.height = "200px";
+                newelement.style.position = "absolute";
 
+                newelement.style.zIndex = zIndexNow;
 
-        function createImg() {
-            html2canvas(document.querySelector("#putable")).then(function(canvas) {
-                a = document.createElement('a');
-                var imgData = canvas.toDataURL("image/jpeg", 0.8);
-                console.log(imgData)
-                const dateTime = Date.now();
-                var time = dateTime.toString();
-                var uid = "{{uid}}"
-                var score;
-                if (count == 0) {
-                    score = 0
+                var id = "#gongPingCount" + count.toString();
+                newelement.id = "gongPingCount" + count.toString()
+                newelement.onclick = function() {
+                    topElement = id;
                 }
-                if (count > 0) {
-                    score = 60;
-                }
-                if (count > 10) {
-                    score = 70
-                }
-                if (count > 20) {
-                    score = 80
-                }
-                if (count > 30) {
-                    score = 90
-                }
-                if ((heysongCount / count) > 0.3) {
-                    score = score + 4
-                }
-                if ((heysongCount / count) > 0.4) {
-                    score = score + 2
-                }
-                if ((heysongCount / count) > 0.5) {
-                    score = score + 2
-                }
-                if ((heysongCount / count) > 0.6) {
-                    score = score + 2
-                }
-                if ((heysongCount / count) > 0.7) {
-                    score = score - 2
-                }
-                if ((heysongCount / count) > 0.8) {
-                    score = score - 2
-                }
-                if ((heysongCount / count) > 0.9) {
-                    score = score - 6
-                }
-                console.log(score)
-                $.ajax({
-                    'url': '/fileupload',
-                    'type': 'POST',
-                    'data': {
-                        image: imgData,
-                        uid: uid,
-                        time: time,
-                        score: score
+                pingXYList.push({
+                    x: 300,
+                    y: 400
+                })
+                putable.appendChild(newelement);
+                zIndexNow = zIndexNow + 1
+                count = count + 1
+                var cont = $(id);
+                var contW = $(id).width();
+                var contH = $(id).height();
+                var startX, startY, sX, sY, moveX, moveY;
+                var winW = $(window).width();
+                var winH = $(window).height();
+                cont.on({ //绑定事件
+                    touchstart: function(e) {
+                        startX = e.originalEvent.targetTouches[0].pageX; //获取点击点的X坐标
+                        startY = e.originalEvent.targetTouches[0].pageY; //获取点击点的Y坐标
+                        sX = $(this).offset().left; //相对于当前窗口X轴的偏移量
+                        sY = $(this).offset().top; //相对于当前窗口Y轴的偏移量
+                        leftX = startX - sX; //鼠标所能移动的最左端是当前鼠标距div左边距的位置
+                        rightX = winW - contW + leftX; //鼠标所能移动的最右端是当前窗口距离减去鼠标距div最右端位置
+                        topY = startY - sY; //鼠标所能移动最上端是当前鼠标距div上边距的位置
+                        bottomY = winH - contH + topY; //鼠标所能移动最下端是当前窗口距离减去鼠标距div最下端位置
+                        $(this).css({
+                            "z-index": zIndexNow + 1
+                        })
+                        zIndexNow = zIndexNow + 1
                     },
-                }).done(function(data) {
-                    window.location.replace('./zhongyuantest?img=' + 'img' + uid + time + '.jpeg&score=' + score.toString() + '&uid=' + uid);
-                    console.log('A')
-                    if (data.status == 200) {
+                    touchmove: function(e) {
+                        e.preventDefault();
+                        moveX = e.originalEvent.targetTouches[0].pageX; //移动过程中X轴的坐标
+                        moveY = e.originalEvent.targetTouches[0].pageY; //移动过程中Y轴的坐标
+                        if (moveX < leftX + 40) {
+                            moveX = leftX + 40;
+                        }
+                        if (moveX > (rightX - 30)) {
+                            moveX = rightX - 30;
+                        }
+                        if (moveY < topY + 200) {
+                            moveY = topY + 200;
+                        }
+                        /*if (moveY > bottomY) {
+                            moveY = bottomY;
+                        }*/
+                        $(this).css({
+                            "left": moveX + sX - startX - contW / 2,
+                            "top": moveY + sY - startY - contH,
+                        })
+                        var thisId = parseInt($(this).context.id.split('gongPingCount')[1])
+                        pingXYList[thisId].x = moveX + sX - startX - contW / 2;
+                        pingXYList[thisId].y = moveY + sY - startY - contH;
+                        if (moveX > 800 && moveY > 1448) {
+                            $(this).css({
+                                "display": "none",
+                            })
+                            pingXYList[thisId].x = -1000;
+                            pingXYList[thisId].y = -1000;
+                        }
+                    },
 
-                    } else if (data.status == 400) {
-                        alert(data.message);
-                    }
                 })
 
-                /*var dataURL = canvas.toDataURL('image/png', 1.0);
-                console.log(dataURL)
-                window.location.replace('./zhongyuantest?durl=' + dataURL);*/
-            });
-        }
-        document.querySelector("#finish").addEventListener("click", createImg)
-    </script>
+
+            }
+
+            function standardDeviation(arr) {
+                var avg = 0;
+                var length = arr.length;
+                var len = arr.length;
+                var sum = 0;
+                for (var i = 0; i < len; i++) {
+                    sum += arr[i];
+                }
+                avg = sum / len;
+                var temp = [];
+                for (var i = 0; i < length; i++) {
+                    var dev = (arr[i]) - avg; //计算数组元素与平均值的差
+                    temp[i] = Math.pow(dev, 2); //计算差的平方
+                }
+                var powSum = 0; //用来存储差的平方总和
+                for (var j = 0; j < temp.length; j++) {
+                    if (temp[j]) {
+                        powSum += temp[j]; //计算差的平方总和
+                    }
+                }
+                //用差的平方总和除以数组长度即可得到标准差
+                return parseFloat(Math.sqrt(powSum / length).toFixed(2));
+
+            }
+
+            function createImg() {
+                html2canvas(document.querySelector("#putable")).then(function(canvas) {
+                    a = document.createElement('a');
+                    var imgData = canvas.toDataURL("image/jpeg", 0.8);
+                    const dateTime = Date.now();
+                    var time = dateTime.toString();
+                    var uid = "{{uid}}"
+                    var score;
+                    if (count == 0) {
+                        score = 0
+                    }
+                    if (count > 0) {
+                        score = 60;
+                    }
+                    if (count > 10) {
+                        score = 70
+                    }
+                    if (count > 20) {
+                        score = 80
+                    }
+                    if (count > 30) {
+                        score = 90
+                    }
+                    if ((heysongCount / count) > 0.3) {
+                        score = score + 4
+                    }
+                    if ((heysongCount / count) > 0.4) {
+                        score = score + 2
+                    }
+                    if ((heysongCount / count) > 0.5) {
+                        score = score + 2
+                    }
+                    if ((heysongCount / count) > 0.6) {
+                        score = score + 2
+                    }
+                    if ((heysongCount / count) > 0.7) {
+                        score = score - 2
+                    }
+                    if ((heysongCount / count) > 0.8) {
+                        score = score - 2
+                    }
+                    if ((heysongCount / count) > 0.9) {
+                        score = score - 6
+                    }
+                    var XList = []
+                    var YList = []
+                    for (var i = 0; i < count; i++) {
+                        if (pingXYList[i].x != -1000) {
+                            XList.push(pingXYList[i].x)
+                        }
+                        if (pingXYList[i].y != -1000) {
+                            YList.push(pingXYList[i].y)
+                        }
+                    }
+                    //console.log('x', XList, standardDeviation(XList))
+                    //console.log('y', YList, standardDeviation(YList))
+                    var lisan = Math.sqrt(standardDeviation(XList) * standardDeviation(YList))
+                    if (lisan < 40) {
+                        score = 60
+                    }
+                    console.log(score)
+                    $.ajax({
+                        'url': '/fileupload',
+                        'type': 'POST',
+                        'data': {
+                            image: imgData,
+                            uid: uid,
+                            time: time,
+                            score: score
+                        },
+                    }).done(function(data) {
+                        window.location.replace('./zhongyuantest?img=' + 'img_' + uid + '_' + time + '.jpeg&score=' + score.toString() + '&uid=' + uid);
+                        console.log('A')
+                        if (data.status == 200) {
+
+                        } else if (data.status == 400) {
+                            alert(data.message);
+                        }
+                    })
+
+                    /*var dataURL = canvas.toDataURL('image/png', 1.0);
+                    console.log(dataURL)
+                    window.location.replace('./zhongyuantest?durl=' + dataURL);*/
+                });
+            }
+            document.querySelector("#finish").addEventListener("click", createImg)
+            document.querySelector("#introduceX").addEventListener("click", function() {
+                document.getElementById("introduce").style.display = 'none'
+            })
+        </script>
 </body>
 
 </html>

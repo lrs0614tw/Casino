@@ -9,6 +9,7 @@ from django.core.files.base import ContentFile
 import datetime
 import json
 import random
+import os
 from turntableApp.models import *
 from turntableApp.serializers import heysongUidSerializer
 import base64
@@ -714,6 +715,7 @@ def zhongyuan(request):
     except:
         uid=uid
         if(len(uid)>40 or len(uid)<5):
+            get_time_difference()
             return render(request, 'error.html', locals())
         else:
             return render(request, 'zhongyuan.html', locals())
@@ -736,7 +738,7 @@ def fileupload(request):
     score = request.POST['score']
     a=image.split("data:image/jpeg;base64,")[1]
     data = base64.b64decode(a)
-    file_name='img'+uid+time+'.jpeg'
+    file_name='img_'+uid+'_'+time+'.jpeg'
     imagene = ContentFile(data, file_name)
     puduImg.objects.create(uid=uid,name=file_name,img=imagene)
     return HttpResponse("表單回傳成功")
@@ -790,3 +792,11 @@ def ciGameDone(request):
     today = datetime.date.today()
     ci_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
+
+def get_time_difference():
+    # 获取现在时间
+    now_time = datetime.datetime.now().timestamp()
+    next_year = now__time.date().year
+    next_month = now__time.date().month
+    next_day = now__time.date().day
+    next_hour = now__time.time().hour

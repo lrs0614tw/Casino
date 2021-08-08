@@ -227,3 +227,45 @@ body {
     top: 840px;
     position: relative;
 }
+
+#introduce {
+    background: url(../img/pudu/供品說明.png) no-repeat;
+    background-size: contain;
+    height: 1000px;
+    width: 1000px;
+    margin: auto;
+    position: fixed;
+    text-align: center;
+    line-height: 110px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 800;
+    color: #861d0d;
+    z-index: 30000;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -40%);
+}
+
+#introduceX {
+    background: url(../img/pudu/x.png) no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    margin: auto;
+    width: 150px;
+    left: 325px;
+    top: 58px;
+    position: relative;
+    height: 150px;
+}
+
+#introduceText {
+    position: relative;
+    top: 190px;
+    color: #861d0d;
+    font-size: 2.5rem;
+    word-wrap: break-word;
+    width: 700px;
+    left: 140px;
+    text-align: left;
+    font-weight: 700;
+}
