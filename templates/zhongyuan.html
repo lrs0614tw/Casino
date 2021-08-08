@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div>
-                <div id="introduce" style="display:none">
+                <div id="introduce" onclick="introXon()">
                     <div id='introduceX' onclick="introXon()"></div>
                     <div id='introduceText'>
                         sssssssssssssssssss
@@ -70,6 +70,8 @@
             </div>
         </div>
         <script>
+            document.getElementById("introduce").style.display = "none";
+
             function viewportToPixels(value) {
                 var parts = value.match(/([0-9\.]+)(vh|vw)/)
                 var q = Number(parts[1])
@@ -90,7 +92,7 @@
             document.querySelector("#x").addEventListener("click", xOn)
 
             function introXon() {
-                document.getElementById("introduce").style.display = 'none'
+                document.getElementById("introduce").style.display = "none";
             }
             //document.querySelector("#introduceX").addEventListener("click", introXon)
             var drinksList = ["沙士", "茶花", "C&C", "FIN", "茶尋味", "韋恩咖啡"];
@@ -230,8 +232,9 @@
             }))
 
             function showIntro(text) {
-                document.getElementById('introduce').style.display = 'block';
                 document.getElementById('introduceText').innerText = text
+                document.getElementById('introduce').style.display = 'block';
+
             }
 
             function createping(i) {
