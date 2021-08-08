@@ -86,7 +86,7 @@
         var imgUrl = "{{imgUrl}}"
         var uid = "{{uid}}"
         var score = "{{score}}"
-        var newUrl = imgUrl.replace('.jpeg', 'share.jpeg')
+        var newUrl = imgUrl.replace('.jpeg', '_share.jpeg')
         document.getElementById("putableshare").src = "./media/uploads/" + imgUrl;
         document.getElementById("score").innerText = score;
         createImg()
