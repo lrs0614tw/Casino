@@ -66,12 +66,11 @@ admin.site.register(pei_Done,pei_Done_Admin)
 class puduImg_Admin(admin.ModelAdmin):
     list_display = ('uid','name','img')
 admin.site.register(puduImg,puduImg_Admin)
-
 class ci_Done_Admin(admin.ModelAdmin):
     list_display = ('uid','prize','time')
 admin.site.register(ci_Done,ci_Done_Admin)
-class puduMgms_Admin(admin.ModelAdmin):
+class mgmlist0809_Admin(admin.ModelAdmin):
     list_display = ('uid','old','new','time')
-admin.site.register(puduMgms,puduMgms_Admin)
+admin.site.register(mgmlist0809,mgmlist0809_Admin)
 
 # Register your models here.

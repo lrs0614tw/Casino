@@ -175,3 +175,10 @@ class puduMgms(models.Model):
     time = models.DateTimeField(auto_now=True)                       
     def __str__(self):
         return self.uid
+class mgmlist0809(models.Model):
+    uid=models.CharField(max_length=50,null=False,default='')
+    old = models.CharField(max_length=50,null=False,default='')   
+    new = models.CharField(max_length=50,null=False,default='')     
+    time = models.DateTimeField(auto_now=True)                       
+    def __str__(self):
+        return self.uid
