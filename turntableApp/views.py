@@ -715,7 +715,6 @@ def zhongyuan(request):
     except:
         uid=uid
         if(len(uid)>40 or len(uid)<5):
-            get_time_difference()
             return render(request, 'error.html', locals())
         else:
             return render(request, 'zhongyuan.html', locals())
@@ -764,7 +763,7 @@ def zhongyuanMgmliff(request):
     new = request.GET.get('new', '')
     first = request.GET.get('first', '')
     if(new!=''):
-        zhongyuanMgm.objects.create(uid=old,old=old,new=new)
+        puduMgms.objects.create(uid=old,old=old,new=new)
     return render(request, 'zhongyuanMgmliff.html', locals())
     
 def liffScratchCi(request):
@@ -792,11 +791,3 @@ def ciGameDone(request):
     today = datetime.date.today()
     ci_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
-
-def get_time_difference():
-    # 获取现在时间
-    now_time = datetime.datetime.now().timestamp()
-    next_year = now__time.date().year
-    next_month = now__time.date().month
-    next_day = now__time.date().day
-    next_hour = now__time.time().hour

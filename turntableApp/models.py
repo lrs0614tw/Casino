@@ -162,16 +162,16 @@ class puduImg(models.Model):
     )
     def __str__(self):
         return self.name
-class zhongyuanMgm(models.Model):
-    uid=models.CharField(max_length=50,null=False,default='')
-    old = models.CharField(max_length=50,null=False,default='')   
-    new = models.CharField(max_length=50,null=False,default='')     
-    time = models.DateTimeField(auto_now=True)                       
-    def __str__(self):
-        return self.uid
 class ci_Done(models.Model):
     uid = models.CharField(max_length=50,null=False,default='')   
     prize = models.CharField(max_length=255,blank=True,null=False)       
     time = models.DateTimeField(auto_now=True)                          
+    def __str__(self):
+        return self.uid
+class puduMgms(models.Model):
+    uid=models.CharField(max_length=50,null=False,default='')
+    old = models.CharField(max_length=50,null=False,default='')   
+    new = models.CharField(max_length=50,null=False,default='')     
+    time = models.DateTimeField(auto_now=True)                       
     def __str__(self):
         return self.uid
