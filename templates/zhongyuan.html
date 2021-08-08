@@ -88,9 +88,11 @@
                 document.getElementsByClassName("cintro")[0].style.display = 'none'
             }
             document.querySelector("#x").addEventListener("click", xOn)
-            document.querySelector("#introduceX").addEventListener("click", function() {
+
+            function introXon() {
                 document.getElementById("introduce").style.display = 'none'
-            })
+            }
+            document.querySelector("#introduceX").addEventListener("click", introXon)
             var drinksList = ["沙士", "茶花", "C&C", "FIN", "茶尋味", "韋恩咖啡"];
             var foodsList = ["蘋果", "橘子", "哈密瓜", "三層肉", "魚", "雞"];
             var toolsList = ["香爐", "紙錢", "酒", "臉盆", "飯", "中元旗子"];
