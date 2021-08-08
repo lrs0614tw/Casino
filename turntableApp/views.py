@@ -764,7 +764,7 @@ def zhongyuanMgmliff(request):
     new = request.GET.get('new', '')
     first = request.GET.get('first', '')
     if(new!=''):
-        zhongyuanMgm.objects.create(old=old,new=new)
+        zhongyuanMgm.objects.create(uid=old,old=old,new=new)
     return render(request, 'zhongyuanMgmliff.html', locals())
     
 def liffScratchCi(request):
