@@ -23,6 +23,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication, BasicAuthentication
+import threading
+from turntable.settings import MEDIA_ROOT
 
 # Create your views here.
 
@@ -791,3 +793,6 @@ def ciGameDone(request):
     today = datetime.date.today()
     ci_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
+
+ 
+ 
