@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>中元buy黑松 平安好運勢</title>
+    <title>中元Buy黑松 平安好運勢</title>
     <link rel="stylesheet" href="{% static 'css/zhongyuan.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
@@ -86,7 +86,23 @@
         var imgUrl = "{{imgUrl}}"
         var uid = "{{uid}}"
         var score = "{{score}}"
-        var newUrl = imgUrl.replace('.jpeg', '_share.jpeg')
+        var newUrl = imgUrl.replace('.jpeg', '_' + finish + '.jpeg')
+        if (finish == "share") {
+            console.log('sss')
+            document.getElementById("ghost2share").style.display = 'none';
+            document.getElementById("sharebg").style.background = `url("{% static 'img/pudu/分享背景.png' %}") no-repeat`;
+            document.getElementById("sharebg").style.backgroundSize = 'contain';
+            document.getElementById("sharebg").style.width = '900px';
+            document.getElementById("sharebg").style.height = '1159px';
+            document.getElementById("putableshare").style.width = '650px';
+            document.getElementById("putableshare").style.height = '650px';
+            document.getElementById("putableshare").style.top = '305px';
+            document.getElementById("score").style.width = '170px';
+            document.getElementById("score").style.height = '60px';
+            document.getElementById("score").style.top = '-350px';
+            document.getElementById("score").style.lineHeight = '60px';
+            document.getElementById("score").style.fontSize = '1.5rem';
+        }
         document.getElementById("putableshare").src = "./media/uploads/" + imgUrl;
         document.getElementById("score").innerText = score;
         createImg()

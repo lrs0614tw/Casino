@@ -1,0 +1,56 @@
+<!DOCTYPE html> {% load static %}
+<html>
+
+<head>
+    <title>JSON to CSV</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        var json3 = '{{json3|safe}}'
+        var winnerObject = JSON.parse(json3);
+
+        downloadJSON2CSV(winnerObject);
+
+        function downloadJSON2CSV(objArray) {
+            var array = Object.values(objArray)
+            var str = '';
+
+            for (var i = 0; i < array.length; i++) {
+                var line = i.toString() + ',';
+                for (var index in array[i]) {
+                    line += array[i][index] + ',';
+
+                }
+                line = line.slice(0, line.length - 1);
+
+                str += line + '\n';
+            }
+            console.log(str)
+            return str;
+            //window.open("data:text/csv;charset=utf-8," + str)
+        }
+
+        function clickDownload(aLink) {
+            var str = downloadJSON2CSV(winnerObject);
+            str = encodeURIComponent(str);
+            aLink.href = "data:text/csv;charset=utf-8," + str;
+            //aLink.click();
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>This page onvert json to csv...</h1>
+    <a id="test" onclick="clickDownload(this)" download="{{fileName}}" href="#">download</a>
+</body>
+
+</html>

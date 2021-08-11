@@ -793,6 +793,46 @@ def ciGameDone(request):
     today = datetime.date.today()
     ci_Done.objects.create(uid=uid, prize=prize)
     return HttpResponse("表單回傳成功")
-
- 
+def puduimg(request):
+    allPlayer = puduImg.objects.all()
+    json2 = {"name":{"uid":"uid","time":"time","status":"status"}}
+    for i in allPlayer:
+        json2[i.name]={}
+        json2[i.name]['uid'] = i.uid
+        n=i.name.replace('.jpeg','')
+        n=n.split('_')[2]
+        n=float(n)
+        n=n/1000
+        time=(datetime.datetime.utcfromtimestamp(n)+ timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+        json2[i.name]['time'] = time
+        if(len(i.name.replace('.jpeg','').split('_'))==4):
+            json2[i.name]['status']=i.name.replace('.jpeg','').split('_')[3]
+        else:
+            json2[i.name]['status']="finish"
+        #json2[i.uid]['time'] = (i.time+ timedelta(hours=8)).strftime('%Y/%m/%d %H:%M:%S')
+    json3 = json.dumps(json2)
+    a = request.GET.get('a', '')
+    p = request.GET.get('p', '')
+    fileName="中元參與狀況.csv"
+    if(a == 'admin' and p == 'admin'):
+        return render(request, 'json2csv.html', locals())
+    else:
+        return render(request, 'error.html', locals())
+def puduMgm(request):
+    allPlayer = mgmlist0809.objects.all()
+    json2 = {"uid":{"old":"old","new":"new","time":"time"}}
+    for i in allPlayer:
+        print(type(i.uid))
+        json2[i.uid]={}
+        json2[i.uid]['old'] = i.old
+        json2[i.uid]['new'] = i.new
+        json2[i.uid]['time'] = (i.time+ timedelta(hours=8)).strftime('%Y/%m/%d %H:%M:%S')
+    json3 = json.dumps(json2)
+    a = request.GET.get('a', '')
+    p = request.GET.get('p', '')
+    fileName="中元好友邀請狀況.csv"
+    if(a == 'admin' and p == 'admin'):
+        return render(request, 'json2csv.html', locals())
+    else:
+        return render(request, 'error.html', locals())
  
