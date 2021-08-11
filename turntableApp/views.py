@@ -820,13 +820,16 @@ def puduimg(request):
         return render(request, 'error.html', locals())
 def puduMgm(request):
     allPlayer = mgmlist0809.objects.all()
-    json2 = {"uid":{"old":"old","new":"new","time":"time"}}
+    json2 = {"index":{"old":"old","new":"new","time":"time"}}
+    count=0
     for i in allPlayer:
-        print(type(i.uid))
-        json2[i.uid]={}
-        json2[i.uid]['old'] = i.old
-        json2[i.uid]['new'] = i.new
-        json2[i.uid]['time'] = (i.time+ timedelta(hours=8)).strftime('%Y/%m/%d %H:%M:%S')
+        print(i)
+        count=count+1
+        json2[count]={}
+        json2[count]['old'] = i.old
+        json2[count]['new'] = i.new
+        json2[count]['time'] = (i.time+ timedelta(hours=8)).strftime('%Y/%m/%d %H:%M:%S')
+    print(count,json2)
     json3 = json.dumps(json2)
     a = request.GET.get('a', '')
     p = request.GET.get('p', '')
