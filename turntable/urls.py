@@ -93,6 +93,8 @@ urlpatterns = [
     path('liffScratchCi', views.liffScratchCi),
     path('ciScratch', views.ciScratch),
     path('ciGameDone', views.ciGameDone),
+    path('puduMgm', views.puduMgm),
+    path('puduimg', views.puduimg),
     
 ]
 def page_not_found(request, exception):
